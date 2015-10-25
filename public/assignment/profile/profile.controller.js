@@ -3,6 +3,10 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, UserService) {
+    function ProfileController($scope, $location, UserService) {
+        $scope.update = update;
+        function update() {
+
+        }
     }
 })();

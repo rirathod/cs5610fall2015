@@ -6,11 +6,11 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/admin", {
-                templateUrl: "admin.html"
-                //controller: "CourseController"
+                templateUrl: "admin/admin.view.html",
+                controller: "AdminController"
             })
             .when("/forms", {
-                templateUrl: "forms/forms.view.html",
+                templateUrl: "form/form.view.html",
                 controller: "FormController"
             })
             .when("/home",{

@@ -10,22 +10,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
-    <script src="header.controller.js"></script>
-    <script src="sidebar.controller.js"></script>
-    <script src="./service/UserService.js.js"></script>
+    <script src="header/header.controller.js"></script>
+    <script src="sidebar/sidebar.controller.js"></script>
+    <script src="./service/UserService.js"></script>
     <script src="./service/FormService.js"></script>
+    <script src="./login/login.controller.js"></script>
+    <script src="./register/register.controller.js"></script>
+    <script src="./profile/profile.controller.js"></script>
+    <script src="./form/form.controller.js"></script>
+    <script src="./admin/admin.controller.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css"/>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row" ng-controller="HeaderController">
             <div class="col-sm-12">
-                <div ng-include="'header.view.html'"></div>
+                <div ng-include="'header/header.view.html'"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
-                <div ng-include="'sidebar.view.html'"></div>
+                <div ng-include="'sidebar/sidebar.view.html'"></div>
             </div>
             <div class="col-sm-9 col-md-10" ng-view>
             </div>

@@ -3,6 +3,10 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, UserService) {
+    function RegisterController($scope, $location) {
+        $scope.register = register;
+        function register() {
+
+        }
     }
 })();
