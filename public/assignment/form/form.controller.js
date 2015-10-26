@@ -13,7 +13,6 @@
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
-        //$scope.forms = initializeForms($scope.user);
         var initializeForms = function() {
             FormService.findAllFormsForUser($scope.user.id, function(userForms){
                 $scope.forms = userForms;
@@ -25,7 +24,7 @@
             var newForm = {
                 name : form.name
             };
-
+            $scope.form.name = "";
             FormService.createFormForUser($rootScope.user.id, newForm, function(object) {
                 $scope.forms.push(object);
             })
