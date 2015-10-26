@@ -24,47 +24,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <td><input class="form-control" type="text" name="name" placeholder="name"/></td>
+                    <td><input ng-model="form.name" class="form-control" type="text" name="name" placeholder="name"/></td>
                     <td>
-                        <button type="button" class="btn btn-primary">
+                        <button ng-click="addForm(form)" type="button" class="btn btn-primary">
                             <scan class="glyphicon glyphicon-plus"></scan>
                         </button>
-                        <button type="button" class="btn btn-success">
+                        <button ng-click="updateForm(form)" type="button" class="btn btn-success">
                             <scan class="glyphicon glyphicon-ok"></scan>
                         </button>
                     </td>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="form-fields.html">Registration Form</a></td>
+                    <tr ng-repeat="form in forms">
+                        <td>{{form.name}}</td>
                         <td>
-                            <button type="button" class="btn btn-danger">
+                            <button ng-click="deleteForm($index)" class="btn btn-danger">
                                 <scan class="glyphicon glyphicon-remove"></scan>
                             </button>
-                            <button type="button" class="btn btn-warning">
-                                <scan class="glyphicon glyphicon-pencil"></scan>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="form-fields.html">Contact List</a></td>
-                        <td>
-                            <button type="button" class="btn btn-danger">
-                                <scan class="glyphicon glyphicon-remove"></scan>
-                            </button>
-                            <button type="button" class="btn btn-warning">
-                                <scan class="glyphicon glyphicon-pencil"></scan>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="form-fields.html">To Do List</a></td>
-                        <td>
-                            <button type="button" class="btn btn-danger">
-                                <scan class="glyphicon glyphicon-remove"></scan>
-                            </button>
-                            <button type="button" class="btn btn-warning">
+                            <button ng-click="selectForm($index)" class="btn btn-info">
                                 <scan class="glyphicon glyphicon-pencil"></scan>
                             </button>
                         </td>
