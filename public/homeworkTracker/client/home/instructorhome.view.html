@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet" />
+    <link href="../css/stickyFooter.css" rel="stylesheet">
+    <link href="../css/imageBackground.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="row">
+    <div class="col-sm-12">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Homework Tracker</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="../contactus/contactus.view.html">Contact Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="../profile/profile.view.html">Hello User!</a></li>
+                        <li><a href="../signin/signin.view.html">Logout</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<br/>
+<div class="row">
+    <div class="container">
+        <h1>Welcome to the Instructor Home Page...</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <h3>View Student Project:</h3>
+        <br/>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputStudentEmailId" class="col-sm-2 control-label">Student Email Id:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputStudentEmailId" placeholder="example@domain.com">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputStudentProjectId" class="col-sm-2 control-label">Student Project Id:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputStudentProjectId" placeholder="11111">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a class="btn btn-default btn-primary" role="button">Reset</a>
+                    <a class="btn btn-default btn-primary" role="button">Enter</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Homework Tracker © 2015</p>
+    </div>
+</footer>
+</body>
+</html>
