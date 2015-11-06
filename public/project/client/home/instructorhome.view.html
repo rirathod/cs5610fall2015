@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us</title>
+    <title>Website</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -10,6 +10,7 @@
     <!-- Custom styles for this template -->
     <link href="../css/dashboard.css" rel="stylesheet" />
     <link href="../css/stickyFooter.css" rel="stylesheet">
+    <link href="../css/imageBackground.css" rel="stylesheet">
 
 </head>
 <body>
@@ -24,16 +25,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../website/website.view.html">Homework Tracker</a>
+                    <a class="navbar-brand" href="../index.html">Homework Tracker</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="../website/website.view.html">Home</a></li>
-                        <li class="active"><a href="#">Contact Us</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../contactus/contactus.view.html">Contact Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="../signin/signin.view.html">Sign In</a></li>
-                        <li><a href="../signup/signup.view.html">Sign Up</a></li>
+                        <li><a href="../profile/profile.view.html">Hello User!</a></li>
+                        <li><a href="../signin/signin.view.html">Logout</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <input type="text" class="form-control" placeholder="Search...">
@@ -44,21 +45,28 @@
     </div>
 </div>
 
+<br/>
 <div class="row">
     <div class="container">
-        <h1>Contact Us</h1>
+        <h1>Welcome to the Instructor Home Page...</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <h3>View Student Project:</h3>
+        <br/>
         <form class="form-horizontal">
             <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email id:</label>
+                <label for="inputStudentEmailId" class="col-sm-2 control-label">Student Email Id:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail" placeholder="example@domain.com">
+                    <input type="text" class="form-control" id="inputStudentEmailId" placeholder="example@domain.com">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputMessage" class="col-sm-2 control-label">Message:</label>
+                <label for="inputStudentProjectId" class="col-sm-2 control-label">Student Project Id:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputMessage" placeholder="Message">
+                    <input type="number" class="form-control" id="inputStudentProjectId" placeholder="11111">
                 </div>
             </div>
 
@@ -72,11 +80,10 @@
     </div>
 </div>
 
-
-    <footer class="footer">
-        <div class="footer container">
-            <p class="text-muted">Homework Tracker © 2015</p>
-        </div>
-    </footer>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Homework Tracker © 2015</p>
+    </div>
+</footer>
 </body>
 </html>
