@@ -7,11 +7,17 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="../../css/dashboard.css" rel="stylesheet" />
     <link href="../../css/stickyFooter.css" rel="stylesheet">
     <script src="../../add-sub-task-onclick.js"></script>
+    <script>
+        $(function() {
+            $( "#accordion" ).accordion();
+        });
+    </script>
 </head>
 <body>
 <div class="row">
@@ -54,15 +60,70 @@
     <div class="row">
         <div class="col-sm-3 col-md-2">
             <ul class="nav nav-list nav-sidebar">
-                <li><a href="newproject/newproject.view.html">Create New Project</a></li>
-                <li><a href="#">Open Existing Projects</a></li>
-                <li><a href="closedprojects/closedprojects.view.html">View Closed Projects</a></li>
+                <li><a href="../newproject/newproject.view.html">New Project</a></li>
+                <li><a href="#">Existing Projects</a></li>
+                <li><a href="../closedprojects/closedprojects.view.html">Closed Projects</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-md-10">
-            <a href="#" class="btn btn-default btn-primary btn-block" role="button">Project1</a>
-            <a href="#" class="btn btn-default btn-primary btn-block" role="button">Project2</a>
-            <a href="#" class="btn btn-default btn-primary btn-block" role="button">Project3</a>
+            <h4>Existing Projects</h4>
+            <div id="accordion">
+                <button type="button" class="btn btn-default btn-block btn-primary">Project1</button>
+                <div>
+                    Details of Project 1
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project2</button>
+                <div>
+                    Details of Project 2
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project3</button>
+                <div>
+                    Details of Project 3
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project4</button>
+                <div>
+                    Details of Project 4
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project5</button>
+                <div>
+                    Details of Project 5
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

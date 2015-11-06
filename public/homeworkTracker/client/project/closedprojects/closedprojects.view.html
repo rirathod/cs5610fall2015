@@ -7,11 +7,17 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="../../css/dashboard.css" rel="stylesheet" />
     <link href="../../css/stickyFooter.css" rel="stylesheet">
     <script src="../../add-sub-task-onclick.js"></script>
+    <script>
+        $(function() {
+            $( "#accordion" ).accordion();
+        });
+    </script>
 </head>
 <body>
 <div class="row">
@@ -54,64 +60,70 @@
     <div class="row">
         <div class="col-sm-3 col-md-2">
             <ul class="nav nav-list nav-sidebar">
-                <li><a href="newproject/newproject.view.html">Create New Project</a></li>
-                <li><a href="openprojects/openprojects.view.html">Open Existing Projects</a></li>
-                <li><a href="closedprojects/closedprojects.view.html">View Closed Projects</a></li>
+                <li><a href="../newproject/newproject.view.html">New Project</a></li>
+                <li><a href="../openprojects/openprojects.view.html">Existing Projects</a></li>
+                <li><a href="#">Closed Projects</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-md-10">
-            <form id="projectDetailsForm" class="form-horizontal border">
-                <b><h4>Project Details</h4></b>
-                <div class="form-group">
-                    <label for="inputTitle" class="col-sm-2 control-label">Title:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputTitle" placeholder="Project Title">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputDescription" class="col-sm-2 control-label">Description:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputDescription" placeholder="Project Description">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Progress Status:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" type="text" name="Progress Status">
-                            <option value="Start">Start</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Finish">Finish</option>
-                        </select>
-                    </div>
-                </div>
-
+            <h4>Closed Projects</h4>
+            <div id="accordion">
+                <button type="button" class="btn btn-default btn-block btn-primary">Project1</button>
                 <div>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Sub-tasks</th>
-                            <th>Actions</th>
-                        </tr>
-                        <tr>
-                            <td><input id="subTaskDescription" class="form-control" type="text" name="SubTaskDescription" placeholder="Sub-task Description"/></td>
-                            <td>
-                                <button id="addSubTask" type="button" class="btn btn-primary">
-                                    <scan class="glyphicon glyphicon-plus"></scan>
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody class="template-container" id="subTasks">
-                        <tr class="template" >
-                            <td class="description"></td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    Details of Project 1
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
                 </div>
-            </form>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project2</button>
+                <div>
+                    Details of Project 2
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project3</button>
+                <div>
+                    Details of Project 3
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project4</button>
+                <div>
+                    Details of Project 4
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <button type="button" class="btn btn-default btn-block btn-primary">Project5</button>
+                <div>
+                    Details of Project 5
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
