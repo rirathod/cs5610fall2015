@@ -1,8 +1,11 @@
-module.exports = function(app) {
-    var model1 = require("./models/user.model.js")(app);
-    require("./services/user.service.server.js")(app, model1);
+"use strict";
 
-    var model2 = require("./models/form.model.js")(app);
-    require("./services/form.service.server.js")(app, model2);
-    require("./services/field.service.server.js")(app, model2);
+module.exports = function(app, mongoose, db) {
+
+    var userModel = require("./models/user.model.js")(app, mongoose, db);
+    require("./services/user.service.server.js")(app, userModel, db);
+
+    var formModel = require("./models/form.model.js")(app, mongoose, db);
+    require("./services/form.service.server.js")(app, formModel, db);
+    //require("./services/field.service.server.js")(app, model2);
 };
