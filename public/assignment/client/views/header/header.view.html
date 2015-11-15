@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+        <!--</button>-->
+        <a class="navbar-brand" href="#/formmaker">Form Maker</a>
+    </div>
+    <div>
+        <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li ng-class="{'active' : $location.url().indexof('register') != -1}"><a href="#/register">Register</a></li>-->
+            <!--<li ng-class="{'active' : $location.url().indexof('login') != -1}"><a href="#/login">Login</a></li>-->
+            <!--<li ng-class="{'active' : $location.url().indexof('home') != -1}"><a href="#/username">Username</a></li>-->
+            <!--<li ng-class="{'active' : $location.url().indexof('home') != -1}"><a href="#/logout">Logout</a></li>-->
+
+            <nav class="pull-right">
+                <ul class="list-inline nav nav-pills">
+                    <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                    <li ng-class="{'active' : $location.url().indexOf('username') != -1}"><a href="#/username">Username</a></li>
+                    <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <!--<li><a href="#/register">Register</a></li>-->
+            <!--<li><a href="#/login">Login</a></li>-->
+            <!--<li><a href="#/username">Username</a></li>-->
+            <!--<li><a href="#/logout">Logout</a></li>-->
+        <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+        </form>
+    </div>
+</nav>

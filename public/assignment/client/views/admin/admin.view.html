@@ -1,0 +1,86 @@
+<div class="container" ng-controller="AdminController">
+    <h1>Admin</h1>
+    <h3>Users</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                <button class="btn">
+                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                </button>
+                Username
+            </th>
+            <th>
+                <button class="btn">
+                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                </button>
+                Password
+            </th>
+            <th>
+                <button class="btn">
+                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                </button>
+                Role</th>
+            <th>
+                <button class="btn">
+                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                </button>
+                Actions</th>
+        </tr>
+        <tr>
+            <td><input class="form-control" type="text" name="username" placeholder="username"/></td>
+            <td><input class="form-control" type="text" name="password" placeholder="password"/></td>
+            <td><input class="form-control" type="text" name="role" placeholder="role1, role2"/></td>
+            <td>
+                <button type="button" class="btn btn-primary">
+                    <scan class="glyphicon glyphicon-plus"></scan>
+                </button>
+                <button type="button" class="btn btn-success">
+                    <scan class="glyphicon glyphicon-ok"></scan>
+                </button>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>alice</td>
+            <td>&nbsp;</td>
+            <td>student</td>
+            <td>
+                <button type="button" class="btn btn-danger">
+                    <scan class="glyphicon glyphicon-remove"></scan>
+                </button>
+                <button type="button" class="btn btn-warning">
+                    <scan class="glyphicon glyphicon-pencil"></scan>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>bob</td>
+            <td>&nbsp;</td>
+            <td>faculty | admin</td>
+            <td>
+                <button type="button" class="btn btn-danger">
+                    <scan class="glyphicon glyphicon-remove"></scan>
+                </button>
+                <button type="button" class="btn btn-warning">
+                    <scan class="glyphicon glyphicon-pencil"></scan>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>charlie</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+                <button type="button" class="btn btn-danger">
+                    <scan class="glyphicon glyphicon-remove"></scan>
+                </button>
+                <button type="button" class="btn btn-warning">
+                    <scan class="glyphicon glyphicon-pencil"></scan>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "bower": "^1.6.5",
-    "express": "~3.4.4",
+    "express": "^3.4.8",
     "guid": "0.0.12",
     "mongoose": "^4.2.4"
   },
