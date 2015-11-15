@@ -3,37 +3,44 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", ['$scope', '$location', '$rootScope', '$q', 'UserService', RegisterController]);
 
-    function RegisterController($scope, $location,$rootScope, UserService) {
+    function RegisterController($scope, $location, $rootScope, $q, UserService) {
         $scope.register = register;
 
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
-        }
-
         function register(user) {
-            var newUser = {
-                id: guid(),
-                username: user.username,
-                password: user.password,
-                firstname: "",
-                lastname: "",
-                email: user.email
-            };
+            $scope.error = null;
 
-            UserService.createUser(newUser, function(user) {
-                console.log(user);
-            });
+            //UserService.findAllUsers()
+            //    .then(function(users) {
+            //        console.log(users);
+            //    })
+            //    .error(function(error) {
+            //        console.log(error);
+            //    });
 
-            $rootScope.user = newUser;
-            $location.path("/profile");
+            if($scope.username, $scope.password, $scope.verifyPassword, $scope.email) {
+                if ($scope.password !== $scope.verifyPassword){
+                    $scope.error = "Both the password and verify password fields should match";
+                } else {
+                    var newUser = {
+                        username: $scope.username,
+                        password: $scope.password,
+                        email: $scope.email
+                    };
+                    UserService.createUser(newUser)
+                        .then(function(newlyCreatedUser) {
+                            //update rootscope user
+                            $rootScope.user = newlyCreatedUser;
+
+                            //Navigate to profile
+                            $location.path("/profile");
+                        })
+                        .catch(function(error){
+                            $scope.error = error;
+                        });
+                }
+            }
         }
     }
 })();

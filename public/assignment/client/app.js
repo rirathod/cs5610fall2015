@@ -1,3 +1,5 @@
-/**
- * Created by riddhirathod on 11/14/15.
- */
+'use strict';
+(function() {
+    angular
+        .module("FormBuilderApp", ["ngRoute"]);
+})();

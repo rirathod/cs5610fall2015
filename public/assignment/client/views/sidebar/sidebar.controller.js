@@ -3,7 +3,7 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("SidebarController", SidebarController);
+        .controller("SidebarController", ['$scope', '$location', SidebarController]);
 
     function SidebarController($scope, $location) {
         $scope.$location = $location;

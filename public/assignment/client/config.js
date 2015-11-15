@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -5,31 +6,40 @@
 
     function Configure($routeProvider) {
         $routeProvider
-            .when("/admin", {
-                templateUrl: "admin/admin.view.html",
-                controller: "AdminController"
-            })
-            .when("/forms", {
-                templateUrl: "form/form.view.html",
-                controller: "FormController"
+            .when("/", {
+                redirectTo : "/home"
             })
             .when("/home",{
-                templateUrl: "home/home.view.html"
+                templateUrl: "views/home/home.view.html"
             })
             .when("/login", {
-                templateUrl: "login/login.view.html",
+                templateUrl: "views/login/login.view.html",
                 controller: "LoginController"
             })
-            .when("/profile", {
-                templateUrl: "profile/profile.view.html",
-                controller: "ProfileController"
-            })
             .when("/register", {
-                templateUrl: "register/register.view.html",
+                templateUrl: "views/register/register.view.html",
                 controller: "RegisterController"
             })
+            .when("/profile", {
+                templateUrl: "views/profile/profile.view.html",
+                controller: "ProfileController"
+            })
+            .when("/form", {
+                templateUrl: "views/form/form.view.html",
+                controller: "FormController"
+            })
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController"
+            })
+            //.when("/user", {
+            //    templateUrl : "/assignment/client/field/field.view.html"
+            //})
+            .when("/user/:userId/form/:formId/fields", {
+                templateUrl: "views/field/field.view.html",
+            })
             .otherwise({
-                redirectTo: "/home"
-            });
+                redirectTo : "/"
+            })
     }
 })();

@@ -13,7 +13,7 @@ module.exports = function(app){
     };
     return api;
 
-    function createFormByUserId(userId) {
+    function createFormByUserId(userId, form) {
 
     }
 
@@ -49,5 +49,19 @@ module.exports = function(app){
 
     function deleteFormById(formId) {
 
+    }
+
+    /**
+     * [guid generates a unique id]
+     * @return String [a unique id]
+     */
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 };
