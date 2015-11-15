@@ -1,55 +1,65 @@
-(function(){
-    'use strict';
-
-    angular
-        .module("FormBuilderApp")
+"use strict";
+(function () {
+    angular.module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, $rootScope, FormService) {
-        $scope.user = $rootScope.user;
+    function FormController($scope, FormService, $rootScope, $location) {
+        console.log($rootScope.loggedUser);
+        FormService.findAllFormsForUser($rootScope.loggedUser.id).then(function (forms) {
+            $scope.forms = forms;
+        });
 
-        $scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
-
-        var initializeForms = function() {
-            FormService.findAllFormsForUser($scope.user.id, function(userForms){
-                $scope.forms = userForms;
-            });
-        };
-        initializeForms();
-
-        function addForm(form) {
-            var newForm = {
-                name : form.name
+        $scope.addForm = function () {
+            console.log($scope.formName);
+            var form = {
+                title: $scope.formName
             };
-            $scope.form.name = "";
-            FormService.createFormForUser($rootScope.user.id, newForm, function(object) {
-                $scope.forms.push(object);
-            })
+            console.log(angular.isUndefined($scope.formName));
+            if(!angular.isUndefined($scope.formName) && $scope.formName != ""){
+                FormService.createFormForUser($rootScope.loggedUser.id, form).then(function(forms) {
+                    FormService.findAllFormsForUser($rootScope.loggedUser.id).then(function(forms) {
+                        $scope.forms = forms;
+                        $scope.formName = "";
+                    });
+                });
+            }
         }
 
-        function updateForm(newForm) {
-            var form = $scope.forms[$scope.selectedFormIndex];
-            FormService.updateFormById(form.formid, newForm, function(object) {
-                console.log(object);
+        $scope.deleteForm = function (id) {
+            FormService.deleteFormById(id).then(function (forms) {
+                FormService.findAllFormsForUser($rootScope.loggedUser.id).then(function (forms) {
+                    $scope.forms = forms;
+                });
             });
         }
 
-        function deleteForm(index) {
-            FormService.deleteFormById($scope.forms[index].formid, function(newForms) {
-                $scope.forms = newForms;
-            });
+        $scope.selectForm = function (index) {
+            console.log(index);
+            $scope.selectedFormId = $scope.forms[index].id;
+            $scope.formName = $scope.forms[index].title;
+            $scope.index = index;
         }
 
-        function selectForm(index) {
-            $scope.selectedFormIndex = index;
-            $scope.form = {
-                formid: $scope.forms[index].formid,
-                userid: $scope.forms[index].userid,
-                name: $scope.forms[index].name
-            };
+        $scope.updateForm = function (selectedFormId, index) {
+            if (!angular.isUndefined(index)) {
+                console.log(index);
+                if (!angular.isUndefined($scope.formName) && $scope.formName != "") {
+                    var formToBeUpdated = $scope.forms[index];
+                    var newForm = {
+                        title: $scope.formName,
+                        userId: $rootScope.loggedUser.id
+                    };
+                    console.log(newForm);
+                    FormService.updateFormById(selectedFormId, newForm).then(function (updatedForm) {
+                        $scope.forms[index] = updatedForm;
+                        $scope.formName = "";
+                    })
+                }
+            }
+        }
+
+        $scope.navigate = function(index){
+            $location.path("/user/" + $rootScope.loggedUser.id + "/form/" + $scope.forms[index].id + "/fields");
         }
     }
 })();
