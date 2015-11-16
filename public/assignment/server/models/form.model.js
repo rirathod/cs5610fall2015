@@ -22,13 +22,10 @@ module.exports = function(app){
         field.id = guid();
         for(var i=0; i<forms.length; i++) {
             if (formId === forms[i].id) {
-                if(forms[i].fields == null){
+                if(forms[i].fields == null) {
                     forms[i].fields = [];
-                    forms[i].fields.push(field);
                 }
-                else{
-                    forms[i].fields.push(field);
-                }
+                forms[i].fields.push(field);
                 return forms[i].fields;
             }
         }
@@ -133,6 +130,7 @@ module.exports = function(app){
                         forms[i].fields[j] = field;
                     }
                 }
+                return forms[i].fields;
             }
         }
     }

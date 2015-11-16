@@ -27,6 +27,8 @@
         $scope.addField = addField;
         $scope.removeField = removeField;
         $scope.clone = clone;
+        $scope.editField = editField;
+        $scope.reorderField = reorderField;
 
         function addField(modelType) {
             var textField = {"id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
@@ -81,10 +83,21 @@
         }
 
         function clone(field){
-            FieldService.cloneField(formId,field)
+            FieldService.cloneField(formId, field)
                 .then(function(fields){
                     $scope.fields = fields;
                 });
+        }
+
+        function editField(field) {
+            //FieldService.updateField(formId, field.id, field)
+            //    .then(function(fields) {
+            //        $scope.fields = fields;
+            //    });
+        }
+
+        function reorderField(field) {
+
         }
     }
 })();

@@ -10,8 +10,7 @@
             findFormById: findFormById,
             findFormByTitle: findFormByTitle,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById,
-            getAllFieldsByFormId: getAllFieldsByFormId
+            updateFormById: updateFormById
         };
         return service;
 
@@ -78,10 +77,6 @@
                 defer.resolve(response);
             });
             return defer.promise;
-        }
-
-        function getAllFieldsByFormId(formId){
-
         }
 
         function guid() {
