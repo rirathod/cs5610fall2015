@@ -7,7 +7,7 @@
     function RegisterController($scope, $location, $rootScope, UserService) {
         $scope.register = register;
 
-        function register(user) {
+        function register() {
             if($scope.username, $scope.password, $scope.verifyPassword, $scope.email) {
                 if ($scope.password !== $scope.verifyPassword){
                     $scope.error = "Both the password and verify password fields should match";

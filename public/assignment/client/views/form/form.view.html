@@ -24,22 +24,22 @@
                     </th>
                 </tr>
                 <tr>
-                    <td><input ng-model="form.name" class="form-control" type="text" name="name" placeholder="name"/></td>
+                    <td><input ng-model="formName" class="form-control" type="text" name="name" placeholder="name"/></td>
                     <td>
-                        <button ng-click="addForm(form)" type="button" class="btn btn-primary">
+                        <button ng-click="addForm()" type="button" class="btn btn-primary">
                             <scan class="glyphicon glyphicon-plus"></scan>
                         </button>
-                        <button ng-click="updateForm(form)" type="button" class="btn btn-success">
+                        <button ng-click="updateForm(selectedFormId, index)" type="button" class="btn btn-success">
                             <scan class="glyphicon glyphicon-ok"></scan>
                         </button>
                     </td>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="form in forms">
-                        <td>{{form.name}}</td>
+                    <tr ng-repeat="form in forms | orderBy:predicate:reverse">
+                        <td><a ng-click="navigate($index)">{{form.title}}</a></td>
                         <td>
-                            <button ng-click="deleteForm($index)" class="btn btn-danger">
+                            <button ng-click="deleteForm(form.id)" class="btn btn-danger">
                                 <scan class="glyphicon glyphicon-remove"></scan>
                             </button>
                             <button ng-click="selectForm($index)" class="btn btn-info">

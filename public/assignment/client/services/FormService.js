@@ -7,19 +7,22 @@
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
+            findFormById: findFormById,
+            findFormByTitle: findFormByTitle,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById
-        }
-
+            updateFormById: updateFormById,
+            getAllFieldsByFormId: getAllFieldsByFormId
+        };
         return service;
 
         function createFormForUser(userId, form) {
             var defer = $q.defer();
             var url = "/api/assignment/user/" + userId + "/form";
             console.log(url);
-            $http.post(url, form).success(function(response){
-                defer.resolve(response);
-            });
+            $http.post(url, form)
+                .success(function(response){
+                    defer.resolve(response);
+                });
             return defer.promise;
         }
 
@@ -27,9 +30,32 @@
             var defer = $q.defer();
             var url = "/api/assignment/user/" + userId + "/form";
             console.log(url);
-            $http.get(url).success(function(response){
-                defer.resolve(response);
-            });
+            $http.get(url)
+                .success(function(response){
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
+
+        function findFormById(formId) {
+            var defer = $q.defer();
+            var url = "/api/assignment/form/"+ formId;
+            console.log(url);
+            $http.get(url)
+                .success(function(response){
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
+
+        function findFormByTitle(title) {
+            var defer = $q.defer();
+            var url = "/api/assignment/form?formTitle="+ title;
+            console.log(url);
+            $http.get(url)
+                .success(function(response){
+                    defer.resolve(response);
+                });
             return defer.promise;
         }
 
@@ -37,9 +63,10 @@
             var defer = $q.defer();
             var url = "/api/assignment/form/" + formId;
             console.log(url);
-            $http.delete(url).success(function(response){
-                defer.resolve(response);
-            });
+            $http.delete(url)
+                .success(function(response){
+                    defer.resolve(response);
+                });
             return defer.promise;
         }
 

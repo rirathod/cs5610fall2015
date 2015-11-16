@@ -14,30 +14,30 @@
             })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
-                controller: "LoginController"
+                //controller: "LoginController"
             })
             .when("/register", {
                 templateUrl: "views/register/register.view.html",
-                controller: "RegisterController"
+                //controller: "RegisterController"
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html",
-                controller: "ProfileController"
+                //controller: "ProfileController"
             })
             .when("/form", {
                 templateUrl: "views/form/form.view.html",
-                controller: "FormController"
+                //controller: "FormController"
             })
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
-                controller: "AdminController"
+                //controller: "AdminController"
             })
-            .when("/user", {
-                templateUrl : "/assignment/client/field/field.view.html"
-            })
-            //.when("/user/:userId/form/:formId/fields", {
-            //    templateUrl: "views/field/field.view.html",
+            //.when("/user", {
+            //    templateUrl : "/assignment/client/field/field.view.html"
             //})
+            .when("/user/:userId/form/:formId/fields", {
+                templateUrl: "views/field/field.view.html",
+            })
             .otherwise({
                 redirectTo : "/"
             })

@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 module.exports = function(app,model){
 
@@ -14,6 +14,11 @@ module.exports = function(app,model){
 
     app.get("/api/assignment/form/:formId", function(req,res){
         res.json(model.FindById(req.params.formId));
+    });
+
+    app.get('/api/assignment/form', function(req,res){
+        var formTitle = req.param("formTitle");
+        res.json(model.FindFormByTitle(formTitle));
     });
 
     app.put("/api/assignment/form/:formId",function(req,res){

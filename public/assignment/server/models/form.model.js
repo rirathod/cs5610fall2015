@@ -5,32 +5,22 @@ module.exports = function(app){
     var api = {
         Create : Create,
         FindAll : FindAll,
+        FindFormByTitle : FindFormByTitle,
+        FindFormsByUserId : FindFormsByUserId,
         FindById : FindById,
         Update : Update,
         Delete : Delete,
-        FindFormByTitle : FindFormByTitle,
-        FindFormsByUserId : FindFormsByUserId,
+
         AddFormField : AddFormField,
         FindField : FindField,
         UpdateFormField : UpdateFormField,
         DeleteFormField : DeleteFormField
-    }
-
+    };
     return api;
-
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
 
     function AddFormField(formId, field){
         field.id = guid();
-        for(var i = 0; i<forms.length; i++) {
+        for(var i=0; i<forms.length; i++) {
             if (formId === forms[i].id) {
                 if(forms[i].fields == null){
                     forms[i].fields = [];
@@ -45,9 +35,9 @@ module.exports = function(app){
     }
 
     function FindField(formId,fieldId){
-        for(var i = 0; i<forms.length; i++) {
+        for(var i=0; i<forms.length; i++) {
             if (forms[i].id === formId) {
-                for (var j = 0; j < forms[i].fields.length; j++) {
+                for (var j=0; j < forms[i].fields.length; j++) {
                     if (forms[i].fields[j].id === fieldId) {
                         return forms[i].fields[j];
                     }
@@ -57,9 +47,9 @@ module.exports = function(app){
         return null;
     }
 
-    function Create(form,userId){
-        console.log(userId + " 1");
-        console.log(form);
+    function Create(form, userId){
+        //console.log(userId + " 1");
+        //console.log(form);
         form.userId = userId;
         form.id = guid();
         form.fields = [];
@@ -72,7 +62,7 @@ module.exports = function(app){
     }
 
     function FindById(id){
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             if(id === forms[i].id){
                 return forms[i];
             }
@@ -81,10 +71,10 @@ module.exports = function(app){
     }
 
     function Update(id, form){
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             if(id === forms[i].id){
                 forms[i].title = form.title;
-                forms[i].userId = form.userId
+                forms[i].userId = form.userId;
                 return forms[i];
             }
         }
@@ -92,22 +82,18 @@ module.exports = function(app){
     }
 
     function Delete(id){
-        console.log(id);
-        var index;
-        for(var i = 0; i<forms.length; i++) {
-            console.log(forms[i].id);
+        //console.log(id);
+        for(var i=0; i<forms.length; i++) {
             if (id == forms[i].id) {
-                index = i;
+                forms.splice(i, 1);
             }
         }
-        if(index) {
-            forms.splice(i, 1);
-        }
+
         return forms;
     }
 
     function FindFormByTitle(title){
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             if(title === forms[i].title){
                 return forms[i];
             }
@@ -117,7 +103,7 @@ module.exports = function(app){
 
     function FindFormsByUserId(userId){
         var userForms = [];
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             console.log(forms[i].userId);
             if(forms[i].userId == userId){
                 userForms.push(forms[i]);
@@ -127,7 +113,7 @@ module.exports = function(app){
     }
 
     function DeleteFormField(formId, fieldId){
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             if(forms[i].id == formId){
                 for(var j = 0; j<forms[i].fields.length; j++){
                     if(forms[i].fields[j].id === fieldId){
@@ -140,7 +126,7 @@ module.exports = function(app){
     }
 
     function UpdateFormField(formId, fieldId, field){
-        for(var i = 0; i<forms.length; i++){
+        for(var i=0; i<forms.length; i++){
             if(forms[i].id === formId){
                 for(var j = 0; j<forms[i].fields.length; j++){
                     if(forms[i].fields[j].id === fieldId){
@@ -149,5 +135,15 @@ module.exports = function(app){
                 }
             }
         }
+    }
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 };
