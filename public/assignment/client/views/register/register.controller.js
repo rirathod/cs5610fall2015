@@ -1,24 +1,13 @@
+'use strict';
 (function(){
-    'use strict';
-
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", ['$scope', '$location', '$rootScope', '$q', 'UserService', RegisterController]);
+        .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $location, $rootScope, $q, UserService) {
+    function RegisterController($scope, $location, $rootScope, UserService) {
         $scope.register = register;
 
         function register(user) {
-            $scope.error = null;
-
-            //UserService.findAllUsers()
-            //    .then(function(users) {
-            //        console.log(users);
-            //    })
-            //    .error(function(error) {
-            //        console.log(error);
-            //    });
-
             if($scope.username, $scope.password, $scope.verifyPassword, $scope.email) {
                 if ($scope.password !== $scope.verifyPassword){
                     $scope.error = "Both the password and verify password fields should match";
@@ -35,9 +24,6 @@
 
                             //Navigate to profile
                             $location.path("/profile");
-                        })
-                        .catch(function(error){
-                            $scope.error = error;
                         });
                 }
             }

@@ -1,38 +1,39 @@
+'use strict';
 (function(){
-    'use strict';
-
     angular
         .module("FormBuilderApp")
-        .controller("ProfileController", ['$scope', '$location', '$rootScope', 'UserService', ProfileController]);
+        .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
-        $scope.user = $rootScope.user;
-        //listen for login/sigin to grab logged in user
-        $rootScope.$on("auth", function(event, user){
-            $scope.user = $rootScope.user = user;
-        });
+
+        $scope.username = $rootScope.user.username;
+        $scope.password = $rootScope.user.password;
+        $scope.email = $rootScope.user.email;
+        $scope.firstName = $rootScope.user.firstName;
+        $scope.lastName = $rootScope.user.lastName;
+
+        console.log($rootScope.user);
 
         $scope.update = function () {
-            $scope.error = null;
-            $scope.success = null;
-            UserService.updateUser($scope.user.id, $scope.user)
+            var user = {
+                username: $scope.username,
+                password: $scope.password,
+                email: $scope.email,
+                firstName: $scope.firstName,
+                lastName: $scope.lastName,
+                id: $rootScope.user.id
+            };
+
+            UserService.updateUser(user, user.id)
                 .then(function(updatedUser){
                     $scope.user = updatedUser;
+                    $rootScope.user = updatedUser;
                     $scope.success = "User Profile updated successfully.";
                 })
                 .catch(function(error){
                     $scope.error = error;
                 })
-
-            /*UserService.updateUser(user.id, user, function(object) {
-                console.log(object);
-                if (typeof object === 'string' || object instanceof String) {
-                    $scope.message = object;
-                } else {
-                    $scope.message = "User Profile updated successfully."
-                }
-            });*/
         };
-    };
+    }
 })();
