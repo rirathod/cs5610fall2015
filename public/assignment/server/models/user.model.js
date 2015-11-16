@@ -11,8 +11,7 @@ module.exports = function(app){
         Delete : Delete,
         FindUserByUsername : FindUserByUsername,
         FindUserByCredentials : FindUserByCredentials
-    }
-
+    };
     return api;
 
     function guid() {
@@ -27,18 +26,17 @@ module.exports = function(app){
 
     function Create(user){
         user.id = guid();
-        console.log(user);
+        //console.log(user);
         users.push(user);
         return user;
     }
 
     function FindAll(){
-        console.log("2");
         return users;
     }
 
     function FindById(id){
-        console.log(id);
+        //console.log(id);
         for(var i = 0; i<users.length; i++){
             console.log(users[i].id);
             if(id == users[i].id){
@@ -63,6 +61,7 @@ module.exports = function(app){
                 users.splice(i, 1);
             }
         }
+        return users;
     }
 
     function FindUserByCredentials(credentials){
@@ -78,7 +77,7 @@ module.exports = function(app){
 
     function FindUserByUsername(username){
         for(var i = 0; i<users.length; i++){
-            if(username == users[i].username){
+            if(username === users[i].username){
                 return users[i];
             }
         }

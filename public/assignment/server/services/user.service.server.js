@@ -9,6 +9,7 @@ module.exports = function(app,model){
     app.get('/api/assignment/user', function(req,res){
         var username = req.param("username");
         var password = req.param("password");
+
         if(typeof username === 'undefined' && typeof password === 'undefined'){
             res.json(model.FindAll());
         }
@@ -29,10 +30,10 @@ module.exports = function(app,model){
     });
 
     app.put("/api/assignment/user/:id",function(req,res){
-        res.json(model.Update(req.params.id,req.body));
+        res.json(model.Update(req.params.id, req.body));
     });
 
-    app.delete("/api/assignment/user/:id",function(req,res){
+    app.delete("/api/assignment/user/:id", function(req, res){
         res.json(model.Delete(req.params.id));
     });
 };

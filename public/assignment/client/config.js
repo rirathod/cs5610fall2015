@@ -32,12 +32,12 @@
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
-            //.when("/user", {
-            //    templateUrl : "/assignment/client/field/field.view.html"
-            //})
-            .when("/user/:userId/form/:formId/fields", {
-                templateUrl: "views/field/field.view.html",
+            .when("/user", {
+                templateUrl : "/assignment/client/field/field.view.html"
             })
+            //.when("/user/:userId/form/:formId/fields", {
+            //    templateUrl: "views/field/field.view.html",
+            //})
             .otherwise({
                 redirectTo : "/"
             })
