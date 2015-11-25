@@ -28,7 +28,8 @@
     "bower": "^1.6.5",
     "express": "^3.4.8",
     "guid": "0.0.12",
-    "mongoose": "^4.2.5",
+    "mongoose": "^4.2.8",
+    "multer": "^1.1.0",
     "q": "^1.4.1"
   },
   "devDependencies": {},
