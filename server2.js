@@ -17,6 +17,13 @@ var Course = mongoose.model('Course', CourseSchema);
 //    console.log(results);
 //});
 
+function createCourse(course) {
+    Course.create(course, function(err, results) {
+        console.log(err);
+        console.log(results);
+    })
+}
+
 function findAll(callback) {
     Course.find(callback);
 }
@@ -25,17 +32,9 @@ function findByTitle(title, callback) {
     Course.find({title: title}, callback);
 }
 
-function createCourse(course) {
-    Course.create(course, function(err, results) {
-        console.log(err);
-        console.log(results);
-    })
-}
-
-findAll(renderCourses);
 function renderCourses(err, resultSet) {
     //console.log(err);
-    //console.log(results);
+    //console.log(resultSet);
 
     for(var r in resultSet) {
         var title = resultSet[r].title;
@@ -43,6 +42,9 @@ function renderCourses(err, resultSet) {
         console.log([title, seats]);
     }
 }
+
+findAll(renderCourses);
+findByTitle("Course 3", renderCourses);
 
 app.get('/rest/course', function(req, res){
     //res.send('hello world');
