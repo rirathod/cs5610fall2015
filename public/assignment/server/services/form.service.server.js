@@ -2,30 +2,37 @@
 
 module.exports = function(app,model){
 
-    app.post("/api/assignment/user/:userId/form", function(req,res){
-        res.json(model.Create(req.body,req.params.userId));
-    });
+    app.post("/api/assignment/user/:userId/form", CreateForm);
+    app.get("/api/assignment/user/:userId/form", GetForms);
+    app.get("/api/assignment/form/:formId", GetForm);
+    app.put("/api/assignment/form/:formId",UpdateForm);
+    app.delete("/api/assignment/form/:formId", DeleteForm);
+    app.get("/api/assignment/form?formTitle=formTitle", GetFormByTitle);
 
-    app.get("/api/assignment/user/:userId/form", function(req,res){
+    function CreateForm(req,res){
+        res.json(model.Create(req.body,req.params.userId));
+    }
+
+    function GetForms(req,res){
         var userId = req.params.userId;
         console.log(userId);
         res.json(model.FindFormsByUserId(userId));
-    });
+    }
 
-    app.get("/api/assignment/form/:formId", function(req,res){
+    function GetForm(req,res){
         res.json(model.FindById(req.params.formId));
-    });
+    }
 
-    app.get('/api/assignment/form', function(req,res){
+    function GetFormByTitle(req,res){
         var formTitle = req.param("formTitle");
         res.json(model.FindFormByTitle(formTitle));
-    });
+    }
 
-    app.put("/api/assignment/form/:formId",function(req,res){
+    function UpdateForm(req,res){
         res.json(model.Update(req.params.formId,req.body));
-    });
+    }
 
-    app.delete("/api/assignment/form/:formId",function(req,res){
+    function DeleteForm(req,res){
         res.json(model.Delete(req.params.formId));
-    });
+    }
 };

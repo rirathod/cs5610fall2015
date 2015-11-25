@@ -2,25 +2,31 @@
 
 module.exports = function(app,model){
 
-    app.post("/api/assignment/form/:formId/field", function(req,res){
+    app.post("/api/assignment/form/:formId/field", CreateFormField);
+    app.get("/api/assignment/form/:formId/field", GetFormFields);
+    app.get("/api/assignment/form/:formId/field/:fieldId", GetFormField);
+    app.put("/api/assignment/form/:formId/field/:fieldId", UpdateFormField);
+    app.delete("/api/assignment/form/:formId/field/:fieldId",DeleteFormField);
+
+    function CreateFormField(req,res) {
         res.json(model.AddFormField(req.params.formId, req.body));
-    });
+    }
 
-    app.get("/api/assignment/form/:formId/field", function(req,res){
+    function GetFormFields(req,res){
         res.json(model.FindById(req.params.formId).fields);
-    });
+    }
 
-    app.get("/api/assignment/form/:formId/field/:fieldId", function(req,res){
+    function GetFormField(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         res.json(model.FindField(formId,fieldId));
-    });
+    }
 
-    app.put("/api/assignment/form/:formId/field/:fieldId",function(req,res){
+    function UpdateFormField(req,res){
         res.json(model.UpdateFormField(req.params.formId, req.params.fieldId, req.body));
-    });
+    }
 
-    app.delete("/api/assignment/form/:formId/field/:fieldId",function(req,res){
+    function DeleteFormField(req,res){
         res.json(model.DeleteFormField(req.params.formId, req.params.fieldId));
-    });
+    }
 };

@@ -1,12 +1,18 @@
-"use strict"
+"use strict";
 
 module.exports = function(app,model){
 
-    app.post("/api/assignment/user", function(req,res){
-        res.json(model.Create(req.body));
-    });
+    app.post("/api/assignment/user", AddUser);
+    app.get("/api/assignment/user/:id", FindById);
+    app.put("/api/assignment/user/:id",UpdateUser);
+    app.delete("/api/assignment/user/:id", DeleteUser);
+    app.get('/api/assignment/user', FindUser);
 
-    app.get('/api/assignment/user', function(req,res){
+    function AddUser(req,res){
+        res.json(model.Create(req.body));
+    }
+
+    function FindUser(req,res){
         var username = req.param("username");
         var password = req.param("password");
 
@@ -23,17 +29,17 @@ module.exports = function(app,model){
         else{
             res.json(model.FindUserByUsername(username));
         }
-    });
+    }
 
-    app.get("/api/assignment/user/:id", function(req,res){
+    function FindById(req,res){
         res.json(model.FindById(req.params.id));
-    });
+    }
 
-    app.put("/api/assignment/user/:id",function(req,res){
+    function UpdateUser(req,res){
         res.json(model.Update(req.params.id, req.body));
-    });
+    }
 
-    app.delete("/api/assignment/user/:id", function(req, res){
+    function DeleteUser(req, res){
         res.json(model.Delete(req.params.id));
-    });
+    }
 };
