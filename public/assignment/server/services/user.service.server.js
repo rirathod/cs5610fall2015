@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(app,model){
+module.exports = function(app, model){
 
     app.post("/api/assignment/user", AddUser);
     app.get("/api/assignment/user/:id", FindById);

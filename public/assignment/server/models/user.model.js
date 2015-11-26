@@ -1,8 +1,12 @@
 "use strict";
 
-var users = require("./user.mock.json");
+var q = require("q");
 
-module.exports = function(app){
+module.exports = function(mongoose, db){
+    //var users = require("./user.mock.json");
+    var UserSchema = require('./user.schema.js')(mongoose);
+    var UserModel  = mongoose.model("UserModel", UserSchema);
+
     var api = {
         Create : Create,
         FindAll : FindAll,
@@ -37,7 +41,7 @@ module.exports = function(app){
 
     function FindById(id){
         //console.log(id);
-        for(var i = 0; i<users.length; i++){
+        for(var i = 0; i<users.length; i++) {
             console.log(users[i].id);
             if(id == users[i].id){
                 return users[i];
@@ -46,7 +50,7 @@ module.exports = function(app){
     }
 
     function Update(id, user){
-        for(var i = 0; i<users.length; i++){
+        for(var i = 0; i<users.length; i++) {
             if(id == users[i].id){
                 users[i] = user;
                 return users[i];
@@ -64,7 +68,7 @@ module.exports = function(app){
         return users;
     }
 
-    function FindUserByCredentials(credentials){
+    function FindUserByCredentials(credentials) {
         var usr = credentials.username;
         var pwd = credentials.password;
         for(var i = 0; i<users.length; i++){
@@ -75,7 +79,7 @@ module.exports = function(app){
         return null;
     }
 
-    function FindUserByUsername(username){
+    function FindUserByUsername(username) {
         for(var i = 0; i<users.length; i++){
             if(username === users[i].username){
                 return users[i];

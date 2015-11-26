@@ -1,5 +1,11 @@
 "use strict";
-var forms = require("./form.mock.json");
+
+//var forms = require("./form.mock.json");
+var q = require("q");
+
+module.exports = function(mongoose, db) {
+
+};
 
 module.exports = function(app){
     var api = {
