@@ -29,10 +29,19 @@ module.exports = function(mongoose, db){
     }
 
     function Create(user){
-        user.id = guid();
-        //console.log(user);
-        users.push(user);
-        return user;
+        var deferred = q.defer();
+        UserModel.create(user, function(err, document) {
+            UserModel.findById(document._id, function(err, createdUser) {
+                console.log(createdUser);
+                deferred.resolve(createdUser);
+            });
+        });
+        return deferred.promise;
+
+        //user.id = guid();
+        ////console.log(user);
+        //users.push(user);
+        //return user;
     }
 
     function FindAll(){

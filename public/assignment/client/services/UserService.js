@@ -13,8 +13,7 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser
-        }
-
+        };
         return service;
 
         function findUserByUsername(userName) {
