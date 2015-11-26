@@ -10,10 +10,36 @@
         $scope.username = $rootScope.user.username;
         $scope.password = $rootScope.user.password;
         $scope.email = $rootScope.user.email;
-        $scope.firstName = $rootScope.user.firstName;
-        $scope.lastName = $rootScope.user.lastName;
 
-        console.log($rootScope.user);
+        UserService.findUserByUsername("user1")
+            .then(function(user){
+                console.log("findUserByUsername:");
+                console.log(user);
+            });
+
+        UserService.findUserByUsernameAndPassword("user1", "user1")
+            .then(function(user){
+                console.log("findUserByUsernameAndPassword:");
+                console.log(user);
+            });
+
+        UserService.findAllUsers()
+            .then(function(users) {
+                console.log("findAllUsers:");
+                console.log(users);
+            });
+
+        UserService.deleteUserById("565773abe4a62fa69fa74c9f")
+            .then(function(response) {
+                console.log("deleteUserById:");
+                console.log(response);
+            });
+
+        UserService.findAllUsers()
+            .then(function(users) {
+                console.log("findAllUsers:");
+                console.log(users);
+            });
 
         $scope.update = function () {
             var user = {
@@ -22,7 +48,7 @@
                 email: $scope.email,
                 firstName: $scope.firstName,
                 lastName: $scope.lastName,
-                id: $rootScope.user.id
+                id: $rootScope.user._id
             };
 
             UserService.updateUser(user, user.id)

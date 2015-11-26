@@ -21,7 +21,7 @@
                 //controller: "RegisterController"
             })
             .when("/profile", {
-                templateUrl: "views/profile/profile.view.html",
+                    templateUrl: "views/profile/profile.view.html",
                 //controller: "ProfileController"
             })
             .when("/form", {
