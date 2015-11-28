@@ -21,22 +21,42 @@ module.exports = function(app, model){
         var password = req.param("password");
 
         if(typeof username === 'undefined' && typeof password === 'undefined'){
-            res.json(model.FindAll());
+            model
+                .FindAll()
+                .then(function(users) {
+                    res.json(users);
+                });
+            //res.json(model.FindAll());
         }
         else if(username != null && password != null){
             var credentials = {
                 username : username,
                 password : password
             };
-            res.json(model.FindUserByCredentials(credentials));
+            model
+                .FindUserByCredentials(credentials)
+                .then(function(user) {
+                    res.json(user);
+                });
+            //res.json(model.FindUserByCredentials(credentials));
         }
         else{
-            res.json(model.FindUserByUsername(username));
+            model
+                .FindUserByUsername(username)
+                .then(function(user) {
+                    res.json(user);
+                });
+            //res.json(model.FindUserByUsername(username));
         }
     }
 
     function FindById(req,res){
-        res.json(model.FindById(req.params.id));
+        model
+            .FindById(req.params.id)
+            .then(function(user) {
+                res.json(user);
+            });
+        //res.json(model.FindById(req.params.id));
     }
 
     function UpdateUser(req,res){
@@ -48,6 +68,11 @@ module.exports = function(app, model){
     }
 
     function DeleteUser(req, res){
-        res.json(model.Delete(req.params.id));
+        model
+            .Delete(req.params.id)
+            .then(function(status) {
+                res.json(status);
+            });
+        //res.json(model.Delete(req.params.id));
     }
 };

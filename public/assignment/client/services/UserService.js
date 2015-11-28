@@ -70,7 +70,6 @@
             return defer.promise;
         }
 
-
         function deleteUserById(userId) {
             var defer = $q.defer();
             var url = '/api/assignment/user/'+ userId;
