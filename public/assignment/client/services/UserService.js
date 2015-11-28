@@ -62,7 +62,7 @@
         function createUser(user){
             var defer = $q.defer();
             var url = '/api/assignment/user';
-            console.log(user);
+            //console.log(user);
             $http.post(url, user)
                 .success(function(response){
                     defer.resolve(response);

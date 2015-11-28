@@ -19,7 +19,7 @@
                     };
                     UserService.createUser(newUser)
                         .then(function(newlyCreatedUser) {
-                            console.log(newlyCreatedUser);
+                            //console.log(newlyCreatedUser);
 
                             //update rootscope user
                             $rootScope.user = newlyCreatedUser;

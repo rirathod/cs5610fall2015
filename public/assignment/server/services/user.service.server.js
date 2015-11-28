@@ -26,7 +26,6 @@ module.exports = function(app, model){
                 .then(function(users) {
                     res.json(users);
                 });
-            //res.json(model.FindAll());
         }
         else if(username != null && password != null){
             var credentials = {
@@ -38,7 +37,6 @@ module.exports = function(app, model){
                 .then(function(user) {
                     res.json(user);
                 });
-            //res.json(model.FindUserByCredentials(credentials));
         }
         else{
             model
@@ -46,7 +44,6 @@ module.exports = function(app, model){
                 .then(function(user) {
                     res.json(user);
                 });
-            //res.json(model.FindUserByUsername(username));
         }
     }
 
@@ -56,7 +53,6 @@ module.exports = function(app, model){
             .then(function(user) {
                 res.json(user);
             });
-        //res.json(model.FindById(req.params.id));
     }
 
     function UpdateUser(req,res){
@@ -73,6 +69,5 @@ module.exports = function(app, model){
             .then(function(status) {
                 res.json(status);
             });
-        //res.json(model.Delete(req.params.id));
     }
 };

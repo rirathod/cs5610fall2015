@@ -36,11 +36,6 @@ module.exports = function(mongoose, db){
             });
         });
         return deferred.promise;
-
-        //user.id = guid();
-        ////console.log(user);
-        //users.push(user);
-        //return user;
     }
 
     function FindAll(){
@@ -53,8 +48,6 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-        //return users;
     }
 
     function FindById(id){
@@ -67,13 +60,6 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-        //for(var i = 0; i<users.length; i++) {
-        //    console.log(users[i].id);
-        //    if(id == users[i].id){
-        //        return users[i];
-        //    }
-        //}
     }
 
     function Update(id, user){
@@ -93,14 +79,6 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-        //for(var i = 0; i<users.length; i++) {
-        //    if(id == users[i].id){
-        //        users[i] = user;
-        //        return users[i];
-        //    }
-        //}
-        //return null;
     }
 
     function Delete(id){
@@ -113,13 +91,6 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-        //for(var i = 0; i<users.length; i++) {
-        //    if (id == users[i].id) {
-        //        users.splice(i, 1);
-        //    }
-        //}
-        //return users;
     }
 
     function FindUserByUsername(username) {
@@ -132,14 +103,6 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-
-        //for(var i = 0; i<users.length; i++){
-        //    if(username === users[i].username){
-        //        return users[i];
-        //    }
-        //}
-        //return null;
     }
 
     function FindUserByCredentials(credentials) {
@@ -152,14 +115,5 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
-
-        //var usr = credentials.username;
-        //var pwd = credentials.password;
-        //for(var i = 0; i<users.length; i++){
-        //    if(usr === users[i].username && pwd === users[i].password){
-        //        return users[i];
-        //    }
-        //}
-        //return null;
     }
 };
