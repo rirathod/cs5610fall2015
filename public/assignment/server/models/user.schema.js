@@ -1,6 +1,8 @@
 /**
  * Created by riddhirathod on 11/26/15.
  */
+"use strict";
+
 module.exports = function(mongoose) {
     var UserSchema = mongoose.Schema({
         "firstName": String,
@@ -8,7 +10,7 @@ module.exports = function(mongoose) {
         "username": String,
         "password": String,
         "email": String
-    }, {collection: "assignment.user"});
+    }, {collection: "cs5610.assignment.user"});
 
     return UserSchema;
 };
