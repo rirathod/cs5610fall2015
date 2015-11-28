@@ -18,16 +18,6 @@ module.exports = function(mongoose, db){
     };
     return api;
 
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
-
     function Create(user){
         var deferred = q.defer();
         UserModel.create(user, function(err, document) {
@@ -115,5 +105,15 @@ module.exports = function(mongoose, db){
             }
         });
         return deferred.promise;
+    }
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 };
