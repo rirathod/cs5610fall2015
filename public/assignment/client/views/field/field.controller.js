@@ -73,8 +73,6 @@
                 FieldService.createFieldForForm(formId, field)
                     .then(function(fields) {
                         $scope.fields = fields;
-                        console.log("$scope.fields:");
-                        console.log($scope.fields);
                     });
             }
         }
@@ -87,10 +85,27 @@
         }
 
         function clone(field){
-            FieldService.cloneField(formId, field)
-                .then(function(fields){
-                    $scope.fields = fields;
-                });
+            var fieldType = field.fieldType;
+            var modelType;
+            if(fieldType === "TEXT"){
+                modelType = "Single Line Text Field";
+            } else if(fieldType === "TEXTAREA"){
+                modelType = "Multi Line Text Field";
+            } else if(fieldType === "DATE"){
+                modelType = "Date Field";
+            } else if(fieldType === "OPTIONS"){
+                modelType = "Dropdown Field";
+            } else if(fieldType === "CHECKBOXES"){
+                modelType = "CheckBoxes Field";
+            } else if(fieldType === "RADIOS"){
+                modelType = "Radio Buttons Field";
+            }
+
+            addField(modelType);
+            //FieldService.cloneField(formId, field)
+            //    .then(function(fields){
+            //        $scope.fields = fields;
+            //    });
         }
 
         function editField(field) {

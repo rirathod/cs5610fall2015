@@ -9,7 +9,6 @@
     <div class="tab-content" ng-controller = "FieldController as controller">
         <div id="fields" class="tab-pane fade in active">
             <div class="form-horizontal">
-                {{fields}}
                 <div ng-repeat = "field in fields">
                     <ng-switch on="field.fieldType" ng-model="field.fieldType">
                         <div ng-switch-when="TEXT">

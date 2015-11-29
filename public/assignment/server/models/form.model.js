@@ -113,19 +113,27 @@ module.exports = function(mongoose, db){
     }
 
     function AddFormField(formId, field){
+        console.log(field);
         var deferred = q.defer();
         FormModel.findById(formId, function(err, form) {
             if(err) {
                 deferred.reject(err);
             } else {
                 var formFields = form.fields;
+                console.log("Before");
+                console.log(formFields);
                 formFields.push(field);
+                console.log("After");
+                console.log(formFields);
                 form.fields = formFields;
-                form.save(function(err, updatedForm) {
+                console.log("updatedForm");
+                console.log(form);
+                form.save(function(err, document) {
+                    console.log(document);
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        deferred.resolve(updatedForm);
+                        deferred.resolve(document);
                     }
                 });
             }
@@ -185,7 +193,7 @@ module.exports = function(mongoose, db){
                 var formFields = form.fields;
                 for(var i=0; i<formFields.length; i++){
                     if(formFields[i]._id == fieldId){
-                        fields.splice(i,1);
+                        formFields.splice(i,1);
                     }
                 }
                 form.fields = formFields;

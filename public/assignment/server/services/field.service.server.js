@@ -9,6 +9,8 @@ module.exports = function(app,model){
     app.delete("/api/assignment/form/:formId/field/:fieldId",DeleteFormField);
 
     function CreateFormField(req, res) {
+        console.log(req.params.formId);
+        console.log(req.body);
         model
             .AddFormField(req.params.formId, req.body)
             .then(function(updatedForm) {
