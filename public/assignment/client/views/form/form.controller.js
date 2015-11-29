@@ -21,6 +21,8 @@
             var form = {
                 title: $scope.formName
             };
+            consolge.log(form);
+
             //console.log(angular.isUndefined($scope.formName));
             if(!angular.isUndefined($scope.formName) && $scope.formName != ""){
                 FormService.createFormForUser($rootScope.user.id, form)

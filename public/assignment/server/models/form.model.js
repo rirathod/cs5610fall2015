@@ -27,11 +27,11 @@ module.exports = function(mongoose, db){
         var deferred = q.defer();
         form.userId = userId;
         form.fields = [];
-        FormModel.create(form, function(err, document) {
+        FormModel.create(form, function(err, createdForm) {
             if(err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(document);
+                deferred.resolve(createdForm);
             }
         });
         return deferred.promise;
@@ -123,8 +123,8 @@ module.exports = function(mongoose, db){
                 deferred.reject(err);
             } else {
                 formToUpdate.title = form.title;
-                formToUpdate.save(function(err, document) {
-                    deferred.resolve(document);
+                formToUpdate.save(function(err, updatedForm) {
+                    deferred.resolve(updatedForm);
                 });
             }
         });
