@@ -114,7 +114,7 @@ module.exports = function(mongoose, db){
 
     function AddFormField(formId, field){
         var deferred = q.defer();
-        formModel.findById(formId, function(err, form) {
+        FormModel.findById(formId, function(err, form) {
             if(err) {
                 deferred.reject(err);
             } else {
@@ -133,7 +133,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function FindField(formId,fieldId){
+    function FindField(formId, fieldId){
         var deferred = q.defer();
         FormModel.findById(formId, function(err, form){
             if(err) {
@@ -164,11 +164,11 @@ module.exports = function(mongoose, db){
                     }
                 }
                 form.fields = formFields;
-                form.save(function(err, document) {
+                form.save(function(err, updatedForm) {
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        deferred.resolve(document);
+                        deferred.resolve(updatedForm);
                     }
                 });
             }
@@ -189,11 +189,11 @@ module.exports = function(mongoose, db){
                     }
                 }
                 form.fields = formFields;
-                form.save(function(err, document) {
+                form.save(function(err, updatedForm) {
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        deferred.resolve(document);
+                        deferred.resolve(updatedForm);
                     }
                 });
             }

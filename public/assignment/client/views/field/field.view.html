@@ -9,8 +9,9 @@
     <div class="tab-content" ng-controller = "FieldController as controller">
         <div id="fields" class="tab-pane fade in active">
             <div class="form-horizontal">
+                {{fields}}
                 <div ng-repeat = "field in fields">
-                    <ng-switch on="field.type" ng-model="field.type">
+                    <ng-switch on="field.fieldType" ng-model="field.fieldType">
                         <div ng-switch-when="TEXT">
                             <br/>
                             <div>
@@ -92,7 +93,7 @@
                             <div>
                                 <div class="checkbox" ng-repeat="option in field.options">
                                     <label>
-                                        <input type="checkbox" name="{{field.label}}+{{field.id}}">{{option.label}}
+                                        <input type="checkbox" name="{{field.label}}+{{field._id}}">{{option.label}}
                                     </label>
                                 </div>
                                 <label class="right-align">
@@ -112,7 +113,7 @@
                             </div>
                             <div class="radiobutton" ng-repeat="option in field.options">
                                 <label>
-                                    <input type="radio" name="{{field.label}}+{{field.id}}"> {{option.label}}
+                                    <input type="radio" name="{{field.label}}+{{field._id}}"> {{option.label}}
                                 </label>
                             </div>
                             <label class="right-align">
