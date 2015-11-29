@@ -56,7 +56,7 @@
             if (!angular.isUndefined(index)) {
                 //console.log(index);
                 if (!angular.isUndefined($scope.formName) && $scope.formName != "") {
-                    var formToBeUpdated = $scope.forms[index];
+                    //var formToBeUpdated = $scope.forms[index];
                     var newForm = {
                         title: $scope.formName,
                         userId: $rootScope.user._id

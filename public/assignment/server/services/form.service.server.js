@@ -25,7 +25,6 @@ module.exports = function(app,model){
             .then(function(forms) {
                 res.json(forms);
             });
-        //res.json(model.FindFormsByUserId(userId));
     }
 
     function GetForm(req, res){
@@ -34,7 +33,6 @@ module.exports = function(app,model){
             .then(function(form) {
                 res.json(form);
             });
-        //res.json(model.FindById(req.params.formId));
     }
 
     function GetFormByTitle(req, res){
@@ -44,7 +42,6 @@ module.exports = function(app,model){
             .then(function(form) {
                 res.json(form);
             });
-        //res.json(model.FindFormByTitle(formTitle));
     }
 
     function UpdateForm(req, res){
@@ -53,7 +50,6 @@ module.exports = function(app,model){
             .then(function(updatedForm) {
                 res.json(updatedForm);
             });
-        //res.json(model.Update(req.params.formId,req.body));
     }
 
     function DeleteForm(req, res){
@@ -62,6 +58,5 @@ module.exports = function(app,model){
             .then(function(status) {
                 res.json(status);
             });
-        //res.json(model.Delete(req.params.formId));
     }
 };
