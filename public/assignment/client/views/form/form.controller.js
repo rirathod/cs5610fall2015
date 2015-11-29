@@ -35,8 +35,9 @@
         }
 
         function deleteForm(formId) {
+            console.log(formId);
             FormService.deleteFormById(formId)
-                .then(function (forms) {
+                .then(function(forms) {
                     FormService.findAllFormsForUser($rootScope.user._id)
                         .then(function (forms) {
                             $scope.forms = forms;

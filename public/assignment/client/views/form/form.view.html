@@ -39,7 +39,7 @@
                     <tr ng-repeat="form in forms | orderBy:predicate:reverse">
                         <td><a ng-click="navigate($index)">{{form.title}}</a></td>
                         <td>
-                            <button ng-click="deleteForm(form.id)" class="btn btn-danger">
+                            <button ng-click="deleteForm(form._id)" class="btn btn-danger">
                                 <scan class="glyphicon glyphicon-remove"></scan>
                             </button>
                             <button ng-click="selectForm($index)" class="btn btn-info">
