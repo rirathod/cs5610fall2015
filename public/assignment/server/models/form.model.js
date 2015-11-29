@@ -78,11 +78,11 @@ module.exports = function(mongoose, db){
 
     function FindFormsByUserId(userId){
         var deferred = q.defer();
-        FormModel.findOne({userId: userId}, function(err, form) {
+        FormModel.find({userId: userId}, function(err, forms) {
             if(err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(form);
+                deferred.resolve(forms);
             }
         });
         return deferred.promise;

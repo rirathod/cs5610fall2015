@@ -19,7 +19,7 @@ module.exports = function(app,model){
     }
 
     function GetForms(req, res){
-        console.log(req.params.userId);
+        console.log("forms.service.server.js: GetForms: " + req.params.userId);
         model
             .FindFormsByUserId(req.params.userId)
             .then(function(forms) {
