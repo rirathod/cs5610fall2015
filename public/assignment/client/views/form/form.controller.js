@@ -4,7 +4,6 @@
         .controller("FormController", FormController);
 
     function FormController($scope, FormService, $rootScope, $location) {
-        //console.log($rootScope.user);
         FormService.findAllFormsForUser($rootScope.user._id)
             .then(function (forms) {
                 $scope.forms = forms;
@@ -46,7 +45,6 @@
         }
 
         function selectForm(index) {
-            //console.log(index);
             $scope.selectedFormId = $scope.forms[index]._id;
             $scope.formName = $scope.forms[index].title;
             $scope.index = index;
@@ -54,7 +52,6 @@
 
         function updateForm(selectedFormId, index) {
             if (!angular.isUndefined(index)) {
-                //console.log(index);
                 if (!angular.isUndefined($scope.formName) && $scope.formName != "") {
                     //var formToBeUpdated = $scope.forms[index];
                     var newForm = {

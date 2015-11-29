@@ -16,7 +16,6 @@ module.exports = function(app,model){
             .then(function(updatedForm) {
                 res.json(updatedForm);
             });
-        //res.json(model.AddFormField(req.params.formId, req.body));
     }
 
     function GetFormFields(req, res){
@@ -25,7 +24,6 @@ module.exports = function(app,model){
             .then(function(form) {
                 res.json(form.fields);
             });
-        //res.json(model.FindById(req.params.formId).fields);
     }
 
     function GetFormField(req, res){
@@ -36,7 +34,6 @@ module.exports = function(app,model){
             .then(function(field) {
                 res.json(field);
             });
-        //res.json(model.FindField(formId,fieldId));
     }
 
     function UpdateFormField(req, res){
@@ -45,7 +42,6 @@ module.exports = function(app,model){
             .then(function(updatedForm) {
                 res.json(updatedForm);
             });
-        //res.json(model.UpdateFormField(req.params.formId, req.params.fieldId, req.body));
     }
 
     function DeleteFormField(req, res){
@@ -54,6 +50,5 @@ module.exports = function(app,model){
             .then(function(updatedForm) {
                 res.json(updatedForm);
             });
-        //res.json(model.DeleteFormField(req.params.formId, req.params.fieldId));
     }
 };

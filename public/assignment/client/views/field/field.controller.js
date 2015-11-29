@@ -109,10 +109,10 @@
         }
 
         function editField(field) {
-            FieldService.updateField(formId, field._id, field)
-                .then(function(fields) {
-                    $scope.fields = fields;
-                });
+            //FieldService.updateField(formId, field._id, field)
+            //    .then(function(fields) {
+            //        $scope.fields = fields;
+            //    });
         }
 
         function reorderField(field) {
