@@ -1,80 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact Us</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet" />
-    <link href="../css/stickyFooter.css" rel="stylesheet">
-
-</head>
-<body>
-<div class="row">
-    <div class="col-sm-12">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../index.html">Homework Tracker</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../contactus/contactus.view.html">Contact Us</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#">Sign In</a></li>
-                        <li><a href="../signup/signup.view.html">Sign Up</a></li>
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </form>
-                </div>
+<div class="container" ng-controller="SignInController">
+    <h1>Sign In</h1>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">Username:</label>
+            <div class="col-sm-10">
+                <input ng-model="user.username" type="text" class="form-control" id="inputUsername" placeholder="Username">
             </div>
-        </nav>
-    </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">Password:</label>
+            <div class="col-sm-10">
+                <input ng-model="user.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUserType" class="col-sm-2 control-label">User Type:</label>
+            <div class="col-sm-10">
+                <input ng-model="user.usertype" type="text" class="form-control" id="inputUserType" placeholder="(Student/Instructor)">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <!--<a href="../home/instructorhome.view.html" class="btn btn-default btn-primary btn-block form-control" role="button">Sign In</a>-->
+                <a ng-click="signin(user)" class="btn btn-default btn-primary btn-block form-control" role="button">Sign In</a>
+            </div>
+        </div>
+    </form>
 </div>
-
-<div class="row">
-    <div class="container">
-        <h1>Sign In</h1>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="inputUsername" class="col-sm-2 control-label">Username:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Username">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="inputPassword" class="col-sm-2 control-label">Password:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a href="../home/instructorhome.view.html" class="btn btn-default btn-primary btn-block" role="button">Sign In</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Homework Tracker © 2015</p>
-    </div>
-</footer>
-</body>
-</html>
