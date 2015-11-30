@@ -14,23 +14,17 @@
             })
             .when("/signin",{
                 templateUrl: "views/signin/signin.view.html"
+                //controller: "SigninController"
             })
             .when("/signup",{
                 templateUrl: "views/signup/signup.view.html"
+                //controller: "SignupController"
             })
             .when("/contactus",{
-                templateUrl: "views/signup/signup.view.html"
+                templateUrl: "views/contactus/contactus.view.html"
             })
             .when("/home",{
                 templateUrl: "views/home/home.view.html"
-            })
-            .when("/login", {
-                templateUrl: "views/login/login.view.html"
-                //controller: "LoginController"
-            })
-            .when("/register", {
-                templateUrl: "views/register/register.view.html"
-                //controller: "RegisterController"
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html"

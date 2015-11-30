@@ -20,9 +20,10 @@
     <script src="config.js"></script>
 
     <script src="views/header/header.controller.js"></script>
-    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/footer/footer.controller.js"></script>
     <script src="views/signin/signin.controller.js"></script>
     <script src="views/signup/signup.controller.js"></script>
+    <script src="views/contactus/contactus.controller.js"></script>
     <script src="views/profile/profile.controller.js"></script>
 
 </head>
@@ -30,111 +31,17 @@
     <div class="row" ng-controller="HeaderController">
         <div class="col-sm-12">
             <div ng-include="'views/header/header.view.html'"></div>
-            <!--<nav class="navbar navbar-default navbar-fixed-top">-->
-                <!--<div class="container">-->
-                    <!--<div class="navbar-header">-->
-                        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
-                            <!--<span class="sr-only">Toggle navigation</span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                        <!--</button>-->
-                        <!--<a class="navbar-brand" href="#">Homework Tracker</a>-->
-                    <!--</div>-->
-                    <!--<div id="navbar" class="navbar-collapse collapse">-->
-                        <!--<ul class="nav navbar-nav">-->
-                            <!--<li class="active"><a href="#">Home</a></li>-->
-                            <!--<li><a href="contactus/contactus.view.html">Contact Us</a></li>-->
-                        <!--</ul>-->
-                        <!--<ul class="nav navbar-nav navbar-right">-->
-                            <!--<li><a href="views/signin/signin.view.html">Sign In</a></li>-->
-                            <!--<li><a href="views/signup/signup.view.html">Sign Up</a></li>-->
-                        <!--</ul>-->
-                        <!--<form class="navbar-form navbar-right">-->
-                            <!--<input type="text" class="form-control" placeholder="Search...">-->
-                        <!--</form>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</nav>-->
         </div>
     </div>
 
-    <div ng-view />
+    <div ng-view></div>
 
-    <!--<div class="row">-->
-        <!--<img width="100%" height="auto" src="../../resources/ProjectWebpage1.jpg">-->
-    <!--</div>-->
-
-
-    <!--<div class="row">-->
-        <!--<h2 class="col-xs-12" align="center">Homework Tracker is <i>"the all-encompassing view of your projects and your work"</i></h2>-->
-    <!--</div>-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
-                <!--<b>PLAN:</b><br/>-->
-                <!--Create your projects and divide tasks into many subtasks.-->
-                <!--<br/>-->
-                <!--<br/>-->
-                <!--<b>PRIORITIZE:</b><br/>-->
-                <!--Break your project down into bite-sized stories. See all your work, across multiple projects, on one screen.-->
-                <!--<br/>-->
-                <!--<br/>-->
-                <!--<b>TRACK:</b><br/>-->
-                <!--Prioritize your project work in full context with complete visibility.-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
-                <!--<b>DEVELOPMENT WORKFLOW:</b><br/>-->
-                <!--Homework Tracker Software aims at automatically updating proect when code is committed in Github.-->
-                <!--<br/>-->
-                <!--<br/>-->
-                <!--<b>KNOWLEDGE MANAGEMENT:</b><br/>-->
-                <!--Transform product requirements into a Software project in HomeworkTracker.-->
-                <!--<br/>-->
-                <!--<br/>-->
-                <!--<b>SURPRISINGLY EASY TO USE:</b><br/>-->
-                <!--New users master the basics in minutes.-->
-            <!--</div>-->
+    <!--<div ng-include="'views/footer/footer.view.html'"></div>-->
+    <!--<footer class="footer">-->
+        <!--<div class="container">-->
+            <!--<p class="text-muted">Homework Tracker © 2015</p>-->
         <!--</div>-->
-    <!--</div>-->
-
-    <!--<br/>-->
-    <!--<div class="row" align="center" style="background-color:mintcream">-->
-        <!--<img width="50%" height="auto" src="../../resources/ProjectWebpage2.jpg">-->
-    <!--</div>-->
-    <!--<br/>-->
-
-    <!--<div class="row">-->
-        <!--<h2 class="col-xs-12" align="center">Experience of existing student users..</h2>-->
-    <!--</div>-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-6 col-md-6 col-sm-6">-->
-                <!--<h3>Student 1</h3>-->
-                <!--<i>Homework Tracker has really helped me and instilled following qualities in me:-->
-                    <!--<ul>-->
-                        <!--<li>Visualize my projects and all the work done for a coursework.</li>-->
-                        <!--<li>Remember my mistakes and obstacles.</li>-->
-                        <!--<li>Remind me of the things I learnt for my previous projects.</li>-->
-                    <!--</ul>-->
-                <!--</i>-->
-            <!--</div>-->
-            <!--<div class="col-lg-6 col-md-6 col-sm-6">-->
-                <!--<h3>Student 2</h3>-->
-                <!--<i>"Homework Tracker is a great platform to represent your project-->
-                    <!--work when working alone or when you are collaborate in a team.-->
-                    <!--It helps me learn how to plan my project work,-->
-                    <!--divide it into subtasks and then prioritize the subtasks.-->
-                    <!--I think it is a great initiative to prep students for professional world."</i>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Homework Tracker © 2015</p>
-        </div>
-    </footer>
+    <!--</footer>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
