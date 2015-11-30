@@ -23,27 +23,30 @@
             .when("/contactus",{
                 templateUrl: "views/contactus/contactus.view.html"
             })
-            .when("/home",{
-                templateUrl: "views/home/home.view.html"
+            .when("/studenthome",{
+                templateUrl: "views/studenthome/studenthome.view.html"
+            })
+            .when("/instructorhome",{
+                templateUrl: "views/instructorhome/instructorhome.view.html"
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html"
                 //controller: "ProfileController"
             })
-            .when("/form", {
-                templateUrl: "views/form/form.view.html"
-                //controller: "FormController"
-            })
-            .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
-                //controller: "AdminController"
-            })
+            //.when("/form", {
+            //    templateUrl: "views/form/form.view.html"
+            //    //controller: "FormController"
+            //})
+            //.when("/admin", {
+            //    templateUrl: "views/admin/admin.view.html"
+            //    //controller: "AdminController"
+            //})
             //.when("/user", {
             //    templateUrl : "/assignment/client/field/field.view.html"
             //})
-            .when("/user/:userId/form/:formId/fields", {
-                templateUrl: "views/field/field.view.html"
-            })
+            //.when("/user/:userId/form/:formId/fields", {
+            //    templateUrl: "views/field/field.view.html"
+            //})
             .otherwise({
                 redirectTo : "/"
             })

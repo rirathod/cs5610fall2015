@@ -7,7 +7,7 @@
         .module("HomeworkTrackerApp")
         .controller("SignUpController", SignUpController);
 
-    function SignUpController($scope, $location) {
+    function SignUpController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
 
         $scope.signup = signup;
@@ -21,20 +21,25 @@
                         username: $scope.username,
                         password: $scope.password,
                         email: $scope.email,
-                        usertype: $scope.usertype
+                        userType: $scope.usertype
                     };
                     //console.log(newUser);
 
-                    //UserService.createUser(newUser)
-                    //    .then(function(newlyCreatedUser) {
-                    //        //console.log(newlyCreatedUser);
-                    //
-                    //        //update rootscope user
-                    //        $rootScope.user = newlyCreatedUser;
-                    //
-                    //        //Navigate to profile
-                    //        $location.path("/profile");
-                    //    });
+                    UserService.createUser(newUser)
+                        .then(function(newlyCreatedUser) {
+                            console.log(newlyCreatedUser);
+
+                            //update rootscope user
+                            $rootScope.user = newlyCreatedUser;
+
+                            //Navigate to user home pages
+                            if(newlyCreatedUser.userType === "Student") {
+                                $location.path("/studenthome");
+                            } else {
+                                $location.path("/instructorhome");
+                            }
+
+                        });
                 }
             } else {
                 $scope.error = "One of the input fields is missing";

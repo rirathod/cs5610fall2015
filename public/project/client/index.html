@@ -26,6 +26,8 @@
     <script src="views/contactus/contactus.controller.js"></script>
     <script src="views/profile/profile.controller.js"></script>
 
+    <script src="services/UserService.js"></script>
+
 </head>
 <body>
     <div class="row" ng-controller="HeaderController">
@@ -34,9 +36,9 @@
         </div>
     </div>
 
-    <div ng-view></div>
+    <div ng-view style="margin-bottom: 60px;"></div>
 
-    <!--<div ng-include="'views/footer/footer.view.html'"></div>-->
+    <div ng-include="'views/footer/footer.view.html'"></div>
     <!--<footer class="footer">-->
         <!--<div class="container">-->
             <!--<p class="text-muted">Homework Tracker © 2015</p>-->

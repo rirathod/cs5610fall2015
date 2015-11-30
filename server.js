@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //});
 app.use(express.static(__dirname + '/public'));
 
-require('./public/assignment/server/app.js')(app, mongoose, db);
+//require('./public/assignment/server/app.js')(app, mongoose, db);
+require('./public/project/server/app.js')(app, mongoose, db);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
