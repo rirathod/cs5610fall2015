@@ -20,22 +20,26 @@ module.exports = function(app, model){
     function FindUser(req, res){
         var username = req.param("username");
         var password = req.param("password");
+        var userType = req.param("userType");
 
-        if(typeof username === 'undefined' && typeof password === 'undefined'){
+        if(typeof username === 'undefined' && typeof password === 'undefined' && typeof userType === 'undefined'){
             model
                 .FindAll()
                 .then(function(users) {
                     res.json(users);
                 });
         }
-        else if(username != null && password != null){
-            var credentials = {
+        else if(username != null && password != null && userType != null){
+            var userInfo = {
                 username : username,
-                password : password
+                password : password,
+                userType: userType
             };
             model
-                .FindUserByCredentials(credentials)
+                .FindUserByCredentialsAndType(userInfo)
                 .then(function(user) {
+                    console.log("In user.service.server.js:");
+                    console.log(user);
                     res.json(user);
                 });
         }

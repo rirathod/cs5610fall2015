@@ -12,7 +12,7 @@ module.exports = function(mongoose, db){
         Update : Update,
         Delete : Delete,
         FindUserByUsername : FindUserByUsername,
-        FindUserByCredentials : FindUserByCredentials
+        FindUserByCredentialsAndType : FindUserByCredentialsAndType
     };
     return api;
 
@@ -93,12 +93,14 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function FindUserByCredentials(credentials) {
+    function FindUserByCredentialsAndType(userInfo) {
         var deferred = q.defer();
-        UserModel.findOne({username: credentials.username, password: credentials.password}, function(err, user) {
+        UserModel.findOne({username: userInfo.username, password: userInfo.password, userType: userInfo.userType}, function(err, user) {
             if(err) {
                 deferred.reject(err);
             } else {
+                console.log("In user.model.js:");
+                console.log(user);
                 deferred.resolve(user);
             }
         });

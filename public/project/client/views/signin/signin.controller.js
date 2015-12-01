@@ -6,9 +6,8 @@
     angular
         .module("HomeworkTrackerApp")
         .controller("SignInController", SignInController);
-        //.controller("SignInController", ['$scope', '$location', SignInController]);
 
-    function SignInController($scope, $location) {
+    function SignInController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
 
         $scope.signin = signin;
@@ -21,16 +20,26 @@
             console.log(username);
             console.log(password);
             console.log(userType);
-            //UserService.findUserByUsernameAndPassword(username, password)
-            //    .then(function(currentUser) {
-            //        if(currentUser != null) {
-            //            $rootScope.user = currentUser;
-            //            $location.path("/profile");
-            //            $scope.message = "User logged in successfully";
-            //        } else {
-            //            $scope.message = "Username/Password combination does not exist";
-            //        }
-            //    });
+            UserService.findUserByUsernamePasswordAndUserType(username, password, userType)
+                .then(function(currentUser) {
+                    console.log(currentUser);
+
+                    if(currentUser != null) {
+                        $rootScope.user = currentUser;
+
+                        //Navigate to user home pages
+                        if(currentUser.userType === "Student") {
+                            $location.path("/studenthome");
+                        } else {
+                            $location.path("/instructorhome");
+                        }
+
+                        //$location.path("/profile");
+                        //$scope.message = "User logged in successfully";
+                    } else {
+                        $scope.message = "Username/Password combination does not exist";
+                    }
+                });
         }
     }
 })();

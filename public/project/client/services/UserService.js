@@ -1,7 +1,3 @@
-/**
- * Created by riddhirathod on 11/30/15.
- */
-
 "use strict";
 (function () {
     angular
@@ -13,7 +9,7 @@
             findAllUsers: findAllUsers,
             findUserById: findUserById,
             findUserByUsername : findUserByUsername,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            findUserByUsernamePasswordAndUserType: findUserByUsernamePasswordAndUserType,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser
@@ -31,12 +27,14 @@
             return defer.promise;
         }
 
-        function findUserByUsernameAndPassword(userName, password) {
+        function findUserByUsernamePasswordAndUserType(userName, password, userType) {
             var defer = $q.defer();
-            var url = "/api/project/user?username=" + userName + "&password=" + password;
+            var url = "/api/project/user?username=" + userName + "&password=" + password + "&userType=" + userType;
             console.log(url);
             $http.get(url)
                 .success(function(response){
+                    console.log("In UserService.js:");
+                    console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;

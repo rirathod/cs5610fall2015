@@ -28,5 +28,9 @@
                 <a ng-click="signin(user)" class="btn btn-default btn-primary btn-block form-control" role="button">Sign In</a>
             </div>
         </div>
+
+        <div class="error not-found" ng-if="error">
+            <span>{{message}}</span>
+        </div>
     </form>
 </div>
