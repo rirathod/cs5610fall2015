@@ -3,12 +3,15 @@
  */
 "use strict";
 (function () {
-    angular.module("HomeworkTrackerApp")
+    angular
+        .module("HomeworkTrackerApp")
         .controller("ProjectFieldController", ProjectFieldController);
 
-    function ProjectFieldController($scope, ProjectService, $rootScope, $location, $routeParams) {
+    function ProjectFieldController($scope, ProjectFieldService, $rootScope, $location, $routeParams) {
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
+        console.log(userId);
+        console.log(projectId);
 
         $scope.projectFieldsOption = [
             { name: "Single Line Text Field", id: 0 },

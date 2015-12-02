@@ -18,7 +18,7 @@ var db = mongoose.connect(connectionString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.get('/', function(req, res){
-//  var response = 'Main Page...Go to current_url/index.html to view website landing page';
+//  var response = 'Main Page...Go to current_url/index1.html to view website landing page';
 //  res.send(response);
 //});
 app.use(express.static(__dirname + '/public'));

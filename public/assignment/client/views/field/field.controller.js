@@ -3,7 +3,8 @@
  */
 "use strict";
 (function () {
-    angular.module("FormBuilderApp")
+    angular
+        .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
     function FieldController($scope, FieldService, $rootScope, $location, $routeParams) {

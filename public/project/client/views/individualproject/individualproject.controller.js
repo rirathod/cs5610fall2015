@@ -3,7 +3,8 @@
  */
 "use strict";
 (function () {
-    angular.module("HomeworkTrackerApp")
+    angular
+        .module("HomeworkTrackerApp")
         .controller("IndividualProjectController", IndividualProjectController);
 
     function IndividualProjectController($scope, ProjectService, $rootScope, $location) {

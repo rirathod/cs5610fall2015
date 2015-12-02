@@ -1,13 +1,15 @@
-<div class="container" ng-controller="ProjectController">
-    <h2 id="pagetitle">Fields</h2>
+
+<!--<div class="container" ng-controller="IndividualProjectController">-->
+<div class="container">
+    <h2 id="pagetitle">Project Fields</h2>
 
     <ul class="nav nav-tabs">
         <li><a data-toggle="tab" href="#individualproject">Projects</a></li>
         <li class="active"><a data-toggle="tab" href="#individualproject">Project Fields</a></li>
     </ul>
 
-    <div class="tab-content" ng-controller = "ProjectFieldController as controller">
-        <div id="fields" class="tab-pane fade in active">
+    <div class="tab-content" ng-controller="ProjectFieldController as controller">
+        <div id="projectFields" class="tab-pane fade in active">
             <div class="form-horizontal">
                 <div ng-repeat = "projectField in projectFields">
                     <ng-switch on="projectField.projectFieldType" ng-model="projectField.projectFieldType">
@@ -19,7 +21,7 @@
                             <input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -33,7 +35,7 @@
                             <input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -47,7 +49,7 @@
                             <input type="date" placeholder="Select Date" class="input-width" />
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -61,7 +63,7 @@
                             <textarea placeholder="{{projectField.placeholder}}" class="input-width"></textarea>
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -78,7 +80,7 @@
                             </select>
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -97,7 +99,7 @@
                                 </div>
                                 <label class="right-align">
                                     <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                    <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                    <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                     <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                     <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                                 </label>
@@ -117,7 +119,7 @@
                             </div>
                             <label class="right-align">
                                 <a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a ng-click="clone(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                <a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                                 <a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 <a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
                             </label>
@@ -136,7 +138,7 @@
                         <label>Add New Field:</label>
                     </div>
                     <select class="input-width" ng-model="model.fieldType">
-                        <option ng-repeat="fo in fieldsOption">{{fo.name}}</option>
+                        <option ng-repeat="fo in projectFieldsOption">{{fo.name}}</option>
                     </select>
                     <label class="right-align">
                         <a ng-click = "addProjectField(model.fieldType)">
