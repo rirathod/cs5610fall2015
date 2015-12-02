@@ -33,6 +33,12 @@
                 templateUrl: "views/profile/profile.view.html"
                 //controller: "ProfileController"
             })
+            .when("/individualproject",{
+                templateUrl: "views/individualproject/individualproject.view.html"
+            })
+            .when("/teamproject",{
+                templateUrl: "views/teamproject/teamproject.view.html"
+            })
             //.when("/form", {
             //    templateUrl: "views/form/form.view.html"
             //    //controller: "FormController"

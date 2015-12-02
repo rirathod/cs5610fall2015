@@ -8,8 +8,8 @@ module.exports = function(app, model){
     app.get('/api/project/user', FindUser);
 
     function AddUser(req, res){
-        console.log("In user.service.server.js: AddUser");
-        console.log(req.body);
+        //console.log("In user.service.server.js: AddUser");
+        //console.log(req.body);
         model
             .Create(req.body)
             .then(function(user) {
@@ -38,8 +38,8 @@ module.exports = function(app, model){
             model
                 .FindUserByCredentialsAndType(userInfo)
                 .then(function(user) {
-                    console.log("In user.service.server.js:");
-                    console.log(user);
+                    //console.log("In user.service.server.js:");
+                    //console.log(user);
                     res.json(user);
                 });
         }
@@ -61,9 +61,14 @@ module.exports = function(app, model){
     }
 
     function UpdateUser(req, res){
+        //console.log(req.params.id);
+        //console.log(req.body);
+
         model
             .Update(req.params.id, req.body)
             .then(function(user) {
+                //console.log("In user.service.server.js: UpdateUser");
+                //console.log(user);
                 res.json(user);
             });
     }

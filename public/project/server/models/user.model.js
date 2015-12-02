@@ -56,12 +56,18 @@ module.exports = function(mongoose, db){
             if(err) {
                 deferred.reject(err);
             } else {
+                //console.log("In user.model.js: Update1");
+                //console.log(userToUpdate);
+
                 userToUpdate.firstName = user.firstName;
                 userToUpdate.lastName = user.lastName;
                 userToUpdate.username = user.username;
                 userToUpdate.password = user.password;
                 userToUpdate.email = user.email;
+                userToUpdate.universityName = user.universityName;
                 userToUpdate.save(function(err, document) {
+                    //console.log("In user.model.js: Update2");
+                    //console.log(document);
                     deferred.resolve(document);
                 });
             }
@@ -99,8 +105,8 @@ module.exports = function(mongoose, db){
             if(err) {
                 deferred.reject(err);
             } else {
-                console.log("In user.model.js:");
-                console.log(user);
+                //console.log("In user.model.js:");
+                //console.log(user);
                 deferred.resolve(user);
             }
         });

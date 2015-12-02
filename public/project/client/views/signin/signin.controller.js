@@ -17,12 +17,12 @@
             var password = user.password;
             var userType = user.usertype;
 
-            console.log(username);
-            console.log(password);
-            console.log(userType);
+            //console.log(username);
+            //console.log(password);
+            //console.log(userType);
             UserService.findUserByUsernamePasswordAndUserType(username, password, userType)
                 .then(function(currentUser) {
-                    console.log(currentUser);
+                    //console.log(currentUser);
 
                     if(currentUser != null) {
                         $rootScope.user = currentUser;

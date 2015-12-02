@@ -30,11 +30,11 @@
         function findUserByUsernamePasswordAndUserType(userName, password, userType) {
             var defer = $q.defer();
             var url = "/api/project/user?username=" + userName + "&password=" + password + "&userType=" + userType;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
-                    console.log("In UserService.js:");
-                    console.log(response);
+                    //console.log("In UserService.js:");
+                    //console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;
@@ -64,8 +64,8 @@
         function createUser(user){
             var defer = $q.defer();
             var url = '/api/project/user';
-            console.log(user);
-            console.log(url);
+            //console.log(user);
+            //console.log(url);
             $http.post(url, user)
                 .success(function(response){
                     defer.resolve(response);
@@ -87,8 +87,12 @@
         function updateUser(user, userId) {
             var defer = $q.defer();
             var url = '/api/project/user/'+ userId;
+            //console.log(url);
+            //console.log("In UserService.js: updateUser");
+            //console.log(user);
             $http.put(url, user)
                 .success(function(response){
+                    //console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;
