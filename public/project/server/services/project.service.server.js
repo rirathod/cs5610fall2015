@@ -20,7 +20,7 @@ module.exports = function(app,model){
     }
 
     function GetProjects(req, res){
-        console.log("project.service.server.js: GetProjects: " + req.params.userId);
+        //console.log("project.service.server.js: GetProjects: " + req.params.userId);
         model
             .FindProjectsByUserId(req.params.userId)
             .then(function(projects) {

@@ -50,9 +50,9 @@
             //.when("/user", {
             //    templateUrl : "/assignment/client/field/field.view.html"
             //})
-            //.when("/user/:userId/form/:formId/fields", {
-            //    templateUrl: "views/field/field.view.html"
-            //})
+            .when("/user/:userId/project/:projectId/projectField", {
+                templateUrl: "views/projectField/projectField.view.html"
+            })
             .otherwise({
                 redirectTo : "/"
             })

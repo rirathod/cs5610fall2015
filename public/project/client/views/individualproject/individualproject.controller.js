@@ -37,7 +37,7 @@
         }
 
         function deleteProject(projectId) {
-            console.log(projectId);
+            //console.log(projectId);
             ProjectService.deleteProjectById(projectId)
                 .then(function(projects) {
                     ProjectService.findAllProjectsForUser($rootScope.user._id)
@@ -61,7 +61,7 @@
                         title: $scope.projectName,
                         userId: $rootScope.user._id
                     };
-                    console.log(newProject);
+                    //console.log(newProject);
                     ProjectService.updateProjectById(selectedProjectId, newProject).then(function(updatedProject) {
                         $scope.projects[index] = updatedProject;
                         $scope.projectName = "";
@@ -71,7 +71,7 @@
         }
 
         function navigate(index){
-            var target = "/user/" + $rootScope.user._id + "/project/" + $scope.projects[index]._id + "/projectFields";
+            var target = "/user/" + $rootScope.user._id + "/project/" + $scope.projects[index]._id + "/projectField";
             console.log(target);
             $location.path(target);
         }

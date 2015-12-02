@@ -20,7 +20,7 @@
         function createProjectForUser(userId, project) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/project";
-            console.log(url);
+            //console.log(url);
             $http.post(url, project)
                 .success(function(response){
                     defer.resolve(response);
@@ -31,7 +31,7 @@
         function findAllProjectsForUser(userId) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/project";
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -64,7 +64,7 @@
         function deleteProjectById(projectId) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId;
-            console.log(url);
+            //console.log(url);
             $http.delete(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -75,7 +75,7 @@
         function updateProjectById(projectId, newProject) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId;
-            console.log(url);
+            //console.log(url);
             $http.put(url, newProject)
                 .success(function(response){
                     defer.resolve(response);
