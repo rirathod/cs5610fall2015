@@ -18,10 +18,10 @@ module.exports = function(mongoose, db){
         Update : Update,
         Delete : Delete,
 
-        AddFormField : AddFormField,
-        FindField : FindField,
-        UpdateFormField : UpdateFormField,
-        DeleteFormField : DeleteFormField
+        AddProjectField : AddProjectField,
+        FindProjectField : FindProjectField,
+        UpdateProjectField : UpdateProjectField,
+        DeleteProjectField : DeleteProjectField
     };
     return api;
 
@@ -114,7 +114,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function AddFormField(projectId, projectField){
+    function AddProjectField(projectId, projectField){
         console.log(projectField);
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {

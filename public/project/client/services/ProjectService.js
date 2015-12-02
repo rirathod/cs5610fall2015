@@ -17,7 +17,7 @@
         };
         return service;
 
-        function createProjectForUser(userId, form) {
+        function createProjectForUser(userId, project) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/project";
             console.log(url);

@@ -10,46 +10,46 @@ module.exports = function(app,model){
     app.delete("/api/project/project/:projectId/projectField/:projectFieldId",DeleteProjectField);
 
     function CreateProjectField(req, res) {
-        console.log(req.params.formId);
+        console.log(req.params.projectId);
         console.log(req.body);
         model
-            .AddFormField(req.params.formId, req.body)
-            .then(function(updatedForm) {
-                res.json(updatedForm);
+            .AddFormField(req.params.projectId, req.body)
+            .then(function(updatedProject) {
+                res.json(updatedProject);
             });
     }
 
     function GetProjectFields(req, res){
         model
-            .FindById(req.params.formId)
-            .then(function(form) {
-                res.json(form.fields);
+            .FindById(req.params.projectId)
+            .then(function(project) {
+                res.json(project.projectFields);
             });
     }
 
     function GetProjectField(req, res){
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
+        var projectId = req.params.projectId;
+        var projectFieldId = req.params.projectFieldId;
         model
-            .FindField(formId,fieldId)
-            .then(function(field) {
-                res.json(field);
+            .FindField(projectId, projectFieldId)
+            .then(function(projectField) {
+                res.json(projectField);
             });
     }
 
     function UpdateProjectField(req, res){
         model
-            .UpdateFormField(req.params.formId, req.params.fieldId, req.body)
-            .then(function(updatedForm) {
-                res.json(updatedForm);
+            .UpdateFormField(req.params.projectId, req.params.projectId, req.body)
+            .then(function(updatedProject) {
+                res.json(updatedProject);
             });
     }
 
     function DeleteProjectField(req, res){
         model
-            .DeleteFormField(req.params.formId, req.params.fieldId)
-            .then(function(updatedForm) {
-                res.json(updatedForm);
+            .DeleteFormField(req.params.projectId, req.params.projectFieldId)
+            .then(function(updatedProject) {
+                res.json(updatedProject);
             });
     }
 };
