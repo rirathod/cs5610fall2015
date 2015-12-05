@@ -63,8 +63,14 @@
                             </div>
                         </div>
 
-                        <hr class="horizontal-line">
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <button type="button" ng-click="updateProject()" class="btn btn-primary btn-default">Save Project</button>
+                            </div>
+                        </div>
 
+                        <br>
+                        <hr class="horizontal-line">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -95,12 +101,12 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="subTask in project.subTasks | orderBy:predicate:reverse">
-                                <td>{{subTask.name}}</td>
+                                <td>{{subTask}}</td>
                                 <td>
-                                    <button ng-click="deleteSubTask(subTask._id)" class="btn btn-danger">
+                                    <button ng-click="deleteProjectSubTask($index)" class="btn btn-danger">
                                         <scan class="glyphicon glyphicon-remove"></scan>
                                     </button>
-                                    <button ng-click="selectSubTask($index)" class="btn btn-info">
+                                    <button ng-click="selectProjectSubTask($index)" class="btn btn-info">
                                         <scan class="glyphicon glyphicon-pencil"></scan>
                                     </button>
                                 </td>
@@ -108,37 +114,40 @@
                             </tbody>
                         </table>
 
-
-                        <!--<div class="form-group">-->
-                            <!--<div class="col-sm-offset-2 col-sm-10">-->
-                                <!--<button type="button" ng-click="addProjectSubTask()" class="btn btn-primary btn-default">Add Sub-Task</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<div>-->
-                                <!--<label>Add sub-task:</label>-->
-                            <!--</div>-->
-                            <!--<select class="input-width" ng-model="model.fieldType">-->
-                                <!--<option ng-repeat="fo in projectFieldsOption">{{fo.name}}</option>-->
-                            <!--</select>-->
-                            <!--<label class="right-align">-->
-                                <!--<a ng-click = "addProjectField(model.fieldType)">-->
-                                    <!--<span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>-->
-                                <!--</a>-->
-                            <!--</label>-->
-                        <!--</div>-->
-
-                        <div class="form-group">
-                            <!--<div class="col-sm-offset-2 col-sm-10">-->
-                                <button type="button" ng-click="updateProject()" class="btn btn-primary btn-default">Save Project</button>
-                            <!--</div>-->
-                        </div>
-
                         <br>
                         <hr class="horizontal-line">
                         <label>Sync Github Commits:</label>
-
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <button class="btn">
+                                        <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                    </button>
+                                    Commiter Name
+                                </th>
+                                <th>
+                                    <button class="btn">
+                                        <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                    </button>
+                                    Commit Message
+                                </th>
+                                <th>
+                                    <button class="btn">
+                                        <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                    </button>
+                                    Commit Time
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="commit in project.commits | orderBy:predicate:reverse">
+                                    <td>{{commit.committer}}</td>
+                                    <td>{{commit.message}}</td>
+                                    <td>{{commit.timestamp | date}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

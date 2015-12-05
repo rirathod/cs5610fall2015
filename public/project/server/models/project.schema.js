@@ -11,7 +11,9 @@ module.exports = function(mongoose) {
         "description": String,
         "status": {type : String, enum: ["NOT STARTED", "STARTED", "COMPLETED"]},
         "githubUsername": String,
-        "githubReponame":  String
+        "githubReponame":  String,
+        "subTasks": [String],
+        "commits": [{committer: String, message: String, timestamp: String}]
     }, {collection: "cs5610.project.project"});
 
     return ProjectSchema;

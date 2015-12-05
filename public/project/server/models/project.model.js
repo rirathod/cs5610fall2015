@@ -18,7 +18,7 @@ module.exports = function(mongoose, db){
         Update : Update,
         Delete : Delete,
 
-        AddProjectField : AddProjectField,
+        AddSubTask : AddSubTask,
         FindProjectField : FindProjectField,
         UpdateProjectField : UpdateProjectField,
         DeleteProjectField : DeleteProjectField
@@ -90,6 +90,11 @@ module.exports = function(mongoose, db){
     function Update(id, project){
         var deferred = q.defer();
         delete project._id;
+
+        console.log("In project.model.js");
+        console.log("Before updating in mongodb");
+        console.log(project);
+
         ProjectModel.update({_id: id}, {$set: project}, function(err, status) {
             if(err) {
                 deferred.reject(err);
@@ -106,7 +111,7 @@ module.exports = function(mongoose, db){
                         //projectToUpdate.save(function(err, updatedProject) {
                         //    deferred.resolve(updatedProject);
                         //});
-                        console.log("In project.model.js: Update");
+                        console.log("After updating in mongodb");
                         console.log(updatedProject);
                         deferred.resolve(updatedProject);
                     }
@@ -130,20 +135,29 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function AddProjectField(projectId, projectField){
-        console.log(projectField);
+    function AddSubTask(projectId, subTask){
+        console.log(subTask);
+
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {
             if(err) {
                 deferred.reject(err);
             } else {
-                var projectFields = project.projectFields;
                 console.log("Before");
-                console.log(projectFields);
-                projectFields.push(projectField);
+                console.log(project.subTasks);
+
+                // first check if array is undefined
+                // if NOT project subTasks
+                if(!project.subTasks) {
+                    // then initialize the empty array
+                    project.subTasks = [];
+                }
+                // now array is guaranteed to exist...
+                project.subTasks.push(subTask.name);
+
                 console.log("After");
-                console.log(projectFields);
-                project.projectFields = projectFields;
+                console.log(project.subTasks);
+
                 console.log("updatedProject");
                 console.log(project);
                 project.save(function(err, document) {

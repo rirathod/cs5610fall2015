@@ -11,7 +11,10 @@
             findProjectById: findProjectById,
             findProjectByTitle: findProjectByTitle,
             deleteProjectById: deleteProjectById,
-            updateProjectById: updateProjectById
+            updateProjectById: updateProjectById,
+
+            createSubTaskForProject: createSubTaskForProject
+
         };
         return service;
 
@@ -76,6 +79,17 @@
             //console.log(url);
             $http.put(url, newProject)
                 .success(function(updatedProject){
+                    defer.resolve(updatedProject);
+                });
+            return defer.promise;
+        }
+
+        function createSubTaskForProject(projectId, subTask) {
+            var defer = $q.defer();
+            var url = "/api/project/project/" + projectId + "/subTask";
+            console.log(url);
+            $http.post(url, subTask)
+                .success(function(updatedProject) {
                     defer.resolve(updatedProject);
                 });
             return defer.promise;

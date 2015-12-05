@@ -110,6 +110,7 @@
                     function renderRepoCommits() {
                         if(commits.length == 0) { outhtml = outhtml + '<p>No commits!</p></div>'; }
                         else {
+                            console.log(commits[0]);
                             var commit_title = commits[0].commit.message;
                             console.log("commit_title: " + commit_title);
 
