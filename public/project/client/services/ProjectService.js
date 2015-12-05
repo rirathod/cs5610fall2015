@@ -8,10 +8,8 @@
         var service = {
             createProjectForUser: createProjectForUser,
             findAllProjectsForUser: findAllProjectsForUser,
-
             findProjectById: findProjectById,
             findProjectByTitle: findProjectByTitle,
-
             deleteProjectById: deleteProjectById,
             updateProjectById: updateProjectById
         };
@@ -77,8 +75,8 @@
             var url = "/api/project/project/" + projectId;
             //console.log(url);
             $http.put(url, newProject)
-                .success(function(response){
-                    defer.resolve(response);
+                .success(function(updatedProject){
+                    defer.resolve(updatedProject);
                 });
             return defer.promise;
         }

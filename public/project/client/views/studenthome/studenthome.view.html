@@ -1,16 +1,26 @@
 <div class="container" ng-Controller="StudentHomeController">
+
     <div class="row">
-       <h1>Welcome to the Student Home Page...</h1>
-    </div>
-    <div class="row">
-        <p>
-            <a href="#/profile" class="btn btn-default btn-warning btn-lg" role="button">Profile</a>
-        </p>
-    </div>
-    <div class="row">
-        <p>
-            <a href="#/individualproject" class="btn btn-default btn-info btn-lg" role="button">Individual Projects</a>
-            <a href="#/teamproject" class="btn btn-default btn-primary btn-lg" role="button">Team Projects</a>
-        </p>
+        <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
+            <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <h1>Welcome to Student Homepage...</h1>
+        </div>
     </div>
 </div>
+
+    <!--<div class="row">-->
+       <!--<h1>Welcome to the Student Home Page...</h1>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<p>-->
+            <!--<a href="#/profile" class="btn btn-default btn-warning btn-lg" role="button">Profile</a>-->
+        <!--</p>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<p>-->
+            <!--<a href="#/individualproject" class="btn btn-default btn-info btn-lg" role="button">Individual Projects</a>-->
+            <!--<a href="#/teamproject" class="btn btn-default btn-primary btn-lg" role="button">Team Projects</a>-->
+        <!--</p>-->
+    <!--</div>-->

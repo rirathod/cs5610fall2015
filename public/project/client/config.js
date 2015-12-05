@@ -23,12 +23,12 @@
             .when("/contactus",{
                 templateUrl: "views/contactus/contactus.view.html"
             })
-            .when("/studenthome",{
-                templateUrl: "views/studenthome/studenthome.view.html"
-            })
-            .when("/instructorhome",{
-                templateUrl: "views/instructorhome/instructorhome.view.html"
-            })
+            //.when("/studenthome",{
+            //    templateUrl: "views/studenthome/studenthome.view.html"
+            //})
+            //.when("/instructorhome",{
+            //    templateUrl: "views/instructorhome/instructorhome.view.html"
+            //})
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html"
                 //controller: "ProfileController"

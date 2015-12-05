@@ -28,13 +28,13 @@
                         $rootScope.user = currentUser;
 
                         //Navigate to user home pages
-                        if(currentUser.userType === "Student") {
-                            $location.path("/studenthome");
-                        } else {
-                            $location.path("/instructorhome");
-                        }
+                        //if(currentUser.userType === "Student") {
+                        //    $location.path("/profile");
+                        //} else {
+                        //    $location.path("/profile");
+                        //}
 
-                        //$location.path("/profile");
+                        $location.path("/profile");
                         //$scope.message = "User logged in successfully";
                     } else {
                         $scope.message = "Username/Password combination does not exist";

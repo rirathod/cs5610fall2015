@@ -1,10 +1,7 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<nav>
+    <ul class="nav nav-list nav-sidebar">
+        <li ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('individualproject') != -1}"><a href="#/individualproject">Individual Projects</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('teamproject') != -1}"><a href="#/teamproject">Team Projects</a></li>
+    </ul>
+</nav>

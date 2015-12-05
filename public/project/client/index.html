@@ -8,6 +8,7 @@
     <link href="css/dashboard.css" rel="stylesheet" />
     <link href="css/stickyFooter.css" rel="stylesheet">
     <link href="css/imageBackground.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,7 +26,8 @@
     <script src="views/individualproject/individualproject.controller.js"></script>
     <script src="views/instructorhome/instructorhome.controller.js"></script>
     <script src="views/profile/profile.controller.js"></script>
-    <script arc="views/projectField/projectField.controller.js"></script>
+    <script src="views/projectField/projectField.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
     <script src="views/signin/signin.controller.js"></script>
     <script src="views/signup/signup.controller.js"></script>
     <script src="views/studenthome/studenthome.controller.js"></script>
@@ -43,15 +45,16 @@
         </div>
     </div>
 
-    <div ng-view style="margin-bottom: 60px;"></div>
+    <!--<div class="row"></div>-->
+            <!--<div class="col-sm-3 col-md-2" ng-controller="SidebarController">-->
+                <!--<div ng-include="'views/sidebar/sidebar.view.html'"></div>-->
+            <!--</div>-->
+        <!--</span>-->
+        <!--<div class="col-sm-9 col-md-10" ng-view style="margin-bottom: 60px;"></div>-->
+    <!--</div>-->
+
+    <div ng-view style="margin-bottom: 60px; margin-top: 30px;"></div>
 
     <div ng-include="'views/footer/footer.view.html'"></div>
-    <!--<footer class="footer">-->
-        <!--<div class="container">-->
-            <!--<p class="text-muted">Homework Tracker © 2015</p>-->
-        <!--</div>-->
-    <!--</footer>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,342 @@
+
+<div class="container" ng-controller="IndividualProjectController">
+    <div class="row">
+        <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
+            <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        </div>
+
+        <div class="col-sm-9 col-md-10">
+            <h2 id="pagetitle">Project Fields</h2>
+
+            <ul class="nav nav-tabs">
+                <li><a data-toggle="tab" href="#individualproject">Projects</a></li>
+                <li class="active"><a data-toggle="tab" href="#individualproject">Project Fields</a></li>
+            </ul>
+
+            <div class="tab-content" ng-controller="ProjectFieldController as controller">
+                <div id="projectFields" class="tab-pane fade in active">
+
+                    <br>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputProjectId" class="col-sm-2 control-label">Project Id:</label>
+                            <div class="col-sm-10">
+                                <label class="control-label" id="inputProjectId">{{projectId}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputProjectTitle" class="col-sm-2 control-label">Project Title:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="projectTitle" type="text" class="form-control" id="inputProjectTitle" placeholder="Project Title">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputProjectDescription" class="col-sm-2 control-label">Project Description:</label>
+                            <div class="col-sm-10">
+                                <textarea ng-model="projectDescription" class="form-control" id="inputProjectDescription" placeholder="Project Description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputProjectStatus" class="col-sm-2 control-label">Select project status:</label>
+                            <div class="col-sm-10">
+                                <select ng-model="projectStatus" class="form-control" id="inputProjectStatus">
+                                    <option>Not started</option>
+                                    <option>Started</option>
+                                    <option>Completed</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div ng-repeat = "projectField in projectFields">-->
+                            <!--<ng-switch on="projectField.projectFieldType" ng-model="projectField.projectFieldType">-->
+                                <!--<div ng-switch-when="TEXT">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="EMAIL">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="DATE">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<input type="date" placeholder="Select Date" class="input-width" />-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="TEXTAREA">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<textarea placeholder="{{projectField.placeholder}}" class="input-width"></textarea>-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="OPTIONS">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<select class="input-width">-->
+                                        <!--<option>Select an option</option>-->
+                                        <!--<option value="{{option.value}}" ng-repeat="option in projectField.options">{{option.label}}</option>-->
+                                    <!--</select>-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="CHECKBOXES">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--<div class="checkbox" ng-repeat="option in projectField.options">-->
+                                            <!--<label>-->
+                                                <!--<input type="checkbox" name="{{projectField.label}}+{{projectField._id}}">{{option.label}}-->
+                                            <!--</label>-->
+                                        <!--</div>-->
+                                        <!--<label class="right-align">-->
+                                            <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                            <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                            <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                            <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                        <!--</label>-->
+                                        <!--<br>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch-when="RADIOS">-->
+                                    <!--<br/>-->
+                                    <!--<div>-->
+                                        <!--<label>{{projectField.label}}</label>-->
+                                    <!--</div>-->
+                                    <!--<div class="radiobutton" ng-repeat="option in projectField.options">-->
+                                        <!--<label>-->
+                                            <!--<input type="radio" name="{{projectField.label}}+{{projectField._id}}"> {{option.label}}-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                    <!--<label class="right-align">-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                        <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                        <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                    <!--</label>-->
+                                    <!--<br>-->
+                                <!--</div>-->
+
+                            <!--</ng-switch>-->
+                        <!--</div>-->
+
+                        <br>
+                        <br>
+                        <hr class="horizontal-line">
+
+                        <div>
+                            <div>
+                                <label>Add sub-task:</label>
+                            </div>
+                            <select class="input-width" ng-model="model.fieldType">
+                                <option ng-repeat="fo in projectFieldsOption">{{fo.name}}</option>
+                            </select>
+                            <label class="right-align">
+                                <a ng-click = "addProjectField(model.fieldType)">
+                                    <span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<h2 id="pagetitle">Project Fields</h2>-->
+
+    <!--<ul class="nav nav-tabs">-->
+        <!--<li><a data-toggle="tab" href="#individualproject">Projects</a></li>-->
+        <!--<li class="active"><a data-toggle="tab" href="#individualproject">Project Fields</a></li>-->
+    <!--</ul>-->
+
+    <!--<div class="tab-content" ng-controller="ProjectFieldController as controller">-->
+        <!--<div id="projectFields" class="tab-pane fade in active">-->
+            <!--<div class="form-horizontal">-->
+                <!--<div ng-repeat = "projectField in projectFields">-->
+                    <!--<ng-switch on="projectField.projectFieldType" ng-model="projectField.projectFieldType">-->
+                        <!--<div ng-switch-when="TEXT">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="EMAIL">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<input type="TEXT" placeholder="{{projectField.placeholder}}" class="input-width" />-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="DATE">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<input type="date" placeholder="Select Date" class="input-width" />-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="TEXTAREA">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<textarea placeholder="{{projectField.placeholder}}" class="input-width"></textarea>-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="OPTIONS">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<select class="input-width">-->
+                                <!--<option>Select an option</option>-->
+                                <!--<option value="{{option.value}}" ng-repeat="option in projectField.options">{{option.label}}</option>-->
+                            <!--</select>-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="CHECKBOXES">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<div class="checkbox" ng-repeat="option in projectField.options">-->
+                                    <!--<label>-->
+                                        <!--<input type="checkbox" name="{{projectField.label}}+{{projectField._id}}">{{option.label}}-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                                <!--<label class="right-align">-->
+                                    <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                    <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                    <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                    <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                                <!--</label>-->
+                                <!--<br>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div ng-switch-when="RADIOS">-->
+                            <!--<br/>-->
+                            <!--<div>-->
+                                <!--<label>{{projectField.label}}</label>-->
+                            <!--</div>-->
+                            <!--<div class="radiobutton" ng-repeat="option in projectField.options">-->
+                                <!--<label>-->
+                                    <!--<input type="radio" name="{{projectField.label}}+{{projectField._id}}"> {{option.label}}-->
+                                <!--</label>-->
+                            <!--</div>-->
+                            <!--<label class="right-align">-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="cloneProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>-->
+                                <!--<a ng-click="removeProjectField(projectField)"><span class="big-glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+                                <!--<a><span class="big-glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>-->
+                            <!--</label>-->
+                            <!--<br>-->
+                        <!--</div>-->
+
+                    <!--</ng-switch>-->
+                <!--</div>-->
+
+                <!--<br>-->
+                <!--<br>-->
+                <!--<hr class="horizontal-line">-->
+
+                <!--<div>-->
+                    <!--<div>-->
+                        <!--<label>Add New Field:</label>-->
+                    <!--</div>-->
+                    <!--<select class="input-width" ng-model="model.fieldType">-->
+                        <!--<option ng-repeat="fo in projectFieldsOption">{{fo.name}}</option>-->
+                    <!--</select>-->
+                    <!--<label class="right-align">-->
+                        <!--<a ng-click = "addProjectField(model.fieldType)">-->
+                            <!--<span class="big-glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>-->
+                        <!--</a>-->
+                    <!--</label>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

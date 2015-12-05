@@ -7,7 +7,7 @@ module.exports = function(app,model){
     app.post("/api/project/user/:userId/project", CreateProject);
     app.get("/api/project/user/:userId/project", GetProjects);
     app.get("/api/project/project/:projectId", GetProject);
-    app.put("/api/project/project/:projectId",UpdateProject);
+    app.put("/api/project/project/:projectId", UpdateProject);
     app.delete("/api/project/project/:projectId", DeleteProject);
     app.get("/api/project/project?projectTitle=projectTitle", GetProjectByTitle);
 

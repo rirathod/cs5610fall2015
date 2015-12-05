@@ -89,16 +89,32 @@ module.exports = function(mongoose, db){
 
     function Update(id, project){
         var deferred = q.defer();
-        ProjectModel.findById(id, function(err, projectToUpdate) {
+        delete project._id;
+        ProjectModel.update({_id: id}, {$set: project}, function(err, status) {
             if(err) {
                 deferred.reject(err);
             } else {
-                projectToUpdate.title = project.title;
-                projectToUpdate.save(function(err, updatedProject) {
-                    deferred.resolve(updatedProject);
+                //deferred.resolve(status);
+                ProjectModel.findById(id, function(err, updatedProject) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        //projectToUpdate.title = project.title;
+                        //projectToUpdate.title = project.title;
+                        //projectToUpdate.title = project.title;
+                        //projectToUpdate.title = project.title;
+                        //projectToUpdate.save(function(err, updatedProject) {
+                        //    deferred.resolve(updatedProject);
+                        //});
+                        console.log("In project.model.js: Update");
+                        console.log(updatedProject);
+                        deferred.resolve(updatedProject);
+                    }
                 });
             }
         });
+
+
         return deferred.promise;
     }
 

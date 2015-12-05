@@ -8,7 +8,10 @@ module.exports = function(mongoose) {
     var ProjectSchema = mongoose.Schema({
         "title": String,
         "userId": String,
-        "fields": [ProjectFieldSchema]
+        "description": String,
+        "status": {type : String, enum: ["NOT STARTED", "STARTED", "COMPLETED"]},
+        "githubUsername": String,
+        "githubReponame":  String
     }, {collection: "cs5610.project.project"});
 
     return ProjectSchema;
