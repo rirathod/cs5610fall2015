@@ -12,7 +12,7 @@ module.exports = function(mongoose) {
         "status": {type : String, enum: ["NOT STARTED", "STARTED", "COMPLETED"]},
         "githubUsername": String,
         "githubReponame":  String,
-        "subTasks": [String],
+        "subTasks": [{name: String}],
         "commits": [{committer: String, message: String, timestamp: String}]
     }, {collection: "cs5610.project.project"});
 

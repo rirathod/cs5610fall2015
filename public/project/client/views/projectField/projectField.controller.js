@@ -7,12 +7,12 @@
         .module("HomeworkTrackerApp")
         .controller("ProjectFieldController", ProjectFieldController);
 
-    function ProjectFieldController($scope, GithubService, ProjectService, $rootScope, $location, $routeParams) {
+    function ProjectFieldController($scope, GithubService, ProjectService, ProjectSubTaskService, $routeParams) {
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
 
         function updateProjectStatus() {
-            if(($scope.project.commits.length > 1) && ($scope.project.status === "NOT STARTED")){
+            if(($scope.project.commits.length > 0) && ($scope.project.status === "NOT STARTED")){
                 console.log("Updating project status from NOT STARTED to STARTED");
                 var newProject = {
                     "status": "STARTED"
@@ -24,6 +24,31 @@
                         console.log(updatedProject);
                         $scope.project = updatedProject;
                     });
+            } else if(($scope.project.commits.length > 0) && ($scope.project.status === "STARTED")) {
+                var flag = false;
+                var commits  = $scope.project.commits;
+                for(var i=0; i<commits.length; i++) {
+                    if(commits[i].message.indexOf("finish") > -1
+                        || commits[i].message.indexOf("Finish") > -1
+                        || commits[i].message.indexOf("FINISH") > -1
+                        || commits[i].message.indexOf("complete") > -1
+                        || commits[i].message.indexOf("Complete") > -1
+                        || commits[i].message.indexOf("COMPLETE") > -1) {
+                        var flag = true;
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    var newProject = {
+                        "status": "COMPLETED"
+                    };
+                    ProjectService.updateProjectById(projectId, newProject)
+                        .then(function(updatedProject) {
+                            console.log(updatedProject);
+                            $scope.project = updatedProject;
+                        });
+                }
             }
         }
 
@@ -66,6 +91,7 @@
         ProjectService.findProjectById(projectId)
             .then(function(project){
                 $scope.project = project;
+                $scope.subTasks = project.subTasks;
                 console.log("Before syncing git commits");
                 syncGitCommits();
                 console.log("After syncing git commits");
@@ -73,6 +99,7 @@
 
         // Project
         $scope.updateProject = updateProject;
+
         // Project Sub-Tasks
         $scope.addProjectSubTask = addProjectSubTask;
         $scope.updateProjectSubTask = updateProjectSubTask;
@@ -89,36 +116,53 @@
 
             ProjectService.updateProjectById(projectId, project)
                 .then(function(updatedProject) {
-                    console.log(updatedProject);
+                    //console.log(updatedProject);
                     $scope.project = updatedProject;
+                    syncGitCommits();
                 });
         }
 
         function addProjectSubTask() {
             if(!angular.isUndefined($scope.subTaskName) && $scope.subTaskName != ""){
-                console.log($scope.subTaskName);
                 var subTask = {
                     "name": $scope.subTaskName
                 };
 
-                ProjectService.createSubTaskForProject(projectId, subTask)
+                ProjectSubTaskService.createSubTaskForProject(projectId, subTask)
                     .then(function(updatedProject) {
-                        $scope.project = updatedProject;
+                        $scope.subTasks = updatedProject.subTasks;
                         $scope.subTaskName = "";
                     });
             }
         }
 
-        function updateProjectSubTask() {
-
+        function deleteProjectSubTask(subTaskId) {
+            ProjectSubTaskService.deleteSubTaskForProject(projectId, subTaskId, function(updatedProject) {
+                console.log(updatedProject);
+                $scope.subTasks = updatedProject.subTasks;
+            });
         }
 
-        function deleteProjectSubTask() {
-
+        function selectProjectSubTask(index) {
+            $scope.selectedSubTaskId = $scope.subTasks[index]._id;
+            $scope.subTaskName = $scope.subTasks[index].name;
+            $scope.index = index;
         }
 
-        function selectProjectSubTask() {
-
+        function updateProjectSubTask(selectedSubTaskId, index) {
+            if (!angular.isUndefined(index)) {
+                if (!angular.isUndefined($scope.subTaskName) && $scope.subTaskName != "") {
+                    var newSubTask = {
+                        name: $scope.subTaskName
+                    };
+                    console.log(newSubTask);
+                    ProjectSubTaskService.updateSubTaskById(projectId, selectedSubTaskId, newSubTask).then(function(updatedProject) {
+                        //$scope.project = updatedProject;
+                        $scope.subTasks = updatedProject.subTasks;
+                        $scope.subTaskName = "";
+                    })
+                }
+            }
         }
     }
 })();

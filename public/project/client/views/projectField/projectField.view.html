@@ -93,17 +93,17 @@
                                     <button ng-click="addProjectSubTask()" type="button" class="btn btn-primary">
                                         <scan class="glyphicon glyphicon-plus"></scan>
                                     </button>
-                                    <button ng-click="updateProjectSubTask(selectedProjectSubTaskId, index)" type="button" class="btn btn-success">
+                                    <button ng-click="updateProjectSubTask(selectedSubTaskId, index)" type="button" class="btn btn-success">
                                         <scan class="glyphicon glyphicon-ok"></scan>
                                     </button>
                                 </td>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="subTask in project.subTasks | orderBy:predicate:reverse">
-                                <td>{{subTask}}</td>
+                            <tr ng-repeat="subTask in subTasks | orderBy:predicate:reverse">
+                                <td>{{subTask.name}}</td>
                                 <td>
-                                    <button ng-click="deleteProjectSubTask($index)" class="btn btn-danger">
+                                    <button ng-click="deleteProjectSubTask(subTask._id)" class="btn btn-danger">
                                         <scan class="glyphicon glyphicon-remove"></scan>
                                     </button>
                                     <button ng-click="selectProjectSubTask($index)" class="btn btn-info">

@@ -38,7 +38,6 @@
         }
 
         function deleteProject(projectId) {
-            //console.log(projectId);
             ProjectService.deleteProjectById(projectId)
                 .then(function(projects) {
                     ProjectService.findAllProjectsForUser($rootScope.user._id)
@@ -57,12 +56,10 @@
         function updateProject(selectedProjectId, index) {
             if (!angular.isUndefined(index)) {
                 if (!angular.isUndefined($scope.projectName) && $scope.projectName != "") {
-                    //var projectToBeUpdated = $scope.projects[index];
                     var newProject = {
                         title: $scope.projectName,
                         userId: $rootScope.user._id
                     };
-                    //console.log(newProject);
                     ProjectService.updateProjectById(selectedProjectId, newProject).then(function(updatedProject) {
                         $scope.projects[index] = updatedProject;
                         $scope.projectName = "";

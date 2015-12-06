@@ -4,8 +4,6 @@
 
 "use strict";
 module.exports = function(app,model){
-    app.post("/api/project/project/:projectId/subTask", CreateSubTaskForProject);
-
     app.post("/api/project/user/:userId/project", CreateProject);
     app.get("/api/project/user/:userId/project", GetProjects);
     app.get("/api/project/project/:projectId", GetProject);
@@ -22,7 +20,6 @@ module.exports = function(app,model){
     }
 
     function GetProjects(req, res){
-        //console.log("project.service.server.js: GetProjects: " + req.params.userId);
         model
             .FindProjectsByUserId(req.params.userId)
             .then(function(projects) {
@@ -48,10 +45,6 @@ module.exports = function(app,model){
     }
 
     function UpdateProject(req, res){
-        console.log("In project.service.server.js:");
-        console.log(req.params.projectId);
-        console.log(req.body);
-
         model
             .Update(req.params.projectId, req.body)
             .then(function(updatedProject) {
@@ -60,20 +53,13 @@ module.exports = function(app,model){
     }
 
     function DeleteProject(req, res){
+        console.log("In project.service.server.js: DeleteProject");
+        console.log(req);
+        console.log(req.params);
         model
             .Delete(req.params.projectId)
             .then(function(status) {
                 res.json(status);
-            });
-    }
-
-    function CreateSubTaskForProject(req, res) {
-        console.log(req.params.projectId);
-        console.log(req.body);
-        model.
-            AddSubTask(req.params.projectId, req.body)
-            .then(function(updatedProject) {
-                res.json(updatedProject)
             });
     }
 };

@@ -11,10 +11,7 @@
             findProjectById: findProjectById,
             findProjectByTitle: findProjectByTitle,
             deleteProjectById: deleteProjectById,
-            updateProjectById: updateProjectById,
-
-            createSubTaskForProject: createSubTaskForProject
-
+            updateProjectById: updateProjectById
         };
         return service;
 
@@ -43,7 +40,7 @@
         function findProjectById(projectId) {
             var defer = $q.defer();
             var url = "/api/project/project/"+ projectId;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -54,7 +51,7 @@
         function findProjectByTitle(title) {
             var defer = $q.defer();
             var url = "/api/project/project?projectTitle="+ title;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -79,17 +76,6 @@
             //console.log(url);
             $http.put(url, newProject)
                 .success(function(updatedProject){
-                    defer.resolve(updatedProject);
-                });
-            return defer.promise;
-        }
-
-        function createSubTaskForProject(projectId, subTask) {
-            var defer = $q.defer();
-            var url = "/api/project/project/" + projectId + "/subTask";
-            console.log(url);
-            $http.post(url, subTask)
-                .success(function(updatedProject) {
                     defer.resolve(updatedProject);
                 });
             return defer.promise;

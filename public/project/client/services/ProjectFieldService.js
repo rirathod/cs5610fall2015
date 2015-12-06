@@ -5,17 +5,16 @@
 (function () {
     angular
         .module("HomeworkTrackerApp")
-        .factory("ProjectFieldService", ProjectFieldService);
+        .factory("ProjectSubTaskService", ProjectSubTaskService);
 
-    function ProjectFieldService($q, $http) {
+    function ProjectSubTaskService($q, $http) {
 
         var service = {
-            createFieldForProject: createFieldForProject,
-            getFieldsForProject: getFieldsForProject,
-            getFieldForProject: getFieldForProject,
-            deleteFieldFromProject: deleteFieldFromProject,
-            updateProjectField: updateProjectField,
-            cloneProjectField : cloneProjectField
+            createSubTaskForProject: createSubTaskForProject,
+            deleteSubTaskForProject: deleteSubTaskForProject,
+
+            getSubTasksForProject: getFieldsForProject,
+            updateSubTaskForProject: updateProjectField
         };
         return service;
 
