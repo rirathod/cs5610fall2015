@@ -155,7 +155,6 @@
                     var newSubTask = {
                         name: $scope.subTaskName
                     };
-                    console.log(newSubTask);
                     ProjectSubTaskService.updateSubTaskById(projectId, selectedSubTaskId, newSubTask).then(function(updatedProject) {
                         //$scope.project = updatedProject;
                         $scope.subTasks = updatedProject.subTasks;

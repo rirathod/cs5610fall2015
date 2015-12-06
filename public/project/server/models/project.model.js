@@ -195,6 +195,8 @@ module.exports = function(mongoose, db){
                 deferred.reject(err);
             } else {
                 var projectSubTasks = project.subTasks;
+                console.log(selectedSubTaskId);
+                console.log(subTask);
                 console.log(projectSubTasks);
                 for(var i=0; i<projectSubTasks.length; i++){
                     if(projectSubTasks[i]._id == selectedSubTaskId){

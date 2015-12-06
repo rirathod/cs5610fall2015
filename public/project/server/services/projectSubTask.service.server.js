@@ -7,7 +7,7 @@ module.exports = function(app,model){
     app.delete("/api/project/project/:projectId/projectSubTask/:subTaskId", DeleteSubTaskForProject);
 
     app.get("/api/project/project/:projectId/projectSubTasks", GetSubTasksForProject);
-    app.put("/api/project/project/:projectId/projectSubTask/:subTaskIndex", UpdateSubTaskById);
+    app.put("/api/project/project/:projectId/projectSubTask/:subTaskId", UpdateSubTaskById);
 
     function CreateSubTaskForProject(req, res) {
         model.
@@ -37,7 +37,6 @@ module.exports = function(app,model){
     function UpdateSubTaskById(req, res){
         var projectId = req.params.projectId;
         var selectedSubTaskId = req.params.subTaskId;
-        console.log("In projectSubTask.service.server.js");
         model
             .UpdateProjectSubTask(projectId, selectedSubTaskId, req.body)
             .then(function(updatedProject) {

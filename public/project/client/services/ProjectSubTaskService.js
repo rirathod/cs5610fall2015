@@ -55,8 +55,6 @@
         function updateSubTaskById(projectId, selectedSubTaskId, newSubTask) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId + "/projectSubTask/" + selectedSubTaskId;
-            console.log(url);
-            console.log(newSubTask);
             $http.put(url, newSubTask)
                 .success(function(response){
                     console.log(response);
