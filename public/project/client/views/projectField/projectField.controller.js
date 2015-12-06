@@ -58,7 +58,7 @@
 
                 // Syncing git commits for project
                 GithubService.syncCommits($scope.project.githubUsername, $scope.project.githubReponame)
-                    .then(function (commits) {
+                    .then(function(commits) {
                         console.log(commits);
                         var projectCommits = [];
                         for (var i = 0; i < commits.length; i++) {
