@@ -27,17 +27,11 @@
 
                     UserService.createUser(newUser)
                         .then(function(newlyCreatedUser) {
-                            console.log(newlyCreatedUser);
-
                             //update rootscope user
                             $rootScope.user = newlyCreatedUser;
 
-                            //Navigate to user home pages
-                            if(newlyCreatedUser.userType === "Student") {
-                                $location.path("/studenthome");
-                            } else {
-                                $location.path("/instructorhome");
-                            }
+                            //Navigate to user profile page
+                            $location.path("/profile");
 
                         });
                 }

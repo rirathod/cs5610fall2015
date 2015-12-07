@@ -1,5 +1,7 @@
 "use strict";
 
+var nodemailer = new require("./nodemailer.service.server.js")();
+
 module.exports = function(app, model){
     app.post("/api/project/user", AddUser);
     app.put("/api/project/user/:id", UpdateUser);
@@ -13,6 +15,12 @@ module.exports = function(app, model){
         model
             .Create(req.body)
             .then(function(user) {
+                //nodemailer
+                //    .sendEmail({"to": user.email})
+                //    .then(function(result){
+                //        console.log("result of nodemailer: ", result);
+                //    });
+
                 res.json(user);
             });
     }

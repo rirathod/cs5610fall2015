@@ -8,19 +8,60 @@
             <h1>Search</h1>
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="inputProjectName" class="col-sm-2 control-label">Project Name:</label>
+                    <label for="inputProjectId" class="col-sm-2 control-label">Project Id:</label>
                     <div class="col-sm-10">
-                        <input ng-model="title" type="text" class="form-control" id="inputProjectName" placeholder="Project Name">
+                        <input ng-model="id" type="text" class="form-control" id="inputProjectId" placeholder="Project Id">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-2">
+                    <label for="inputProjectName" class="col-sm-2 control-label">Project Title:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="title" type="text" class="form-control" id="inputProjectName" placeholder="Project Title">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProjectStatus" class="col-sm-2 control-label">Project Status:</label>
+                    <div class="col-sm-10">
+                        <select ng-model="status" class="form-control" id="inputProjectStatus">
+                            <option>NO SELECTION</option>
+                            <option>NOT STARTED</option>
+                            <option>STARTED</option>
+                            <option>COMPLETED</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputDescriptionKeywords" class="col-sm-2 control-label">Description Keywords:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="descriptionKeywords" type="text" class="form-control" id="inputDescriptionKeywords" placeholder="Description Keywords">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputTeamName" class="col-sm-2 control-label">Team Name:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="teamName" type="text" class="form-control" id="inputTeamName" placeholder="Team Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-10">
                         <a ng-click="search()" class="btn btn-default btn-primary form-control" role="button" href="#/search">Search</a>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <span>{{message}}</span>
+                    </div>
+                </div>
+
+
 
                 <br>
                 <hr class="horizontal-line">

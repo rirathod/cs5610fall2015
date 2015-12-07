@@ -7,7 +7,7 @@
         .module("HomeworkTrackerApp")
         .controller("ProjectFieldController", ProjectFieldController);
 
-    function ProjectFieldController($scope, GithubService, ProjectService, ProjectSubTaskService, $routeParams) {
+    function ProjectFieldController($scope, GithubService, ProjectService, ProjectSubTaskService, $location, $routeParams) {
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
 
@@ -58,11 +58,14 @@
                 // Syncing git commits for project
                 GithubService.syncCommits($scope.project.githubUsername, $scope.project.githubReponame)
                     .then(function(commits) {
+                        console.log(commits);
                         var projectCommits = [];
                         for (var i = 0; i < commits.length; i++) {
                             projectCommits.push({
                                 "committer": commits[i].commit.committer.name,
+                                "committerHtmlUrl": commits[i].committer.html_url,
                                 "message": commits[i].commit.message,
+                                "commitHtmlUrl": commits[i].html_url,
                                 "timestamp": commits[i].commit.committer.date
                             });
                         }
@@ -96,6 +99,8 @@
 
         // Project
         $scope.updateProject = updateProject;
+        $scope.navigateToGitUserPage = navigateToGitUserPage;
+        $scope.navigateToGitCommitPage = navigateToGitCommitPage;
 
         // Project Sub-Tasks
         $scope.addProjectSubTask = addProjectSubTask;
@@ -117,6 +122,20 @@
                     $scope.project = updatedProject;
                     syncGitCommits();
                 });
+        }
+
+        function navigateToGitUserPage(index) {
+            var commits = $scope.project.commits;
+            var target = commits[index].committerHtmlUrl;
+            console.log(target);
+            $location.path(target);
+        }
+
+        function navigateToGitCommitPage(index) {
+            var commits = $scope.project.commits;
+            var target = commits[index].commitHtmlUrl;
+            console.log(target);
+            $location.path(target);
         }
 
         function addProjectSubTask() {

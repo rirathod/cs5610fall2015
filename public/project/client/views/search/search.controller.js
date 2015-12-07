@@ -13,18 +13,64 @@
 
         $scope.search = search;
         $scope.navigate = navigate;
+
         function search() {
-            var projectTitle = $scope.title;
             ProjectService.findAllProjectsForUser(userId)
                 .then(function(projectsForUser) {
-                    console.log(projectsForUser);
+                    //console.log(projectsForUser);
                     var projects = [];
                     for(var i=0; i<projectsForUser.length; i++) {
-                        if(projectsForUser[i].title === projectTitle) {
+                        var flag = false;
+                        if (!angular.isUndefined($scope.id) && $scope.id != "") {
+                            if(projectsForUser[i]._id === $scope.id) {
+                                flag = true;
+                            } else {
+                                flag = false;
+                                continue;
+                            }
+                        }
+
+                        if (!angular.isUndefined($scope.title) && $scope.title != "") {
+                            if(projectsForUser[i].title === $scope.title) {
+                                flag = true;
+                            } else {
+                                flag = false;
+                                continue;
+                            }
+                        }
+
+                        if (!angular.isUndefined($scope.status) && $scope.status != "") {
+                            if($scope.status !== "NO SELECTION") {
+                                console.log("Checking for status match");
+                                if(projectsForUser[i].status === $scope.status) {
+                                    flag = true;
+                                } else {
+                                    flag =false;
+                                    continue;
+                                }
+                            }
+                        }
+
+                        if (!angular.isUndefined($scope.descriptionKeywords) && $scope.descriptionKeywords != "") {
+                            if (projectsForUser[i].description.indexOf($scope.descriptionKeywords) > -1) {
+                                flag = true;
+                            } else {
+                                flag =false;
+                                continue;
+                            }
+                        }
+
+                        if(flag) {
                             projects.push(projectsForUser[i]);
                         }
                     }
-                    $scope.projects = projects;
+
+                    if(projects.length > 0) {
+                        $scope.projects = projects;
+                        $scope.message = "";
+                    } else {
+                        $scope.message = "No projects found for this search";
+                    }
                 });
         }
 

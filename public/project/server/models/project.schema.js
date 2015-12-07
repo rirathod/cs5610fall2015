@@ -13,7 +13,7 @@ module.exports = function(mongoose) {
         "githubUsername": String,
         "githubReponame":  String,
         "subTasks": [{name: String}],
-        "commits": [{committer: String, message: String, timestamp: String}]
+        "commits": [{committer: String, committerHtmlUrl:String, message: String, commitHtmlUrl: String, timestamp: String}]
     }, {collection: "cs5610.project.project"});
 
     return ProjectSchema;

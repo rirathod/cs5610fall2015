@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="inputProjectStatus" class="col-sm-2 control-label">Project status:</label>
+                            <label for="inputProjectStatus" class="col-sm-2 control-label">Project Status:</label>
                             <div class="col-sm-10">
                                 <select ng-model="project.status" class="form-control" id="inputProjectStatus">
                                     <option>NOT STARTED</option>
@@ -142,8 +142,8 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="commit in project.commits | orderBy:predicate:reverse">
-                                    <td>{{commit.committer}}</td>
-                                    <td>{{commit.message}}</td>
+                                    <td><a href={{commit.committerHtmlUrl}}>{{commit.committer}}</a></td>
+                                    <td><a href={{commit.commitHtmlUrl}}>{{commit.message}}</a></td>
                                     <td>{{commit.timestamp | date}}</td>
                                 </tr>
                             </tbody>

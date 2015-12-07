@@ -56,6 +56,9 @@
             .when("/user/:userId/project/:projectId/projectField", {
                 templateUrl: "views/projectField/projectField.view.html"
             })
+            .when("https://github.com/:gitUsername", {
+                redirectTo: "https://github.com/:gitUsername"
+            })
             .otherwise({
                 redirectTo : "/"
             })
