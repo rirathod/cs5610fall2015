@@ -8,4 +8,7 @@ module.exports = function(app, mongoose, db) {
     var projectModel = require("./models/project.model.js")(mongoose, db);
     require("./services/project.service.server.js")(app, projectModel);
     require("./services/projectSubTask.service.server.js")(app, projectModel);
+
+    var contactUsModel = require("./models/contactUs.model.js")(mongoose, db);
+    require("./services/contactus.service.server.js")(app, contactUsModel);
 };

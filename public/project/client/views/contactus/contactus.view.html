@@ -25,7 +25,11 @@
                 </div>
             </div>
 
-            <div class="error not-found" ng-if="error">
+            <div ng-if="success">
+                <span>{{success}}</span>
+            </div>
+
+            <div ng-if="error">
                 <span>{{error}}</span>
             </div>
         </form>

@@ -6,27 +6,31 @@
     angular
         .module("HomeworkTrackerApp")
         .controller("ContactUsController", ContactUsController);
-        //.controller("ContactUsController", ['$scope', '$location', ContactUsController]);
 
-    function ContactUsController($scope, $location) {
+    function ContactUsController($scope, $location, ContactUsService) {
         $scope.$location = $location;
 
         $scope.reset = reset;
         $scope.enter = enter;
 
         function reset() {
-            if($scope.email && $scope.message) {
-                $scope.email = "";
-                $scope.message = "";
-            } else {
-                $scope.error = "One of the input fields is missing";
-            }
+            $scope.email = "";
+            $scope.message = "";
         }
 
         function enter() {
             if($scope.email && $scope.message) {
                 console.log($scope.email);
                 console.log($scope.message);
+                var messageObj = {
+                    "email": $scope.email,
+                    "message": $scope.message
+                };
+                ContactUsService.addMessage(messageObj)
+                    .then(function(result) {
+                        console.log(result);
+                        $scope.success = "Message submitted";
+                    });
             } else {
                 $scope.error = "One of the input fields is missing";
             }
