@@ -25,13 +25,14 @@
                         $rootScope.loggedInUser = currentUser;
 
                         //Navigate to user home pages
-                        if(currentUser.userType === "admin"
-                        || currentUser.userType === "Admin"
-                        || currentUser.userType === "ADMIN") {
-                            $location.path("/profile");
-                        } else {
-                            $location.path("/profile");
-                        }
+                        //if(currentUser.userType === "admin"
+                        //|| currentUser.userType === "Admin"
+                        //|| currentUser.userType === "ADMIN") {
+                        //    $location.path("/profile");
+                        //} else {
+                        //    $location.path("/profile");
+                        //}
+                        $location.path("/profile");
                     } else {
                         $scope.error = "Username/Password combination does not exist";
                     }

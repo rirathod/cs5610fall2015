@@ -21,6 +21,7 @@
                 <!--<li><a href="views/signup/signup.view.html">Sign Up</a></li>-->
                 <li ng-class="{'active' : $location.url().indexOf('signin') != -1}" ng-hide="loggedInUser"><a href="#/signin">Sign In</a></li>
                 <li ng-class="{'active' : $location.url().indexOf('signup') != -1}" ng-hide="loggedInUser"><a href="#/signup">Sign Up</a></li>
+                <li ng-show="loggedInUser"><a href="#/profile">Hello {{loggedInUser.username}}</a></li>
                 <li ng-show="loggedInUser"><a href="#/signin">Sign out</a></li>
             </ul>
         </div>

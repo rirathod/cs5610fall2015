@@ -39,6 +39,10 @@
                 templateUrl: "views/search/search.view.html"
                 //controller: "SearchController"
             })
+            .when("/contactusmessages",{
+                templateUrl: "views/contactus/contactusmessages.view.html"
+                //controller: "SearchController"
+            })
             //.when("/admin", {
             //    templateUrl: "views/admin/admin.view.html"
             //    //controller: "AdminController"

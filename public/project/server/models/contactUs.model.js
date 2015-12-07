@@ -9,7 +9,8 @@ module.exports = function(mongoose, db){
     var ContactUsModel  = mongoose.model("ContactUsModel", ContactUsSchema);
 
     var api = {
-        Create: Create
+        Create: Create,
+        FindAll: FindAll
     };
     return api;
 
@@ -21,6 +22,18 @@ module.exports = function(mongoose, db){
                 deferred.reject(err);
             } else {
                 deferred.resolve(createdMessage);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function FindAll(){
+        var deferred = q.defer();
+        ContactUsModel.find(function(err, messages) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(messages);
             }
         });
         return deferred.promise;

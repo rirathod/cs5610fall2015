@@ -1,8 +1,9 @@
 <nav>
     <ul class="nav nav-list nav-sidebar">
         <li ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
-        <li ng-class="{'active' : $location.url().indexOf('individualproject') != -1}"><a href="#/individualproject">Individual Projects</a></li>
-        <li ng-class="{'active' : $location.url().indexOf('teamproject') != -1}"><a href="#/teamproject">Team Projects</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('individualproject') != -1}" ng-hide="loggedInUser.userType==='Instructor' || loggedInUser.userType==='Admin'"><a href="#/individualproject">Individual Projects</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('teamproject') != -1}" ng-hide="loggedInUser.userType==='Instructor' || loggedInUser.userType==='Admin'"><a href="#/teamproject">Team Projects</a></li>
         <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('contactusmessages') != -1}" ng-show="loggedInUser.userType==='Admin'"><a href="#/contactusmessages">ContactUs Messages</a></li>
     </ul>
 </nav>
