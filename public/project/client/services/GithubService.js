@@ -36,7 +36,7 @@
                         if(repositories.length > 0) {
                             var repoExists = false;
                             $.each(repositories, function(index) {
-                                console.log(repositories[index].name + " " + githubReponame);
+                                //console.log(repositories[index].name + " " + githubReponame);
                                 if(repositories[index].name === githubReponame) {
                                     repoExists = true;
                                 }

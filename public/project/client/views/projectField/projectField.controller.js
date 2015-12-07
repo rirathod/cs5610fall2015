@@ -17,11 +17,10 @@
                 var newProject = {
                     "status": "STARTED"
                 };
-                console.log(newProject);
 
                 ProjectService.updateProjectById(projectId, newProject)
                     .then(function(updatedProject) {
-                        console.log(updatedProject);
+                        //console.log(updatedProject);
                         $scope.project = updatedProject;
                     });
             } else if(($scope.project.commits.length > 0) && ($scope.project.status === "STARTED")) {
@@ -45,7 +44,7 @@
                     };
                     ProjectService.updateProjectById(projectId, newProject)
                         .then(function(updatedProject) {
-                            console.log(updatedProject);
+                            //console.log(updatedProject);
                             $scope.project = updatedProject;
                         });
                 }
@@ -59,7 +58,6 @@
                 // Syncing git commits for project
                 GithubService.syncCommits($scope.project.githubUsername, $scope.project.githubReponame)
                     .then(function(commits) {
-                        console.log(commits);
                         var projectCommits = [];
                         for (var i = 0; i < commits.length; i++) {
                             projectCommits.push({
@@ -71,17 +69,16 @@
                         var newProject = {
                             "commits": projectCommits
                         };
-                        console.log(newProject);
 
                         // Load project git commits
                         ProjectService.updateProjectById(projectId, newProject)
                             .then(function (updatedProject) {
-                                console.log(updatedProject);
+                                //console.log(updatedProject);
                                 $scope.project = updatedProject;
 
                                 // Updating project status based on git commit messages
-                                console.log($scope.project.commits.length);
-                                console.log($scope.project.status);
+                                //console.log($scope.project.commits.length);
+                                //console.log($scope.project.status);
                                 updateProjectStatus();
                             });
                     });
@@ -137,10 +134,11 @@
         }
 
         function deleteProjectSubTask(subTaskId) {
-            ProjectSubTaskService.deleteSubTaskForProject(projectId, subTaskId, function(updatedProject) {
-                console.log(updatedProject);
-                $scope.subTasks = updatedProject.subTasks;
-            });
+            ProjectSubTaskService.deleteSubTaskForProject(projectId, subTaskId)
+                .then(function(updatedProject) {
+                    console.log(updatedProject);
+                    $scope.subTasks = updatedProject.subTasks;
+                });
         }
 
         function selectProjectSubTask(index) {

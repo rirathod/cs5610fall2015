@@ -8,7 +8,6 @@
         .factory("ProjectSubTaskService", ProjectSubTaskService);
 
     function ProjectSubTaskService($q, $http) {
-
         var service = {
             createSubTaskForProject: createSubTaskForProject,
             deleteSubTaskForProject: deleteSubTaskForProject,
@@ -46,7 +45,6 @@
             var url = "/api/project/project/" + projectId + "/projectSubTasks";
             $http.get(url)
                 .success(function(projectSubTasks){
-                    console.log(projectSubTasks);
                     defer.resolve(projectSubTasks);
                 });
             return defer.promise;
@@ -57,7 +55,6 @@
             var url = "/api/project/project/" + projectId + "/projectSubTask/" + selectedSubTaskId;
             $http.put(url, newSubTask)
                 .success(function(response){
-                    console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;

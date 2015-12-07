@@ -39,6 +39,9 @@
             .when("/teamproject",{
                 templateUrl: "views/teamproject/teamproject.view.html"
             })
+            .when("/search",{
+                templateUrl: "views/search/search.view.html"
+            })
             //.when("/form", {
             //    templateUrl: "views/form/form.view.html"
             //    //controller: "FormController"

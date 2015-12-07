@@ -24,6 +24,7 @@ module.exports = function(mongoose, db){
     };
     return api;
 
+    // ***** Project api *****
     function Create(project, userId){
         var deferred = q.defer();
         project.userId = userId;
@@ -88,9 +89,6 @@ module.exports = function(mongoose, db){
     function Update(id, project){
         var deferred = q.defer();
         delete project._id;
-        //console.log("In project.model.js");
-        //console.log("Before updating in mongodb");
-        //console.log(project);
         ProjectModel.update({_id: id}, {$set: project}, function(err, status) {
             if(err) {
                 deferred.reject(err);
@@ -99,8 +97,6 @@ module.exports = function(mongoose, db){
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        //console.log("After updating in mongodb");
-                        //console.log(updatedProject);
                         deferred.resolve(updatedProject);
                     }
                 });
@@ -121,7 +117,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    // ***** Project Sub Tasks *****
+    // ***** Project Sub Task api *****
     function AddSubTask(projectId, subTask){
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {
@@ -154,7 +150,7 @@ module.exports = function(mongoose, db){
             if(err) {
                 deferred.reject(err);
             } else {
-                console.log("In project.model.js: DeleteSubTask");
+                //console.log("In project.model.js: DeleteSubTask");
                 var subTasks = project.subTasks;
                 for(var i=0; i<subTasks.length; i++) {
                     if(subTasks[i]._id == subTaskId) {
@@ -166,7 +162,7 @@ module.exports = function(mongoose, db){
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        console.log(document);
+                        //console.log(document);
                         deferred.resolve(document);
                     }
                 });
@@ -175,7 +171,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function FindProjectSubTasks(projectId, projectFieldId){
+    function FindProjectSubTasks(projectId){
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project){
             if(err) {
@@ -188,41 +184,24 @@ module.exports = function(mongoose, db){
     }
 
     function UpdateProjectSubTask(projectId, selectedSubTaskId, subTask) {
-        console.log("In project.model.js: UpdateProjectSubTask");
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project){
             if(err) {
                 deferred.reject(err);
             } else {
                 var projectSubTasks = project.subTasks;
-                console.log(selectedSubTaskId);
-                console.log(subTask);
-                console.log(projectSubTasks);
                 for(var i=0; i<projectSubTasks.length; i++){
                     if(projectSubTasks[i]._id == selectedSubTaskId){
                         projectSubTasks[i].name = subTask.name;
                         break;
                     }
                 }
-                console.log(projectSubTasks);
-
-                //ProjectModel.update({_id: selectedSubTaskId}, {$set: subTask}, function(err, status) {
-                //    if(err) {
-                //        deferred.reject(err);
-                //    } else {
-                //        ProjectModel.findById(id, function (err, updatedProject) {
-                //
-                //        });
-                //    }
-                //});
 
                 project.subTasks = projectSubTasks;
                 project.save(function(err, updatedProject) {
                     if(err) {
                         deferred.reject(err);
                     } else {
-                        console.log("After saving in mongodb");
-                        console.log(updatedProject);
                         deferred.resolve(updatedProject);
                     }
                 });

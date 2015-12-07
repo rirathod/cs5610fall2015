@@ -1,0 +1,48 @@
+<div class="container" ng-Controller="SearchController">
+
+    <div class="row">
+        <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
+            <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <h1>Search</h1>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputProjectName" class="col-sm-2 control-label">Project Name:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="title" type="text" class="form-control" id="inputProjectName" placeholder="Project Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10">
+                        <a ng-click="search()" class="btn btn-default btn-primary form-control" role="button" href="#/search">Search</a>
+                    </div>
+                </div>
+
+                <br>
+                <hr class="horizontal-line">
+                <label>Projects:</label>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            <button class="btn">
+                                <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                            </button>
+                            Project Title
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="project in projects | orderBy:predicate:reverse">
+                        <td><a ng-click="navigate($index)">{{project.title}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

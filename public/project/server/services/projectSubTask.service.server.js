@@ -5,7 +5,6 @@
 module.exports = function(app,model){
     app.post("/api/project/project/:projectId/projectSubTask", CreateSubTaskForProject);
     app.delete("/api/project/project/:projectId/projectSubTask/:subTaskId", DeleteSubTaskForProject);
-
     app.get("/api/project/project/:projectId/projectSubTasks", GetSubTasksForProject);
     app.put("/api/project/project/:projectId/projectSubTask/:subTaskId", UpdateSubTaskById);
 
@@ -18,7 +17,7 @@ module.exports = function(app,model){
     }
 
     function DeleteSubTaskForProject(req, res) {
-        console.log("In projectSubTask.service.server.js: DeleteSubTaskForProject");
+        //console.log("In projectSubTask.service.server.js: DeleteSubTaskForProject");
         model.
             DeleteSubTask(req.params.projectId, req.params.subTaskId)
             .then(function(updatedProject) {

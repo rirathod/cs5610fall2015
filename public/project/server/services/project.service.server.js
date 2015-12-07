@@ -5,11 +5,11 @@
 "use strict";
 module.exports = function(app,model){
     app.post("/api/project/user/:userId/project", CreateProject);
+    app.get("/api/project/project?projectTitle=projectTitle", GetProjectByTitle);
     app.get("/api/project/user/:userId/project", GetProjects);
     app.get("/api/project/project/:projectId", GetProject);
     app.put("/api/project/project/:projectId", UpdateProject);
     app.delete("/api/project/project/:projectId", DeleteProject);
-    app.get("/api/project/project?projectTitle=projectTitle", GetProjectByTitle);
 
     function CreateProject(req,res){
         model
@@ -37,6 +37,7 @@ module.exports = function(app,model){
 
     function GetProjectByTitle(req, res){
         var projectTitle = req.param("projectTitle");
+        console.log(projectTitle);
         model
             .FindProjectByTitle(projectTitle)
             .then(function(project) {
@@ -53,9 +54,9 @@ module.exports = function(app,model){
     }
 
     function DeleteProject(req, res){
-        console.log("In project.service.server.js: DeleteProject");
-        console.log(req);
-        console.log(req.params);
+        //console.log("In project.service.server.js: DeleteProject");
+        //console.log(req);
+        //console.log(req.params);
         model
             .Delete(req.params.projectId)
             .then(function(status) {
