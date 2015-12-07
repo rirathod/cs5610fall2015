@@ -80,8 +80,6 @@
                                 $scope.project = updatedProject;
 
                                 // Updating project status based on git commit messages
-                                //console.log($scope.project.commits.length);
-                                //console.log($scope.project.status);
                                 updateProjectStatus();
                             });
                     });
@@ -99,8 +97,6 @@
 
         // Project
         $scope.updateProject = updateProject;
-        $scope.navigateToGitUserPage = navigateToGitUserPage;
-        $scope.navigateToGitCommitPage = navigateToGitCommitPage;
 
         // Project Sub-Tasks
         $scope.addProjectSubTask = addProjectSubTask;
@@ -122,20 +118,6 @@
                     $scope.project = updatedProject;
                     syncGitCommits();
                 });
-        }
-
-        function navigateToGitUserPage(index) {
-            var commits = $scope.project.commits;
-            var target = commits[index].committerHtmlUrl;
-            console.log(target);
-            $location.path(target);
-        }
-
-        function navigateToGitCommitPage(index) {
-            var commits = $scope.project.commits;
-            var target = commits[index].commitHtmlUrl;
-            console.log(target);
-            $location.path(target);
         }
 
         function addProjectSubTask() {
