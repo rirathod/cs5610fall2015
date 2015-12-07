@@ -17,27 +17,23 @@
             var password = user.password;
             var userType = user.usertype;
 
-            //console.log(username);
-            //console.log(password);
-            //console.log(userType);
             UserService.findUserByUsernamePasswordAndUserType(username, password, userType)
                 .then(function(currentUser) {
                     //console.log(currentUser);
 
-                    if(currentUser != null) {
+                    if (currentUser) {
                         $rootScope.user = currentUser;
 
                         //Navigate to user home pages
-                        //if(currentUser.userType === "Student") {
-                        //    $location.path("/profile");
-                        //} else {
-                        //    $location.path("/profile");
-                        //}
-
-                        $location.path("/profile");
-                        //$scope.message = "User logged in successfully";
+                        if(currentUser.userType === "admin"
+                        || currentUser.userType === "Admin"
+                        || currentUser.userType === "ADMIN") {
+                            $location.path("/profile");
+                        } else {
+                            $location.path("/profile");
+                        }
                     } else {
-                        $scope.message = "Username/Password combination does not exist";
+                        $scope.error = "Username/Password combination does not exist";
                     }
                 });
         }

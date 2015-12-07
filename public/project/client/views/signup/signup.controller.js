@@ -13,7 +13,7 @@
         $scope.signup = signup;
 
         function signup() {
-            if($scope.username, $scope.password, $scope.verifyPassword, $scope.email, $scope.usertype) {
+            if($scope.username && $scope.password && $scope.verifyPassword && $scope.email && $scope.usertype) {
                 if ($scope.password !== $scope.verifyPassword){
                     $scope.error = "Both the password and verify password fields should match";
                 } else {
