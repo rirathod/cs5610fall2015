@@ -9,7 +9,7 @@
 
     function SearchController($scope, $location, $rootScope, ProjectService) {
         $scope.$location = $location;
-        var userId = $rootScope.user._id;
+        var userId = $rootScope.loggedInUser._id;
 
         $scope.search = search;
         $scope.navigate = navigate;

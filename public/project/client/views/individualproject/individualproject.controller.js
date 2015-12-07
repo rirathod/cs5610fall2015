@@ -8,7 +8,7 @@
         .controller("IndividualProjectController", IndividualProjectController);
 
     function IndividualProjectController($scope, ProjectService, $rootScope, $location) {
-        ProjectService.findAllProjectsForUser($rootScope.user._id)
+        ProjectService.findAllProjectsForUser($rootScope.loggedInUser._id)
             .then(function(projects) {
                 $scope.projects = projects;
             });
@@ -26,9 +26,9 @@
 
             //console.log(angular.isUndefined($scope.projectName));
             if(!angular.isUndefined($scope.projectName) && $scope.projectName != ""){
-                ProjectService.createProjectForUser($rootScope.user._id, project)
+                ProjectService.createProjectForUser($rootScope.loggedInUser._id, project)
                     .then(function(createdProject) {
-                        ProjectService.findAllProjectsForUser($rootScope.user._id)
+                        ProjectService.findAllProjectsForUser($rootScope.loggedInUser._id)
                             .then(function(projects) {
                                 $scope.projects = projects;
                                 $scope.projectName = "";
@@ -40,7 +40,7 @@
         function deleteProject(projectId) {
             ProjectService.deleteProjectById(projectId)
                 .then(function(projects) {
-                    ProjectService.findAllProjectsForUser($rootScope.user._id)
+                    ProjectService.findAllProjectsForUser($rootScope.loggedInUser._id)
                         .then(function (projects) {
                             $scope.projects = projects;
                         });
@@ -58,7 +58,7 @@
                 if (!angular.isUndefined($scope.projectName) && $scope.projectName != "") {
                     var newProject = {
                         title: $scope.projectName,
-                        userId: $rootScope.user._id
+                        userId: $rootScope.loggedInUser._id
                     };
                     ProjectService.updateProjectById(selectedProjectId, newProject).then(function(updatedProject) {
                         $scope.projects[index] = updatedProject;
@@ -69,7 +69,7 @@
         }
 
         function navigate(index){
-            var target = "/user/" + $rootScope.user._id + "/project/" + $scope.projects[index]._id + "/projectField";
+            var target = "/user/" + $rootScope.loggedInUser._id + "/project/" + $scope.projects[index]._id + "/projectField";
             console.log(target);
             $location.path(target);
         }

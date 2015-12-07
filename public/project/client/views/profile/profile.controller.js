@@ -11,9 +11,9 @@
     function ProfileController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
 
-        $scope.username = $rootScope.user.username;
-        $scope.password = $rootScope.user.password;
-        $scope.email = $rootScope.user.email;
+        $scope.username = $rootScope.loggedInUser.username;
+        $scope.password = $rootScope.loggedInUser.password;
+        $scope.email = $rootScope.loggedInUser.email;
 
         $scope.update = update;
 
@@ -25,16 +25,13 @@
                 firstName: $scope.firstname,
                 lastName: $scope.lastname,
                 universityName: $scope.universityName,
-                id: $rootScope.user._id
+                id: $rootScope.loggedInUser._id
             };
-
-            //console.log("In profile.controller.js: update");
-            //console.log(user);
 
             UserService.updateUser(user, user.id)
                 .then(function (updatedUser) {
                     $scope.user = updatedUser;
-                    $rootScope.user = updatedUser;
+                    $rootScope.loggedInUser = updatedUser;
                     $scope.message = "User Profile updated successfully.";
                 })
                 .catch(function (error) {

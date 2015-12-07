@@ -10,10 +10,10 @@
 
     function HeaderController($scope, $location, $rootScope) {
         $scope.$location = $location;
-        $scope.user = $rootScope.user;
+        $scope.user = $rootScope.loggedInUser;
 
         $scope.logout = function(){
-            $scope.user = $rootScope.user = null;
+            $scope.user = $rootScope.loggedInUser = null;
             $location.path("/signin");
         };
     }

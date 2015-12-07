@@ -9,9 +9,9 @@
 
     function SignInController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
+        $rootScope.loggedInUser = null;
 
         $scope.signin = signin;
-
         function signin(user) {
             var username = user.username;
             var password = user.password;
@@ -22,7 +22,7 @@
                     //console.log(currentUser);
 
                     if (currentUser) {
-                        $rootScope.user = currentUser;
+                        $rootScope.loggedInUser = currentUser;
 
                         //Navigate to user home pages
                         if(currentUser.userType === "admin"

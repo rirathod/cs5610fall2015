@@ -57,9 +57,11 @@
                     </div>
                 </div>
 
-                <!--<div class="error not-found" ng-if="error">-->
-                <div>
-                    <span>{{message}}</span>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10" ng-if="message">
+                        <span>{{message}}</span>
+                    </div>
                 </div>
             </form>
         </div>

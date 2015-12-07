@@ -27,8 +27,8 @@
 
                     UserService.createUser(newUser)
                         .then(function(newlyCreatedUser) {
-                            //update rootscope user
-                            $rootScope.user = newlyCreatedUser;
+                            //update rootscope loggedInUser
+                            $rootScope.loggedInUser = newlyCreatedUser;
 
                             //Navigate to user profile page
                             $location.path("/profile");

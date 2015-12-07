@@ -23,41 +23,29 @@
             .when("/contactus",{
                 templateUrl: "views/contactus/contactus.view.html"
             })
-            //.when("/studenthome",{
-            //    templateUrl: "views/studenthome/studenthome.view.html"
-            //})
-            //.when("/instructorhome",{
-            //    templateUrl: "views/instructorhome/instructorhome.view.html"
-            //})
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html"
                 //controller: "ProfileController"
             })
             .when("/individualproject",{
                 templateUrl: "views/individualproject/individualproject.view.html"
+                //controller: "IndividualProjectController"
             })
             .when("/teamproject",{
                 templateUrl: "views/teamproject/teamproject.view.html"
+                //controller: "TeamProjectController"
             })
             .when("/search",{
                 templateUrl: "views/search/search.view.html"
+                //controller: "SearchController"
             })
-            //.when("/form", {
-            //    templateUrl: "views/form/form.view.html"
-            //    //controller: "FormController"
-            //})
             //.when("/admin", {
             //    templateUrl: "views/admin/admin.view.html"
             //    //controller: "AdminController"
             //})
-            //.when("/user", {
-            //    templateUrl : "/assignment/client/field/field.view.html"
-            //})
             .when("/user/:userId/project/:projectId/projectField", {
                 templateUrl: "views/projectField/projectField.view.html"
-            })
-            .when("https://github.com/:gitUsername", {
-                redirectTo: "https://github.com/:gitUsername"
+                //controller: "ProjectFieldController"
             })
             .otherwise({
                 redirectTo : "/"
