@@ -6,7 +6,7 @@ var q = require("q");
 
 module.exports = function(mongoose, db){
     var ContactUsSchema = require('./contactUs.schema.js')(mongoose);
-    var ContactUsModel  = mongoose.model("ContactUsModel", ContactUsModel);
+    var ContactUsModel  = mongoose.model("ContactUsModel", ContactUsSchema);
 
     var api = {
         Create: Create

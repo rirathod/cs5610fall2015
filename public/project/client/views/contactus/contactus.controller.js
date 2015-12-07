@@ -20,18 +20,20 @@
 
         function enter() {
             if($scope.email && $scope.message) {
-                console.log($scope.email);
-                console.log($scope.message);
+                //console.log($scope.email);
+                //console.log($scope.message);
                 var messageObj = {
                     "email": $scope.email,
                     "message": $scope.message
                 };
                 ContactUsService.addMessage(messageObj)
                     .then(function(result) {
-                        console.log(result);
+                        //console.log(result);
                         $scope.success = "Message submitted";
+                        $scope.error = "";
                     });
             } else {
+                $scope.success = "";
                 $scope.error = "One of the input fields is missing";
             }
         }

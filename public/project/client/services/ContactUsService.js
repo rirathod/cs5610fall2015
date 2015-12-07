@@ -2,9 +2,9 @@
 (function () {
     angular
         .module("HomeworkTrackerApp")
-        .factory("ContactService", ContactService);
+        .factory("ContactUsService", ContactUsService);
 
-    function ContactService($q, $http) {
+    function ContactUsService($q, $http) {
         var service = {
             addMessage: addMessage
         };
@@ -14,10 +14,10 @@
         function addMessage(messageObj) {
             var defer = $q.defer();
             var url = "/api/project/contactus";
-            console.log(url);
+            //console.log(url);
             $http.post(url, messageObj)
                 .success(function(response){
-                    defer.resolve(statusMessage);
+                    defer.resolve(response);
                 });
 
             return defer.promise;
