@@ -7,7 +7,8 @@
         .module("HomeworkTrackerApp")
         .controller("ProjectFieldController", ProjectFieldController);
 
-    function ProjectFieldController($scope, GithubService, ProjectService, ProjectSubTaskService, $location, $routeParams) {
+    function ProjectFieldController($scope, $location, $routeParams,
+                                    GithubService, ProjectService, ProjectSubTaskService, InstructorService) {
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
 
@@ -58,7 +59,7 @@
                 // Syncing git commits for project
                 GithubService.syncCommits($scope.project.githubUsername, $scope.project.githubReponame)
                     .then(function(commits) {
-                        console.log(commits);
+                        //console.log(commits);
                         var projectCommits = [];
                         for (var i = 0; i < commits.length; i++) {
                             projectCommits.push({
@@ -90,6 +91,7 @@
             .then(function(project){
                 $scope.project = project;
                 $scope.subTasks = project.subTasks;
+                $scope.instructors = project.instructors;
                 console.log("Before syncing git commits");
                 syncGitCommits();
                 console.log("After syncing git commits");
@@ -103,6 +105,12 @@
         $scope.updateProjectSubTask = updateProjectSubTask;
         $scope.deleteProjectSubTask = deleteProjectSubTask;
         $scope.selectProjectSubTask = selectProjectSubTask;
+
+        // Instructor
+        $scope.addInstructorEmail = addInstructorEmail;
+        $scope.updateInstructorEmail = updateInstructorEmail;
+        $scope.deleteInstructorEmail = deleteInstructorEmail;
+        $scope.selectInstructorEmail = selectInstructorEmail;
 
         function updateProject() {
             var project = {
@@ -162,5 +170,37 @@
                 }
             }
         }
+
+        function addInstructorEmail() {
+            if(!angular.isUndefined($scope.instructorEmail) && $scope.instructorEmail != ""){
+                var instructor = {
+                    "email": $scope.instructorEmail
+                };
+
+                InstructorService.addInstructorForProject(projectId, instructor)
+                    .then(function(updatedProject) {
+                        console.log(updatedProject);
+                        $scope.instructors = updatedProject.instructors;
+                        $scope.instructorEmail = "";
+                    });
+            }
+        }
+
+        function deleteInstructorEmail(instructorId) {
+            InstructorService.deleteInstructorForProject(projectId, instructorId)
+                .then(function(updatedProject) {
+                    console.log(updatedProject);
+                    $scope.instructors = updatedProject.instructors;
+                });
+        }
+
+        function selectInstructorEmail() {
+
+        }
+
+        function updateInstructorEmail() {
+
+        }
+
     }
 })();

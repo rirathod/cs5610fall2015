@@ -16,7 +16,7 @@ module.exports = function(app, model){
             .Create(req.body)
             .then(function(user) {
                 //nodemailer
-                //    .sendEmail({"to": user.email})
+                //    .sendMail({"to": user.email})
                 //    .then(function(result){
                 //        console.log("result of nodemailer: ", result);
                 //    });

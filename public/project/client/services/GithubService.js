@@ -23,7 +23,8 @@
         function syncCommits(githubUsername, githubReponame) {
             var defer = $q.defer();
             var requri='https://api.github.com/users/'+ githubUsername;
-            var repouri='https://api.github.com/users/'+ githubUsername + '/repos';
+            var reposuri='https://api.github.com/users/'+ githubUsername + '/repos';
+            var gitrepouri = 'https://api.github.com/repos/' + githubUsername + '/' + githubReponame;
             var commitUri='https://api.github.com/repos/'+ githubUsername + '/' + githubReponame + '/commits';
 
             // check if user exists
@@ -31,8 +32,17 @@
                 if (json.message != "Not Found" && githubUsername != '') {
                     console.log("User exists");
 
+                    // EXPERIMENT
+                    //console.log("EXPERIMENT");
+                    //$.getJSON(gitrepouri, function(response){
+                    //    console.log(response);
+                    //    $http.get("https://api.github.com/repos/rirathod/cs5610fall2015/collaborators", function(response1){
+                    //        console.log(response1);
+                    //    });
+                    //});
+
                     // check is repository exists
-                    $.getJSON(repouri, function(repositories){
+                    $.getJSON(reposuri, function(repositories){
                         if(repositories.length > 0) {
                             var repoExists = false;
                             $.each(repositories, function(index) {

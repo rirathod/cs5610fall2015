@@ -20,11 +20,16 @@ module.exports = function(mongoose, db){
         AddSubTask : AddSubTask,
         DeleteSubTask : DeleteSubTask,
         FindProjectSubTasks : FindProjectSubTasks,
-        UpdateProjectSubTask : UpdateProjectSubTask
+        UpdateProjectSubTask : UpdateProjectSubTask,
+
+        AddInstructorToProject : AddInstructorToProject,
+        RemoveInstructorFromProject : RemoveInstructorFromProject,
+        GetInstructorsForProject : GetInstructorsForProject,
+        UpdateInstructorsForProject : UpdateInstructorsForProject
     };
     return api;
 
-    // ***** Project api *****
+    // *************** Project api ***************
     function Create(project, userId){
         var deferred = q.defer();
         project.userId = userId;
@@ -39,11 +44,13 @@ module.exports = function(mongoose, db){
     }
 
     function FindAll(){
+        //console.log("In project.model.js: FindAll");
         var deferred = q.defer();
         ProjectModel.find(function(err, projects) {
             if(err) {
                 deferred.reject(err);
             } else {
+                //console.log(projects)
                 deferred.resolve(projects);
             }
         });
@@ -117,7 +124,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    // ***** Project Sub Task api *****
+    // *************** Project Sub Task api ***************
     function AddSubTask(projectId, subTask){
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {
@@ -198,6 +205,102 @@ module.exports = function(mongoose, db){
                 }
 
                 project.subTasks = projectSubTasks;
+                project.save(function(err, updatedProject) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(updatedProject);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    // *************** Project Instructors api ***************
+    function AddInstructorToProject(projectId, instructor) {
+        console.log("In project.model.js: AddInstructorToProject");
+        console.log(projectId);
+        console.log(instructor);
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                // first check if array is undefined
+                if(!project.instructors) {
+                    // if NOT project subTasks, then initialize the empty array
+                    project.instructors = [];
+                }
+                // now array is guaranteed to exist...
+                project.instructors.push(instructor);
+
+                project.save(function(err, document) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(document);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function RemoveInstructorFromProject(projectId, instructorId) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project){
+            if(err) {
+                deferred.reject(err);
+            } else {
+                //console.log("In project.model.js: DeleteSubTask");
+                var instructors = project.instructors;
+                for(var i=0; i<instructors.length; i++) {
+                    if(instructors[i]._id == instructorId) {
+                        instructors.splice(i, 1);
+                    }
+                }
+                project.instructors = instructors;
+                project.save(function(err, document) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        //console.log(document);
+                        deferred.resolve(document);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function GetInstructorsForProject(projectId) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project){
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(project.instructors);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function UpdateInstructorsForProject(projectId, selectedInstructorId, instructor) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project){
+            if(err) {
+                deferred.reject(err);
+            } else {
+                var projectInstructors = project.instructors;
+                for(var i=0; i<projectInstructors.length; i++){
+                    if(projectInstructors[i]._id == selectedInstructorId){
+                        projectInstructors[i].email = instructor.email;
+                        break;
+                    }
+                }
+
+                project.instructors = projectInstructors;
                 project.save(function(err, updatedProject) {
                     if(err) {
                         deferred.reject(err);

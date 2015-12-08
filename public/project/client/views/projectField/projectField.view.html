@@ -88,7 +88,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <td><input ng-model="subTaskName" class="form-control" type="text" name="name" placeholder="name"/></td>
+                                <td><input ng-model="subTaskName" class="form-control" type="text" placeholder="name"/></td>
                                 <td>
                                     <button ng-click="addProjectSubTask()" type="button" class="btn btn-primary">
                                         <scan class="glyphicon glyphicon-plus"></scan>
@@ -107,6 +107,51 @@
                                         <scan class="glyphicon glyphicon-remove"></scan>
                                     </button>
                                     <button ng-click="selectProjectSubTask($index)" class="btn btn-info">
+                                        <scan class="glyphicon glyphicon-pencil"></scan>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <hr class="horizontal-line">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <button class="btn">
+                                        <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                    </button>
+                                    Instructor Email
+                                </th>
+                                <th>
+                                    <button class="btn">
+                                        <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                    </button>
+                                    Action
+                                </th>
+                            </tr>
+                            <tr>
+                                <td><input ng-model="instructorEmail" class="form-control" type="text" placeholder="example@domain.com"/></td>
+                                <td>
+                                    <button ng-click="addInstructorEmail()" type="button" class="btn btn-primary">
+                                        <scan class="glyphicon glyphicon-plus"></scan>
+                                    </button>
+                                    <button ng-click="updateInstructorEmail(selectedInstructorEmailId, emailIndex)" type="button" class="btn btn-success">
+                                        <scan class="glyphicon glyphicon-ok"></scan>
+                                    </button>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="instructor in instructors | orderBy:predicate:reverse">
+                                <td>{{instructor.email}}</td>
+                                <td>
+                                    <button ng-click="deleteInstructorEmail(instructor._id)" class="btn btn-danger">
+                                        <scan class="glyphicon glyphicon-remove"></scan>
+                                    </button>
+                                    <button ng-click="selectInstructorEmail($index)" class="btn btn-info">
                                         <scan class="glyphicon glyphicon-pencil"></scan>
                                     </button>
                                 </td>

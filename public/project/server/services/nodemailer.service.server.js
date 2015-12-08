@@ -28,7 +28,7 @@ module.exports = function(mailConfiguration){
             from: mailConfiguration.user, // sender address.  Must be the same as authenticated user if using Gmail.
             to: options.to || "riddhirathod@gmail.com", // list of receivers
             subject: "Welcome to HomeworkTracker", // subject
-            text: options.text || "We are sending this email to confirm your registration to JoinUs." // body
+            text: options.text || "We are sending this email to confirm your registration to HomeworkTracker." // body
         };
 
         // create reusable transporter object using SMTP transport

@@ -5,6 +5,7 @@
 "use strict";
 module.exports = function(app,model){
     app.post("/api/project/user/:userId/project", CreateProject);
+    app.get("/api/project/project", GetAllProjects);
     app.get("/api/project/project?projectTitle=projectTitle", GetProjectByTitle);
     app.get("/api/project/user/:userId/project", GetProjects);
     app.get("/api/project/project/:projectId", GetProject);
@@ -17,6 +18,15 @@ module.exports = function(app,model){
             .then(function(project) {
                 res.json(project);
             });
+    }
+
+    function GetAllProjects(req, res) {
+        //console.log("In GetAllProjects");
+        model
+            .FindAll()
+            .then(function(allProjects) {
+                res.json(allProjects);
+            })
     }
 
     function GetProjects(req, res){

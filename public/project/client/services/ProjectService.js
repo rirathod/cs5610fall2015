@@ -7,6 +7,7 @@
     function ProjectService($q,$http) {
         var service = {
             createProjectForUser: createProjectForUser,
+            findAllProjects: findAllProjects,
             findAllProjectsForUser: findAllProjectsForUser,
             findProjectById: findProjectById,
             findProjectByTitle: findProjectByTitle,
@@ -22,6 +23,17 @@
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/project";
             $http.post(url, project)
+                .success(function(response){
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
+
+        function findAllProjects() {
+            var defer = $q.defer();
+            var url = "/api/project/project";
+            //console.log(url);
+            $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
                 });
