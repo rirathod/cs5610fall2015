@@ -113,19 +113,27 @@
         $scope.selectInstructorEmail = selectInstructorEmail;
 
         function updateProject() {
-            var project = {
-                "description": $scope.project.description,
-                "status": $scope.project.status,
-                "githubUsername": $scope.project.githubUsername,
-                "githubReponame": $scope.project.githubReponame
-            };
+            if (!angular.isUndefined($scope.project.description) && $scope.project.description != ""
+            && !angular.isUndefined($scope.project.status) && $scope.project.status != ""
+            && !angular.isUndefined($scope.project.githubUsername) && $scope.project.githubUsername != ""
+            && !angular.isUndefined($scope.project.githubReponame) && $scope.project.githubReponame != "") {
+                var project = {
+                    "description": $scope.project.description,
+                    "status": $scope.project.status,
+                    "githubUsername": $scope.project.githubUsername,
+                    "githubReponame": $scope.project.githubReponame
+                };
 
-            ProjectService.updateProjectById(projectId, project)
-                .then(function(updatedProject) {
-                    //console.log(updatedProject);
-                    $scope.project = updatedProject;
-                    syncGitCommits();
-                });
+                ProjectService.updateProjectById(projectId, project)
+                    .then(function(updatedProject) {
+                        //console.log(updatedProject);
+                        $scope.project = updatedProject;
+                        syncGitCommits();
+                    });
+                $scope.error="";
+            } else {
+                $scope.error="One or more input fields are missing";
+            }
         }
 
         function addProjectSubTask() {
@@ -180,7 +188,7 @@
 
                 InstructorService.addInstructorForProject(projectId, instructor)
                     .then(function(updatedProject) {
-                        console.log(updatedProject);
+                        //console.log(updatedProject);
                         $scope.instructors = updatedProject.instructors;
                         $scope.instructorEmail = "";
                     });
