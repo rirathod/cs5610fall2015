@@ -30,11 +30,11 @@
         function findUserByUsernamePasswordAndUserType(userName, password, userType) {
             var defer = $q.defer();
             var url = "/api/project/user?username=" + userName + "&password=" + password + "&userType=" + userType;
-            //console.log(url);
+            console.log(url);
             $http.get(url)
                 .success(function(response){
                     //console.log("In UserService.js:");
-                    //console.log(response);
+                    console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;

@@ -46,8 +46,8 @@ module.exports = function(app, model){
             model
                 .FindUserByCredentialsAndType(userInfo)
                 .then(function(user) {
-                    //console.log("In user.service.server.js:");
-                    //console.log(user);
+                    console.log("In user.service.server.js:");
+                    console.log(user);
                     res.json(user);
                 });
         }

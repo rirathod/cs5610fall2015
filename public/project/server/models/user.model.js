@@ -100,13 +100,14 @@ module.exports = function(mongoose, db){
     }
 
     function FindUserByCredentialsAndType(userInfo) {
+        console.log("In user.model.js: FindUserByCredentialsAndType");
         var deferred = q.defer();
         UserModel.findOne({username: userInfo.username, password: userInfo.password, userType: userInfo.userType}, function(err, user) {
             if(err) {
                 deferred.reject(err);
             } else {
-                //console.log("In user.model.js:");
-                //console.log(user);
+                console.log("In user.model.js:");
+                console.log(user);
                 deferred.resolve(user);
             }
         });

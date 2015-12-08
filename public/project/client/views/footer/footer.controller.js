@@ -4,7 +4,7 @@
 "use strict";
 (function(){
     angular
-        .module("CarouselExampleApp")
+        .module("HomeworkTrackerApp")
         .controller("FooterController", FooterController);
 
     function FooterController($scope, $location) {
