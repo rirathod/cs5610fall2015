@@ -145,7 +145,7 @@
         function deleteProjectSubTask(subTaskId) {
             ProjectSubTaskService.deleteSubTaskForProject(projectId, subTaskId)
                 .then(function(updatedProject) {
-                    console.log(updatedProject);
+                    //console.log(updatedProject);
                     $scope.subTasks = updatedProject.subTasks;
                 });
         }
@@ -162,11 +162,12 @@
                     var newSubTask = {
                         name: $scope.subTaskName
                     };
-                    ProjectSubTaskService.updateSubTaskById(projectId, selectedSubTaskId, newSubTask).then(function(updatedProject) {
-                        //$scope.project = updatedProject;
-                        $scope.subTasks = updatedProject.subTasks;
-                        $scope.subTaskName = "";
-                    })
+                    ProjectSubTaskService.updateSubTaskById(projectId, selectedSubTaskId, newSubTask)
+                        .then(function(updatedProject) {
+                            //$scope.project = updatedProject;
+                            $scope.subTasks = updatedProject.subTasks;
+                            $scope.subTaskName = "";
+                        })
                 }
             }
         }
@@ -189,18 +190,31 @@
         function deleteInstructorEmail(instructorId) {
             InstructorService.deleteInstructorForProject(projectId, instructorId)
                 .then(function(updatedProject) {
-                    console.log(updatedProject);
+                    //console.log(updatedProject);
                     $scope.instructors = updatedProject.instructors;
                 });
         }
 
-        function selectInstructorEmail() {
-
+        function selectInstructorEmail(index) {
+            $scope.selectedInstructorEmailId = $scope.instructors[index]._id;
+            $scope.instructorEmail = $scope.instructors[index].email;
+            $scope.emailIndex = index;
         }
 
-        function updateInstructorEmail() {
-
+        function updateInstructorEmail(selectedInstructorEmailId, index) {
+            if (!angular.isUndefined(index)) {
+                if (!angular.isUndefined($scope.instructorEmail) && $scope.instructorEmail != "") {
+                    var newInstructor = {
+                        email: $scope.instructorEmail
+                    };
+                    InstructorService.updateInstructorById(projectId, selectedInstructorEmailId, newInstructor)
+                        .then(function(updatedProject) {
+                            //$scope.project = updatedProject;
+                            $scope.instructors = updatedProject.instructors;
+                            $scope.instructorEmail = "";
+                        })
+                }
+            }
         }
-
     }
 })();

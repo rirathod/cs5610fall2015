@@ -29,7 +29,7 @@ module.exports = function(app,model){
         model
             .FindProjectSubTasks(req.params.projectId)
             .then(function(projectSubTasks) {
-                res.send(projectSubTasks);
+                res.json(projectSubTasks);
             });
     }
 

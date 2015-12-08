@@ -19,7 +19,7 @@
         function addInstructorForProject(projectId, instructor) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId + "/instructor";
-            console.log(url);
+            //console.log(url);
             $http.post(url, instructor)
                 .success(function(updatedProject) {
                     defer.resolve(updatedProject);
@@ -30,10 +30,10 @@
         function deleteInstructorForProject(projectId, instructorId) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId + "/instructor/" + instructorId;
-            console.log(url);
+            //console.log(url);
             $http.delete(url)
                 .success(function(updatedProject){
-                    console.log(updatedProject);
+                    //console.log(updatedProject);
                     defer.resolve(updatedProject);
                 });
             return defer.promise;

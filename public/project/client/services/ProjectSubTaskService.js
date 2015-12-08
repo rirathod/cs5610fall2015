@@ -11,7 +11,6 @@
         var service = {
             createSubTaskForProject: createSubTaskForProject,
             deleteSubTaskForProject: deleteSubTaskForProject,
-
             findAllSubTasksForProject: findAllSubTasksForProject,
             updateSubTaskById: updateSubTaskById
         };
@@ -31,10 +30,10 @@
         function deleteSubTaskForProject(projectId, subTaskId) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId + "/projectSubTask/" + subTaskId;
-            console.log(url);
+            //console.log(url);
             $http.delete(url)
                 .success(function(updatedProject){
-                    console.log(updatedProject);
+                    //console.log(updatedProject);
                     defer.resolve(updatedProject);
                 });
             return defer.promise;

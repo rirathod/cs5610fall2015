@@ -1,26 +1,39 @@
 "use strict";
-module.exports = function(app,model) {
+module.exports = function(app, model) {
     app.post("/api/project/project/:projectId/instructor", AddInstructor);
     app.delete("/api/project/project/:projectId/instructor/:instructorId", RemoveInstructor);
+    app.get("/api/project/project/:projectId/instructors", GetInstructors);
+    app.put("/api/project/project/:projectId/instructor/:instructorId", UpdateInstructorById);
 
     function AddInstructor(req, res) {
-        //console.log("In instructor.service.server.js: AddInstructor");
-        //console.log(req.params.projectId);
-        //console.log(req.body);
         model
             .AddInstructorToProject(req.params.projectId, req.body)
-            .then(function(project) {
-                //console.log("In instructor.service.server.js: model.AddInstructorToProject");
-                //console.log(project);
-                res.json(project);
+            .then(function(updatedProject) {
+                res.json(updatedProject);
             });
     }
 
     function RemoveInstructor(req, res) {
         model
             .RemoveInstructorFromProject(req.params.projectId, req.params.instructorId)
-            .then(function() {
-                res.json
+            .then(function(updatedProject) {
+                res.json(updatedProject);
+            });
+    }
+
+    function GetInstructors(req, res) {
+        model
+            .GetInstructorsForProject(req.params.projectId)
+            .then(function(instructors) {
+                res.json(instructors);
+            });
+    }
+
+    function UpdateInstructorById(req, res) {
+        model
+            .UpdateInstructorForProject(req.params.projectId, req.params.instructorId, req.body)
+            .then(function(updatedProject) {
+                res.json(updatedProject);
             });
     }
 };

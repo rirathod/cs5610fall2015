@@ -25,7 +25,7 @@ module.exports = function(mongoose, db){
         AddInstructorToProject : AddInstructorToProject,
         RemoveInstructorFromProject : RemoveInstructorFromProject,
         GetInstructorsForProject : GetInstructorsForProject,
-        UpdateInstructorsForProject : UpdateInstructorsForProject
+        UpdateInstructorForProject : UpdateInstructorForProject
     };
     return api;
 
@@ -219,9 +219,9 @@ module.exports = function(mongoose, db){
 
     // *************** Project Instructors api ***************
     function AddInstructorToProject(projectId, instructor) {
-        console.log("In project.model.js: AddInstructorToProject");
-        console.log(projectId);
-        console.log(instructor);
+        //console.log("In project.model.js: AddInstructorToProject");
+        //console.log(projectId);
+        //console.log(instructor);
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {
             if(err) {
@@ -253,7 +253,7 @@ module.exports = function(mongoose, db){
             if(err) {
                 deferred.reject(err);
             } else {
-                //console.log("In project.model.js: DeleteSubTask");
+                //console.log("In project.model.js: RemoveInstructorFromProject");
                 var instructors = project.instructors;
                 for(var i=0; i<instructors.length; i++) {
                     if(instructors[i]._id == instructorId) {
@@ -286,7 +286,7 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function UpdateInstructorsForProject(projectId, selectedInstructorId, instructor) {
+    function UpdateInstructorForProject(projectId, selectedInstructorId, instructor) {
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project){
             if(err) {
