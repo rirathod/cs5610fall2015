@@ -12,9 +12,11 @@ module.exports = function(app,model) {
     app.delete("/api/project/teamproject/:teamprojectId", DeleteTeamProject);
 
     function CreateTeamProject(req, res) {
+        console.log("In teamproject.service.server.js: CreateTeamProject");
         model
-            .Create(req.params.userId, req.body)
+            .CreateTeamProject(req.params.userId, req.body)
             .then(function(teamproject) {
+                console.log(teamproject);
                 res.json(teamproject);
             });
     }
@@ -28,7 +30,13 @@ module.exports = function(app,model) {
     }
 
     function GetTeamProjectsForUser(req, res) {
-
+        console.log("In teamproject.service.server.js: GetTeamProjectsForUser");
+        model
+            .FindProjectsByUserId(req.params.userId)
+            .then(function(teamprojects) {
+                console.log(teamprojects);
+                res.json(teamprojects);
+            });
     }
 
     function GetTeamProject(req, res) {

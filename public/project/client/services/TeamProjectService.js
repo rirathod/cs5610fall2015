@@ -25,6 +25,7 @@
             console.log(teamproject);
             $http.post(url, teamproject)
                 .success(function(response){
+                    console.log(response);
                     defer.resolve(response);
                 });
             return defer.promise;
@@ -32,6 +33,11 @@
 
         function findAllTeamProjectsForUser(userId) {
             var defer = $q.defer();
+            var url = "/api/project/user/" + userId + "/teamproject";
+            $http.get(url)
+                .success(function(response){
+                    defer.resolve(response);
+                });
             return defer.promise;
         }
 

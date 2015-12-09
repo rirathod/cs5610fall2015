@@ -12,7 +12,7 @@
             findProjectById: findProjectById,
             findProjectByTitle: findProjectByTitle,
             deleteProjectById: deleteProjectById,
-            updateProjectById: updateProjectById,
+            updateProjectById: updateProjectById
 
             //createSubTaskForProject: createSubTaskForProject,
             //deleteProjectSubTask: deleteProjectSubTask

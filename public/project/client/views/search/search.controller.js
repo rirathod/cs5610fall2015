@@ -7,7 +7,7 @@
         .module("HomeworkTrackerApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $location, $rootScope, ProjectService) {
+    function SearchController($scope, $location, $rootScope, ProjectService, UserService) {
         $scope.$location = $location;
         var userId = $rootScope.loggedInUser._id;
         var instructorEmail = $rootScope.loggedInUser.email;
@@ -65,9 +65,19 @@
                             }
 
                             if(flag) {
-                                projects.push(allProjects[i]);
+                                var entry = {
+                                    "project": allProjects[i],
+                                    "owner": null
+                                };
+                                UserService.findUserById(allProjects[i].userId)
+                                    .then(function(projectOwner) {
+                                        entry.owner = projectOwner;
+                                    });
+                                projects.push(entry);
                             }
                         }
+
+                        //console.log(projects);
 
                         if(projects.length > 0) {
                             $scope.projects = projects;
@@ -133,7 +143,16 @@
                             }
 
                             if(flag && isAuthorized) {
-                                projects.push(allProjects[i]);
+                                //projects.push(allProjects[i]);
+                                var entry = {
+                                    "project": allProjects[i],
+                                    "owner": null
+                                };
+                                UserService.findUserById(allProjects[i].userId)
+                                    .then(function(projectOwner) {
+                                        entry.owner = projectOwner;
+                                    });
+                                projects.push(entry);
                             }
                         }
 
@@ -193,7 +212,16 @@
                             }
 
                             if(flag) {
-                                projects.push(projectsForUser[i]);
+                                //projects.push(projectsForUser[i]);
+                                var entry = {
+                                    "project": projectsForUser[i],
+                                    "owner": null
+                                };
+                                UserService.findUserById(projectsForUser[i].userId)
+                                    .then(function(projectOwner) {
+                                        entry.owner = projectOwner;
+                                    });
+                                projects.push(entry);
                             }
                         }
 
@@ -208,7 +236,7 @@
         }
 
         function navigate(index){
-            var target = "/user/" + userId + "/project/" + $scope.projects[index]._id + "/projectField";
+            var target = "/user/" + userId + "/project/" + $scope.projects[index].project._id + "/projectField";
             console.log(target);
             $location.path(target);
         }

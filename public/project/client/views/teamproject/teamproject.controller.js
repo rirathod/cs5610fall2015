@@ -10,22 +10,23 @@
                 $scope.projects = projects;
             });
 
-        $scope.addProject = addProject;
-        $scope.updateProject = updateProject;
-        $scope.navigate = navigate;
-        $scope.deleteProject = deleteProject;
-        $scope.selectProject = selectProject;
+        $scope.addTeamProject = addTeamProject;
+        $scope.updateTeamProject = updateTeamProject;
+        $scope.navigateToTeamProjectFields = navigateToTeamProjectFields;
+        $scope.deleteTeamProject = deleteTeamProject;
+        $scope.selectTeamProject = selectTeamProject;
 
-        function addProject() {
+        function addTeamProject() {
             var teamproject = {
                 title: $scope.projectName
                 //members: [$rootScope.loggedInUser._id]
             };
+            console.log(teamproject);
 
-            //console.log(angular.isUndefined($scope.projectName));
             if(!angular.isUndefined($scope.projectName) && $scope.projectName != ""){
                 TeamProjectService.createTeamProjectForUser($rootScope.loggedInUser._id, teamproject)
                     .then(function(createdTeamProject) {
+                        console.log(createdTeamProject);
                         TeamProjectService.findAllTeamProjectsForUser($rootScope.loggedInUser._id)
                             .then(function(teamprojects) {
                                 $scope.teamprojects = teamprojects;
@@ -35,19 +36,19 @@
             }
         }
 
-        function updateProject() {
+        function updateTeamProject() {
 
         }
 
-        function navigate() {
+        function navigateToTeamProjectFields() {
 
         }
 
-        function deleteProject() {
+        function deleteTeamProject() {
 
         }
 
-        function selectProject() {
+        function selectTeamProject() {
 
         }
 

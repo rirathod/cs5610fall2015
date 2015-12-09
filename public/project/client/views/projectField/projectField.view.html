@@ -8,7 +8,7 @@
             <h3 id="pagetitle">Project Fields</h3>
 
             <ul class="nav nav-tabs">
-                <li ng-hide="loggedInUser.userType==='Instructor'"><a data-toggle="tab" href="#individualproject">Projects</a></li>
+                <li ng-hide="loggedInUser.userType==='Instructor' || loggedInUser.userType==='Admin'"><a data-toggle="tab" href="#individualproject">Projects</a></li>
                 <li class="active"><a data-toggle="tab">Project Fields</a></li>
             </ul>
 

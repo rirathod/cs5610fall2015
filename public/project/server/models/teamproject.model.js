@@ -9,7 +9,7 @@ module.exports = function(mongoose, db) {
     var TeamProjectModel = mongoose.model("TeamProjectModel", TeamProjectSchema);
 
     var api = {
-        Create: Create,
+        CreateTeamProject: CreateTeamProject,
         FindAll: FindAll,
         FindProjectByTitle: FindProjectByTitle,
         FindProjectsByUserId: FindProjectsByUserId,
@@ -29,14 +29,19 @@ module.exports = function(mongoose, db) {
     };
     return api;
 
-    function Create(userId, teamproject) {
+    function CreateTeamProject(userId, teamproject) {
         var deferred = q.defer();
         teamproject.members = [];
-        teamproject.members.push(userId);
+        teamproject.members.push({"userId": userId});
+
+        console.log(teamproject);
+        console.log(userId);
         TeamProjectModel.create(teamproject, function(err, createdTeamproject) {
             if(err) {
                 deferred.reject(err);
             } else {
+                console.log("In teamproject.model.js: Create");
+                console.log(createdTeamproject);
                 deferred.resolve(createdTeamproject);
             }
         });
@@ -55,6 +60,13 @@ module.exports = function(mongoose, db) {
 
     function FindProjectsByUserId() {
         var deferred = q.defer();
+        TeamProjectModel.findById({}, function(err, project) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(project);
+            }
+        });
         return deferred.promise;
     }
 

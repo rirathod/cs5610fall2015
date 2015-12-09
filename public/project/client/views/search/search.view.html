@@ -39,12 +39,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="inputTeamName" class="col-sm-2 control-label">Team Name:</label>
-                    <div class="col-sm-10">
-                        <input ng-model="teamName" type="text" class="form-control" id="inputTeamName" placeholder="Team Name">
-                    </div>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="inputTeamName" class="col-sm-2 control-label">Team Name:</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<input ng-model="teamName" type="text" class="form-control" id="inputTeamName" placeholder="Team Name">-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="form-group">
                     <div class="col-sm-2"></div>
@@ -72,11 +72,18 @@
                             </button>
                             Project Title
                         </th>
+                        <th>
+                            <button class="btn">
+                                <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                            </button>
+                            Project Owner
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="project in projects | orderBy:predicate:reverse">
-                        <td><a ng-click="navigate($index)">{{project.title}}</a></td>
+                    <tr ng-repeat="entry in projects | orderBy:predicate:reverse">
+                        <td><a ng-click="navigate($index)">{{entry.project.title}}</a></td>
+                        <td>{{entry.owner.username}}</td>
                     </tr>
                     </tbody>
                 </table>

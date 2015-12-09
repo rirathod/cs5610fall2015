@@ -1,4 +1,4 @@
-<div id="w" class="container" ng-controller="IndividualProjectController">
+<div id="w" class="container" ng-controller="TeamProjectController">
     <div class="row">
         <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
             <div ng-include="'views/sidebar/sidebar.view.html'"></div>
@@ -32,10 +32,10 @@
                         <tr>
                             <td><input ng-model="projectName" class="form-control" type="text" placeholder="name"/></td>
                             <td>
-                                <button ng-click="addProject()" type="button" class="btn btn-primary">
+                                <button ng-click="addTeamProject()" type="button" class="btn btn-primary">
                                     <scan class="glyphicon glyphicon-plus"></scan>
                                 </button>
-                                <button ng-click="updateProject(selectedTeamProjectId, index)" type="button" class="btn btn-success">
+                                <button ng-click="updateTeamProject(selectedTeamProjectId, index)" type="button" class="btn btn-success">
                                     <scan class="glyphicon glyphicon-ok"></scan>
                                 </button>
                             </td>
@@ -43,12 +43,12 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="teamproject in teamprojects | orderBy:predicate:reverse">
-                            <td><a ng-click="navigate($index)">{{teamproject.title}}</a></td>
+                            <td><a ng-click="navigateToTeamProjectFields($index)">{{teamproject.title}}</a></td>
                             <td>
-                                <button ng-click="deleteProject(teamproject._id)" class="btn btn-danger">
+                                <button ng-click="deleteTeamProject(teamproject._id)" class="btn btn-danger">
                                     <scan class="glyphicon glyphicon-remove"></scan>
                                 </button>
-                                <button ng-click="selectProject($index)" class="btn btn-info">
+                                <button ng-click="selectTeamProject($index)" class="btn btn-info">
                                     <scan class="glyphicon glyphicon-pencil"></scan>
                                 </button>
                             </td>
