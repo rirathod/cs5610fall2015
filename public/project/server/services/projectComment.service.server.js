@@ -16,9 +16,12 @@ module.exports = function(app,model){
     }
 
     function DeleteCommentForProject(req, res) {
+        //console.log("In projectComment.service.server.js: DeleteCommentForProject");
         model.
             DeleteComment(req.params.projectId, req.params.commentId)
             .then(function(updatedProject) {
+                //console.log("In projectComment.service.server.js: DeleteCommentForProject");
+                //console.log(updatedProject);
                 res.json(updatedProject);
             });
     }

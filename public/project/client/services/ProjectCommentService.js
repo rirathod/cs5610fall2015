@@ -18,7 +18,6 @@
         function addCommentForProject(projectId, comment) {
             var defer = $q.defer();
             var url = "/api/project/project/" + projectId + "/projectComment";
-            //console.log(url);
             $http.post(url, comment)
                 .success(function(updatedProject) {
                     defer.resolve(updatedProject);

@@ -170,6 +170,58 @@
 
                         <br>
                         <hr class="horizontal-line">
+                        <label>Instructor Comments:</label>
+                        <table class="table table-condensed table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <button class="btn">
+                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                        </button>
+                                        Comment
+                                    </th>
+                                    <th>
+                                        <button class="btn">
+                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                        </button>
+                                        Instructor Email
+                                    </th>
+                                    <th ng-hide="loggedInUser.userType==='Student'">
+                                        <button class="btn">
+                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                        </button>
+                                        Action
+                                    </th>
+                                </tr>
+                                <tr ng-hide="loggedInUser.userType==='Student'">
+                                    <td><textarea ng-model="instructorComment" class="form-control" placeholder="Comment..."></textarea></td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <button ng-click="addInstructorComment()" type="button" class="btn btn-primary">
+                                            <scan class="glyphicon glyphicon-plus"></scan>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="comment in comments | orderBy:predicate:reverse">
+                                    <td>{{comment.comment}}</td>
+                                    <td>{{comment.instructor}}</td>
+                                    <td ng-hide="loggedInUser.userType==='Student'">
+                                        <button ng-click="removeInstructorComment(comment.instructor, comment._id)" type="button" class="btn btn-danger">
+                                            <scan class="glyphicon glyphicon-remove"></scan>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div ng-if="error2">
+                            <span>{{error2}}</span>
+                        </div>
+
+                        <br>
+                        <hr class="horizontal-line">
                         <label>Sync Github Commits:</label>
                         <table class="table table-condensed table-hover table-responsive">
                             <thead>
@@ -195,65 +247,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="commit in project.commits | orderBy:predicate:reverse">
-                                    <td><a href={{commit.committerHtmlUrl}}>{{commit.committer}}</a></td>
-                                    <td><a href={{commit.commitHtmlUrl}}>{{commit.message}}</a></td>
-                                    <td>{{commit.timestamp | date}}</td>
-                                </tr>
+                            <tr ng-repeat="commit in project.commits | orderBy:predicate:reverse">
+                                <td><a href={{commit.committerHtmlUrl}}>{{commit.committer}}</a></td>
+                                <td><a href={{commit.commitHtmlUrl}}>{{commit.message}}</a></td>
+                                <td>{{commit.timestamp | date}}</td>
+                            </tr>
                             </tbody>
                         </table>
 
-                        <br>
-                        <hr class="horizontal-line">
-                        <label>Instructor Comments:</label>
-                        <table class="table table-condensed table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <button class="btn">
-                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
-                                        </button>
-                                        Comment
-                                    </th>
-                                    <th>
-                                        <button class="btn">
-                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
-                                        </button>
-                                        Instructor Email
-                                    </th>
-                                    <th>
-                                        <button class="btn">
-                                            <scan class="glyphicon glyphicon-triangle-bottom"></scan>
-                                        </button>
-                                        Action
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td><input ng-model="instructorComment" class="form-control" type="text" placeholder="Comment"/></td>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        <button ng-click="addInstructorComment()" type="button" class="btn btn-primary">
-                                            <scan class="glyphicon glyphicon-plus"></scan>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="comment in comments | orderBy:predicate:reverse">
-                                    <td>{{comment.comment}}</td>
-                                    <td>{{comment.instructor}}</td>
-                                    <td>
-                                        <button ng-click="removeInstructorComment(comment.email, comment._id)" type="button" class="btn btn-danger">
-                                            <scan class="glyphicon glyphicon-remove"></scan>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div ng-if="error2">
-                            <span>{{error2}}</span>
-                        </div>
                     </div>
                 </div>
             </div>

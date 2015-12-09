@@ -116,6 +116,7 @@
 
         // Instructor Comments
         $scope.addInstructorComment = addInstructorComment;
+        $scope.removeInstructorComment = removeInstructorComment;
 
         function updateProject() {
             if (!angular.isUndefined($scope.project.description) && $scope.project.description != ""
@@ -254,6 +255,7 @@
 
         function removeInstructorComment(instructorEmail, commentId) {
             if(instructorEmail === $rootScope.loggedInUser.email) {
+                //console.log("Instructor same as the one who posted this comment");
                 ProjectCommentService.deleteCommentForProject(projectId, commentId)
                     .then(function(updatedProject) {
                         //console.log(updatedProject);
@@ -261,6 +263,7 @@
                     });
                 $scope.error2="";
             } else {
+                //console.log("Instructor different as the one who posted this comment...you are an evil instructor");
                 $scope.error2 = "User not authorized to post comment."
             }
         }
