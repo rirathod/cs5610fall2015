@@ -29,16 +29,47 @@ module.exports = function(mongoose, db) {
     };
     return api;
 
-    function Create() {
+    function Create(userId, teamproject) {
         var deferred = q.defer();
-        project.userId = userId;
-        ProjectModel.create(project, function(err, createdProject) {
+        teamproject.members = [];
+        teamproject.members.push(userId);
+        TeamProjectModel.create(teamproject, function(err, createdTeamproject) {
             if(err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(createdProject);
+                deferred.resolve(createdTeamproject);
             }
         });
+        return deferred.promise;
+    }
+
+    function FindAll() {
+        var deferred = q.defer();
+        return deferred.promise;
+    }
+
+    function FindProjectByTitle() {
+        var deferred = q.defer();
+        return deferred.promise;
+    }
+
+    function FindProjectsByUserId() {
+        var deferred = q.defer();
+        return deferred.promise;
+    }
+
+    function FindById() {
+        var deferred = q.defer();
+        return deferred.promise;
+    }
+
+    function Update() {
+        var deferred = q.defer();
+        return deferred.promise;
+    }
+
+    function Delete() {
+        var deferred = q.defer();
         return deferred.promise;
     }
 };

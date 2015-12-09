@@ -21,6 +21,8 @@
         function createTeamProjectForUser(userId, teamproject) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/teamproject";
+            console.log(url);
+            console.log(teamproject);
             $http.post(url, teamproject)
                 .success(function(response){
                     defer.resolve(response);

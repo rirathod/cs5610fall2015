@@ -13,7 +13,7 @@ module.exports = function(app,model) {
 
     function CreateTeamProject(req, res) {
         model
-            .Create(req.body, req.params.userId)
+            .Create(req.params.userId, req.body)
             .then(function(teamproject) {
                 res.json(teamproject);
             });
