@@ -1,11 +1,10 @@
-<div class="container" ng-Controller="SearchController">
-
+<div id="w" class="container" ng-Controller="SearchController">
     <div class="row">
         <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
             <div ng-include="'views/sidebar/sidebar.view.html'"></div>
         </div>
         <div class="col-sm-9 col-md-10">
-            <h1>Search</h1>
+            <h2>Search</h2>
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="inputProjectId" class="col-sm-2 control-label">Project Id:</label>
@@ -63,8 +62,8 @@
 
                 <br>
                 <hr class="horizontal-line">
-                <label>Projects:</label>
-                <table class="table table-striped">
+                <label>PROJECTS:</label>
+                <table class="table table-condensed table-hover table-responsive">
                     <thead>
                     <tr>
                         <th>

@@ -1,11 +1,11 @@
-<div class="container" ng-controller="IndividualProjectController">
+<div id="w" class="container" ng-controller="IndividualProjectController">
     <div class="row">
         <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
             <div ng-include="'views/sidebar/sidebar.view.html'"></div>
         </div>
 
         <div class="col-sm-9 col-md-10">
-            <h3 id="pagetitle">Individual Projects</h3>
+            <h2 id="pagetitle">Individual Projects</h2>
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#individualproject">Projects</a></li>
                 <li><a data-toggle="tab">ProjectFields</a></li>
@@ -13,7 +13,7 @@
 
             <div class="tab-content">
                 <div id="projects" class="tab-pane fade in active">
-                    <table class="table table-striped">
+                    <table class="table table-condensed table-hover table-responsive">
                         <thead>
                         <tr>
                             <th>

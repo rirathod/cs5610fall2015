@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="w" class="container" ng-controller="IndividualProjectController">
+    <div class="row">
+        <div class="col-sm-3 col-md-2" ng-controller="SidebarController">
+            <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        </div>
 
-</body>
-</html>
+        <div class="col-sm-9 col-md-10">
+            <h2 id="pagetitle">Team Projects</h2>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#teamproject">Team Projects</a></li>
+                <li><a data-toggle="tab">ProjectFields</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="projects" class="tab-pane fade in active">
+                    <table class="table table-condensed table-hover table-responsive">
+                        <thead>
+                        <tr>
+                            <th>
+                                <button class="btn">
+                                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                </button>
+                                Project Name
+                            </th>
+                            <th>
+                                <button class="btn">
+                                    <scan class="glyphicon glyphicon-triangle-bottom"></scan>
+                                </button>
+                                Action
+                            </th>
+                        </tr>
+                        <tr>
+                            <td><input ng-model="projectName" class="form-control" type="text" name="name" placeholder="name"/></td>
+                            <td>
+                                <button ng-click="addProject()" type="button" class="btn btn-primary">
+                                    <scan class="glyphicon glyphicon-plus"></scan>
+                                </button>
+                                <button ng-click="updateProject(selectedProjectId, index)" type="button" class="btn btn-success">
+                                    <scan class="glyphicon glyphicon-ok"></scan>
+                                </button>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="project in projects | orderBy:predicate:reverse">
+                            <td><a ng-click="navigate($index)">{{project.title}}</a></td>
+                            <td>
+                                <button ng-click="deleteProject(project._id)" class="btn btn-danger">
+                                    <scan class="glyphicon glyphicon-remove"></scan>
+                                </button>
+                                <button ng-click="selectProject($index)" class="btn btn-info">
+                                    <scan class="glyphicon glyphicon-pencil"></scan>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

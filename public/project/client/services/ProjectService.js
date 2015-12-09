@@ -14,8 +14,8 @@
             deleteProjectById: deleteProjectById,
             updateProjectById: updateProjectById,
 
-            createSubTaskForProject: createSubTaskForProject,
-            deleteProjectSubTask: deleteProjectSubTask
+            //createSubTaskForProject: createSubTaskForProject,
+            //deleteProjectSubTask: deleteProjectSubTask
         };
         return service;
 
@@ -92,24 +92,24 @@
             return defer.promise;
         }
 
-        function createSubTaskForProject(projectId, subTask) {
-            var defer = $q.defer();
-            var url = "/api/project/project/" + projectId + "/subTask";
-            $http.post(url, subTask)
-                .success(function(updatedProject) {
-                    defer.resolve(updatedProject);
-                });
-            return defer.promise;
-        }
-
-        function deleteProjectSubTask(projectId, subTaskIndex) {
-            var defer = $q.defer();
-            var url = "/api/project/project/" + projectId + "/subTask/" + subTaskIndex;
-            $http.delete(url)
-                .success(function(updatedProject){
-                    defer.resolve(updatedProject.subTasks);
-                });
-            return defer.promise;
-        }
+        //function createSubTaskForProject(projectId, subTask) {
+        //    var defer = $q.defer();
+        //    var url = "/api/project/project/" + projectId + "/subTask";
+        //    $http.post(url, subTask)
+        //        .success(function(updatedProject) {
+        //            defer.resolve(updatedProject);
+        //        });
+        //    return defer.promise;
+        //}
+        //
+        //function deleteProjectSubTask(projectId, subTaskIndex) {
+        //    var defer = $q.defer();
+        //    var url = "/api/project/project/" + projectId + "/subTask/" + subTaskIndex;
+        //    $http.delete(url)
+        //        .success(function(updatedProject){
+        //            defer.resolve(updatedProject.subTasks);
+        //        });
+        //    return defer.promise;
+        //}
     }
 })();

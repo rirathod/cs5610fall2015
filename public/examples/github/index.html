@@ -5,134 +5,116 @@
     <meta http-equiv="Content-Type" content="text/html">
     <title>Github API Webapp using jQuery</title>
     <meta name="author" content="Riddhi Rathod">
-    <!--<link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">-->
-    <!--<link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">-->
     <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#ghsubmitbtn').on('click', function(e){
+                e.preventDefault();
+                $('#ghapidata').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+
+                var username = $('#ghusername').val();
+                var repositoryname = $('#ghreponame').val();
+                var requri   = 'https://api.github.com/users/'+username;
+                var repouri  = 'https://api.github.com/users/'+username+'/repos';
+                var commitUri = 'https://api.github.com/repos/'+ username + '/' + repositoryname + '/commits';
+
+                requestJSON(requri, function(json) {
+                    if(json.message == "Not Found" || username == '') {
+                        $('#ghapidata').html("<h2>No User Info Found</h2>");
+                    }
+
+                    else {
+                        // else we have a user and we display their info
+                        var fullname   = json.name;
+                        var username   = json.login;
+                        var aviurl     = json.avatar_url;
+                        var profileurl = json.html_url;
+                        var location   = json.location;
+                        var followersnum = json.followers;
+                        var followingnum = json.following;
+                        var reposnum     = json.public_repos;
+
+                        if(fullname == undefined) { fullname = username; }
+
+                        var outhtml = '<h2>'+fullname+' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'+username+'</a>)</span></h2>';
+                        outhtml = outhtml + '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
+                        outhtml = outhtml + '<p>Followers: '+followersnum+' - Following: '+followingnum+'<br>Repos: '+reposnum+'</p></div>';
+                        outhtml = outhtml + '<div class="repolist clearfix">';
+
+
+                        var repositories;
+                        $.getJSON(repouri, function(json){
+                            repositories = json;
+                            outputPageContent();
+                        });
+
+                        function outputPageContent() {
+                            if(repositories.length == 0) { outhtml = outhtml + '<p>No repos!</p></div>'; }
+                            else {
+                                outhtml = outhtml + '<p><strong>Repos List:</strong></p> <ul>';
+                                $.each(repositories, function(index) {
+                                    outhtml = outhtml + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
+                                });
+                                outhtml = outhtml + '</ul></div>';
+                            }
+                            $('#ghapidata').html(outhtml);
+                        } // end outputPageContent()
+
+                        // console.log(commitUri);
+                        var commits;
+                        $.getJSON(commitUri, function(json){
+                            commits = json;
+                            console.log(json);
+                            renderRepoCommits();
+                        });
+
+                        function renderRepoCommits() {
+                            if(commits.length == 0) { outhtml = outhtml + '<p>No commits!</p></div>'; }
+                            else {
+                                console.log(commits[0]);
+                                var commit_title = commits[0].commit.message;
+                                console.log("commit_title: " + commit_title);
+
+                                outhtml = "<h2>Info in console</h2>";
+                            }
+                            $('#ghuserdata').html(outhtml);
+                            // console.log(commits);
+                        } // end renderCommits
+
+                    } // end else statement
+                }); // end requestJSON Ajax call
+            }); // end click event handler
+
+            function requestJSON(url, callback) {
+                $.ajax({
+                    url: url,
+                    complete: function(xhr) {
+                        callback.call(null, xhr.responseJSON);
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
-<div id="w">
-    <h1>Simple Github API Webapp</h1>
-    <p>Enter a single Github username below and click the button to display profile info via JSON.</p>
-    <label id="ghusernamelabel">Github Username:</label>
-    <input type="text" name="ghusername" id="ghusername" placeholder="Github username...">
-    </br>
+    <div id="bs-cover">
+        <div id="w">
+            <h1>Simple Github API Webapp</h1>
+            <p>Enter a single Github username below and click the button to display profile info via JSON.</p>
+            <label id="ghusernamelabel">Github Username:</label>
+            <input type="text" name="ghusername" id="ghusername" placeholder="Github username...">
+            </br>
 
-    <label id="ghreponamelabel">Github Repository Name:</label>
-    <input type="text" name="ghreponame" id="ghreponame" placeholder="Github repository name...">
-    </br>
+            <label id="ghreponamelabel">Github Repository Name:</label>
+            <input type="text" name="ghreponame" id="ghreponame" placeholder="Github repository name...">
+            </br>
 
-    <a href="#" id="ghsubmitbtn">Pull User Data</a>
-    <div id="ghapidata" class="clearfix"></div>
-    <div id="ghuserdata" class="clearfix"></div>
-    <!--<h2>Repository Commits</h2>-->
-    <!--<table class="table table-striped" id="results">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th>Title</th>-->
-            <!--<th>Plot</th>-->
-            <!--<th>Poster</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody id="container">-->
-        <!--<tr id="template">-->
-            <!--<td><a href="#" class="link">Avatar</a></td>-->
-            <!--<td class="plot">I love the blue folks. Dancing with wolves, but in another planet</td>-->
-            <!--<td><img src="" class="poster"/></td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-
-</div>
-<script type="text/javascript">
-    $(function(){
-        $('#ghsubmitbtn').on('click', function(e){
-            e.preventDefault();
-            $('#ghapidata').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
-
-            var username = $('#ghusername').val();
-            var repositoryname = $('#ghreponame').val();
-            var requri   = 'https://api.github.com/users/'+username;
-            var repouri  = 'https://api.github.com/users/'+username+'/repos';
-            var commitUri = 'https://api.github.com/repos/'+ username + '/' + repositoryname + '/commits';
-
-            requestJSON(requri, function(json) {
-                if(json.message == "Not Found" || username == '') {
-                    $('#ghapidata').html("<h2>No User Info Found</h2>");
-                }
-
-                else {
-                    // else we have a user and we display their info
-                    var fullname   = json.name;
-                    var username   = json.login;
-                    var aviurl     = json.avatar_url;
-                    var profileurl = json.html_url;
-                    var location   = json.location;
-                    var followersnum = json.followers;
-                    var followingnum = json.following;
-                    var reposnum     = json.public_repos;
-
-                    if(fullname == undefined) { fullname = username; }
-
-                    var outhtml = '<h2>'+fullname+' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'+username+'</a>)</span></h2>';
-                    outhtml = outhtml + '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
-                    outhtml = outhtml + '<p>Followers: '+followersnum+' - Following: '+followingnum+'<br>Repos: '+reposnum+'</p></div>';
-                    outhtml = outhtml + '<div class="repolist clearfix">';
-
-
-                    var repositories;
-                    $.getJSON(repouri, function(json){
-                        repositories = json;
-                        outputPageContent();
-                    });
-
-                    function outputPageContent() {
-                        if(repositories.length == 0) { outhtml = outhtml + '<p>No repos!</p></div>'; }
-                        else {
-                            outhtml = outhtml + '<p><strong>Repos List:</strong></p> <ul>';
-                            $.each(repositories, function(index) {
-                                outhtml = outhtml + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
-                            });
-                            outhtml = outhtml + '</ul></div>';
-                        }
-                        $('#ghapidata').html(outhtml);
-                    } // end outputPageContent()
-
-                    // console.log(commitUri);
-                    var commits;
-                    $.getJSON(commitUri, function(json){
-                        commits = json;
-                        console.log(json);
-                        renderRepoCommits();
-                    });
-
-                    function renderRepoCommits() {
-                        if(commits.length == 0) { outhtml = outhtml + '<p>No commits!</p></div>'; }
-                        else {
-                            console.log(commits[0]);
-                            var commit_title = commits[0].commit.message;
-                            console.log("commit_title: " + commit_title);
-
-                            outhtml = "<h2>Info in console</h2>";
-                        }
-                        $('#ghuserdata').html(outhtml);
-                        // console.log(commits);
-                    } // end renderCommits
-
-                } // end else statement
-            }); // end requestJSON Ajax call
-        }); // end click event handler
-
-        function requestJSON(url, callback) {
-            $.ajax({
-                url: url,
-                complete: function(xhr) {
-                    callback.call(null, xhr.responseJSON);
-                }
-            });
-        }
-    });
-</script>
+            <a href="#" id="ghsubmitbtn">Pull User Data</a>
+            <div id="ghapidata" class="clearfix"></div>
+            <div id="ghuserdata" class="clearfix"></div>
+        </div>
+    </div>
 </body>
 </html>

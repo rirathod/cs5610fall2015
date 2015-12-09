@@ -16,15 +16,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   box-sizing: border-box;
 }
 html { overflow-y: scroll; }
-
-/*body {*/
-  /*background: #fafafa url('grey.png'); /!* http://subtlepatterns.com/subtle-grey/ *!/*/
-  /*font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
-  /*font-size: 62.5%;*/
-  /*line-height: 1;*/
-  /*color: #616161;*/
-  /*padding: 35px 0;*/
-/*}*/
+body {
+  background: #fafafa url('grey.png'); /* http://subtlepatterns.com/subtle-grey/ */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  line-height: 1;
+  color: #616161;
+  padding: 35px 0;
+}
 
 br { display: block; line-height: 1.6em; } 
 
@@ -78,15 +77,6 @@ a:hover {
 
 
 /* page structure */
-#bs-cover {
-   background: #fafafa url('grey.png'); /* http://subtlepatterns.com/subtle-grey/ */
-   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-   font-size: 62.5%;
-   line-height: 1;
-   color: #616161;
-   padding: 35px 0;
- }
-
 #w {
   display: block;
   width: 800px;
@@ -184,35 +174,8 @@ a:hover {
 }
 
 /* input field */
-#ghusernamelabel {
-  /*display: block;*/
-  /*padding: 5px 8px;*/
-  font-size: 1.4em;
-  color: #666;
-  width: 550px;
-  margin-bottom: 15px;
-}
-
 #ghusername {
-  /*display: block;*/
-  padding: 5px 8px;
-  font-size: 1.4em;
-  color: #666;
-  width: 550px;
-  margin-bottom: 15px;
-}
-
-#ghreponamelabel {
-  /*display: block;*/
-  /*padding: 5px 8px;*/
-  font-size: 1.4em;
-  color: #666;
-  width: 550px;
-  margin-bottom: 15px;
-}
-
-#ghreponame {
-  /*display: block;*/
+  display: block;
   padding: 5px 8px;
   font-size: 1.4em;
   color: #666;
