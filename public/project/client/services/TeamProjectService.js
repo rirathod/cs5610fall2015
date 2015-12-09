@@ -18,10 +18,10 @@
         };
         return service;
 
-        function createTeamProjectForUser(userId, project) {
+        function createTeamProjectForUser(userId, teamproject) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId + "/teamproject";
-            $http.post(url, project)
+            $http.post(url, teamproject)
                 .success(function(response){
                     defer.resolve(response);
                 });

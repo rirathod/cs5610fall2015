@@ -12,4 +12,7 @@ module.exports = function(app, mongoose, db) {
 
     var contactUsModel = require("./models/contactUs.model.js")(mongoose, db);
     require("./services/contactus.service.server.js")(app, contactUsModel);
+
+    var teamprojectModel = require("./models/teamproject.model.js")(mongoose, db);
+    require("./services/teamproject.service.server.js")(app, teamprojectModel);
 };

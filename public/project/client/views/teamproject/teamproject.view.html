@@ -30,22 +30,22 @@
                             </th>
                         </tr>
                         <tr>
-                            <td><input ng-model="projectName" class="form-control" type="text" name="name" placeholder="name"/></td>
+                            <td><input ng-model="projectName" class="form-control" type="text" placeholder="name"/></td>
                             <td>
                                 <button ng-click="addProject()" type="button" class="btn btn-primary">
                                     <scan class="glyphicon glyphicon-plus"></scan>
                                 </button>
-                                <button ng-click="updateProject(selectedProjectId, index)" type="button" class="btn btn-success">
+                                <button ng-click="updateProject(selectedTeamProjectId, index)" type="button" class="btn btn-success">
                                     <scan class="glyphicon glyphicon-ok"></scan>
                                 </button>
                             </td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="project in projects | orderBy:predicate:reverse">
-                            <td><a ng-click="navigate($index)">{{project.title}}</a></td>
+                        <tr ng-repeat="teamproject in teamprojects | orderBy:predicate:reverse">
+                            <td><a ng-click="navigate($index)">{{teamproject.title}}</a></td>
                             <td>
-                                <button ng-click="deleteProject(project._id)" class="btn btn-danger">
+                                <button ng-click="deleteProject(teamproject._id)" class="btn btn-danger">
                                     <scan class="glyphicon glyphicon-remove"></scan>
                                 </button>
                                 <button ng-click="selectProject($index)" class="btn btn-info">

@@ -1,12 +1,12 @@
 /**
- * Created by riddhirathod on 11/30/15.
+ * Created by riddhirathod on 12/8/15.
  */
 "use strict";
 
 module.exports = function(mongoose) {
-    var ProjectSchema = mongoose.Schema({
+    var TeamProjectSchema = mongoose.Schema({
         "title": String,
-        "userId": String,
+        "members": [{userId: String}],
         "description": String,
         "status": {type : String, enum: ["NOT STARTED", "STARTED", "COMPLETED"]},
         "githubUsername": String,
@@ -14,7 +14,7 @@ module.exports = function(mongoose) {
         "subTasks": [{name: String}],
         "commits": [{committer: String, committerHtmlUrl:String, message: String, commitHtmlUrl: String, timestamp: String}],
         "instructors": [{email: String}]
-    }, {collection: "cs5610.project.project"});
+    }, {collection: "cs5610.project.teamproject"});
 
-    return ProjectSchema;
+    return TeamProjectSchema;
 };
