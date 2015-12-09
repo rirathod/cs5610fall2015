@@ -7,8 +7,9 @@
         .module("HomeworkTrackerApp")
         .controller("ProjectFieldController", ProjectFieldController);
 
-    function ProjectFieldController($scope, $location, $routeParams,
-                                    GithubService, ProjectService, ProjectSubTaskService, InstructorService) {
+    function ProjectFieldController($scope, $location, $rootScope, $routeParams,
+                                    GithubService, ProjectService,
+                                    ProjectSubTaskService, InstructorService, ProjectCommentService) {
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
 
@@ -92,9 +93,10 @@
                 $scope.project = project;
                 $scope.subTasks = project.subTasks;
                 $scope.instructors = project.instructors;
-                console.log("Before syncing git commits");
+                $scope.comments = project.comments;
+                //console.log("Before syncing git commits");
                 syncGitCommits();
-                console.log("After syncing git commits");
+                //console.log("After syncing git commits");
             });
 
         // Project
@@ -111,6 +113,9 @@
         $scope.updateInstructorEmail = updateInstructorEmail;
         $scope.deleteInstructorEmail = deleteInstructorEmail;
         $scope.selectInstructorEmail = selectInstructorEmail;
+
+        // Instructor Comments
+        $scope.addInstructorComment = addInstructorComment;
 
         function updateProject() {
             if (!angular.isUndefined($scope.project.description) && $scope.project.description != ""
@@ -222,6 +227,41 @@
                             $scope.instructorEmail = "";
                         })
                 }
+            }
+        }
+
+        function addInstructorComment() {
+            //console.log($scope.instructorComment);
+            if ($rootScope.loggedInUser.userType === "Instructor") {
+                if(!angular.isUndefined($scope.instructorComment) && $scope.instructorComment != ""){
+                    var comment = {
+                        "comment": $scope.instructorComment,
+                        "instructor": $rootScope.loggedInUser.email
+                    };
+
+                    ProjectCommentService.addCommentForProject(projectId, comment)
+                        .then(function(updatedProject) {
+                            //console.log(updatedProject);
+                            $scope.comments = updatedProject.comments;
+                            $scope.instructorComment = "";
+                        });
+                }
+            } else {
+                $scope.instructorComment = "";
+                $scope.error2 = "User not authorized to post comment."
+            }
+        }
+
+        function removeInstructorComment(instructorEmail, commentId) {
+            if(instructorEmail === $rootScope.loggedInUser.email) {
+                ProjectCommentService.deleteCommentForProject(projectId, commentId)
+                    .then(function(updatedProject) {
+                        //console.log(updatedProject);
+                        $scope.comments = updatedProject.comments;
+                    });
+                $scope.error2="";
+            } else {
+                $scope.error2 = "User not authorized to post comment."
             }
         }
     }

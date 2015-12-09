@@ -43,7 +43,7 @@
         function findUserById(userId) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);

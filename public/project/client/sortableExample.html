@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script>
+            $(function() {
+                $( "#sortable2" ).sortable();
+                $( "#sortable2" ).disableSelection();
+            });
+
+            $(function() {
+                var fixHelper = function(e, ui) {
+                    ui.children().each(function() {
+                        $(this).width($(this).width());
+                    });
+                    return ui;
+                };
+
+                $("#sortable tbody").sortable({
+                    helper: fixHelper
+                }).disableSelection();
+            });
+        </script>
+    </head>
+    <body>
+        <table id="sortable" class="table table-striped" title="Kurt Vonnegut novels">
+            <thead>
+                <tr><th>Year</th><th>Title</th><th>Grade</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1969</td><td>Slaughterhouse-Five</td><td>A+</td></tr>
+                <tr><td>1952</td><td>Player Piano</td><td>B</td></tr>
+                <tr><td>1963</td><td>Cat's Cradle</td><td>A+</td></tr>
+                <tr><td>1973</td><td>Breakfast of Champions</td><td>C</td></tr>
+                <tr><td>1965</td><td>God Bless You, Mr. Rosewater</td><td>A</td></tr>
+            </tbody>
+        </table>
+
+        <ul id="sortable2">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+            <li>Item 6</li>
+            <li>Item 7</li>
+        </ul>
+    </body>
+</html>

@@ -53,7 +53,7 @@
         function findProjectById(projectId) {
             var defer = $q.defer();
             var url = "/api/project/project/"+ projectId;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);

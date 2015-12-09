@@ -9,6 +9,7 @@ module.exports = function(app, mongoose, db) {
     require("./services/project.service.server.js")(app, projectModel);
     require("./services/projectSubTask.service.server.js")(app, projectModel);
     require("./services/instructor.service.server.js")(app, projectModel);
+    require("./services/projectComment.service.server.js")(app, projectModel);
 
     var contactUsModel = require("./models/contactUs.model.js")(mongoose, db);
     require("./services/contactus.service.server.js")(app, contactUsModel);

@@ -237,7 +237,7 @@
 
         function navigate(index){
             var target = "/user/" + userId + "/project/" + $scope.projects[index].project._id + "/projectField";
-            console.log(target);
+            //console.log(target);
             $location.path(target);
         }
     }

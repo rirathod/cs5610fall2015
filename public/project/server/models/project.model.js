@@ -25,7 +25,11 @@ module.exports = function(mongoose, db){
         AddInstructorToProject : AddInstructorToProject,
         RemoveInstructorFromProject : RemoveInstructorFromProject,
         GetInstructorsForProject : GetInstructorsForProject,
-        UpdateInstructorForProject : UpdateInstructorForProject
+        UpdateInstructorForProject : UpdateInstructorForProject,
+
+        AddComment: AddComment,
+        DeleteComment: DeleteComment,
+        FindProjectComments: FindProjectComments
     };
     return api;
 
@@ -219,9 +223,6 @@ module.exports = function(mongoose, db){
 
     // *************** Project Instructors api ***************
     function AddInstructorToProject(projectId, instructor) {
-        //console.log("In project.model.js: AddInstructorToProject");
-        //console.log(projectId);
-        //console.log(instructor);
         var deferred = q.defer();
         ProjectModel.findById(projectId, function(err, project) {
             if(err) {
@@ -308,6 +309,72 @@ module.exports = function(mongoose, db){
                         deferred.resolve(updatedProject);
                     }
                 });
+            }
+        });
+        return deferred.promise;
+    }
+
+    // *************** Project Comments api ***************
+    function AddComment(projectId, comment) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                // first check if array is undefined
+                if(!project.comments) {
+                    // if NOT project subTasks, then initialize the empty array
+                    project.comments = [];
+                }
+                // now array is guaranteed to exist...
+                project.comments.push(comment);
+
+                project.save(function(err, document) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(document);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function DeleteComment(projectId, commentId) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project){
+            if(err) {
+                deferred.reject(err);
+            } else {
+                //console.log("In project.model.js: RemoveInstructorFromProject");
+                var comments = project.comments;
+                for(var i=0; i<comments.length; i++) {
+                    if(comments[i]._id == commentId) {
+                        comments.splice(i, 1);
+                    }
+                }
+                project.comments = comments;
+                project.save(function(err, document) {
+                    if(err) {
+                        deferred.reject(err);
+                    } else {
+                        //console.log(document);
+                        deferred.resolve(document);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function FindProjectComments(projectId) {
+        var deferred = q.defer();
+        ProjectModel.findById(projectId, function(err, project){
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(project.comments);
             }
         });
         return deferred.promise;
