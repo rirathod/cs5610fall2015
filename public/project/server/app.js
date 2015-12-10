@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(app, mongoose, db) {
+module.exports = function(app, mongoose, db, passport, LocalStrategy) {
 
     var userModel = require("./models/user.model.js")(mongoose, db);
     require("./services/user.service.server.js")(app, userModel);

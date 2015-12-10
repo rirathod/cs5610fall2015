@@ -23,20 +23,22 @@
                         email: $scope.email,
                         userType: $scope.usertype
                     };
-                    //console.log(newUser);
 
                     UserService.createUser(newUser)
                         .then(function(newlyCreatedUser) {
-                            //update rootscope loggedInUser
-                            $rootScope.loggedInUser = newlyCreatedUser;
+                            if(newlyCreatedUser) {
+                                //update rootscope loggedInUser
+                                $rootScope.loggedInUser = newlyCreatedUser;
 
-                            //Navigate to user profile page
-                            $location.path("/profile");
-
+                                //Navigate to user profile page
+                                $location.path("/profile");
+                            } else {
+                                $scope.error = "User already exists.";
+                            }
                         });
                 }
             } else {
-                $scope.error = "One of the input fields is missing";
+                $scope.error = "One of the input fields is missing.";
             }
         }
     }

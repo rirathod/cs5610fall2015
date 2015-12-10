@@ -14,45 +14,55 @@
             })
             .when("/signin",{
                 templateUrl: "views/signin/signin.view.html"
-                //controller: "SignInController"
             })
             .when("/signup",{
                 templateUrl: "views/signup/signup.view.html"
-                //controller: "SignUpController"
             })
             .when("/contactus",{
                 templateUrl: "views/contactus/contactus.view.html"
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html"
-                //controller: "ProfileController"
+                // Passportjs
+                //resolve    : {
+                //    loggedin : checkLoggedin
+                //}
             })
             .when("/individualproject",{
                 templateUrl: "views/individualproject/individualproject.view.html"
-                //controller: "IndividualProjectController"
             })
             .when("/teamproject",{
                 templateUrl: "views/teamproject/teamproject.view.html"
-                //controller: "TeamProjectController"
             })
             .when("/search",{
                 templateUrl: "views/search/search.view.html"
-                //controller: "SearchController"
             })
             .when("/contactusmessages",{
                 templateUrl: "views/contactus/contactusmessages.view.html"
-                //controller: "SearchController"
             })
-            //.when("/admin", {
-            //    templateUrl: "views/admin/admin.view.html"
-            //    //controller: "AdminController"
-            //})
             .when("/user/:userId/project/:projectId/projectField", {
                 templateUrl: "views/projectField/projectField.view.html"
-                //controller: "ProjectFieldController"
             })
             .otherwise({
                 redirectTo : "/"
             })
     }
 })();
+
+/* Passportjs
+var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+    var deferred = $q.defer();
+    $http.get('/api/project/signedin')
+        .success(function(user) {
+            if (user !== '0') {
+                $rootScope.loggedInUser = user;
+                deferred.resolve();
+            } else {
+                $rootScope.errorMessage = 'You need to sign in.';
+                deferred.reject();
+                $location.url('/signin');
+            }
+        });
+    return deferred.promise;
+};
+*/

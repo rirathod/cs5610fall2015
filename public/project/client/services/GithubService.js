@@ -59,6 +59,7 @@
                                         defer.resolve(commits);
                                     });
                             } else {
+                                defer.resolve([]);
                                 console.log("Repository does not exist");
                             }
                         } else {

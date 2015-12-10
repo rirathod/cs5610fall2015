@@ -8,7 +8,7 @@
         .module("HomeworkTrackerApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $location, $rootScope) {
+    function HeaderController($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
         $scope.user = $rootScope.loggedInUser;
 
@@ -16,5 +16,16 @@
             $scope.user = $rootScope.loggedInUser = null;
             $location.path("/signin");
         };
+
+        /* Passportjs
+        $scope.signout = signout;
+        function signout() {
+            UserService.signout(function()
+            {
+                $rootScope.currentUser = null;
+                $location.url("/home");
+            });
+        }
+        */
     }
 })();

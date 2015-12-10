@@ -13,21 +13,42 @@
         var userId = $routeParams.userId;
         var projectId = $routeParams.projectId;
 
-        function updateProjectStatus() {
-            if(($scope.project.commits.length > 0) && ($scope.project.status === "NOT STARTED")){
+        function updateProjectStatus(project) {
+            if (project.commits.length === 0){
+                console.log("Updating project status to NOT STARTED because commits are 0");
+                var newProject1 = {
+                    "status": "NOT STARTED"
+                };
+
+                ProjectService.updateProjectById(projectId, newProject1)
+                    .then(function(updatedProject) {
+                        ProjectService.findProjectById(projectId)
+                            .then(function(updatedProject) {
+                                $scope.project = updatedProject;
+                                $scope.subTasks = updatedProject.subTasks;
+                                $scope.instructors = updatedProject.instructors;
+                                $scope.comments = updatedProject.comments;
+                            });
+                    });
+            } else if((project.commits.length > 0) && (project.status === "NOT STARTED")){
                 console.log("Updating project status from NOT STARTED to STARTED");
-                var newProject = {
+                var newProject2 = {
                     "status": "STARTED"
                 };
 
-                ProjectService.updateProjectById(projectId, newProject)
+                ProjectService.updateProjectById(projectId, newProject2)
                     .then(function(updatedProject) {
-                        //console.log(updatedProject);
-                        $scope.project = updatedProject;
+                        ProjectService.findProjectById(projectId)
+                            .then(function(updatedProject) {
+                                $scope.project = updatedProject;
+                                $scope.subTasks = updatedProject.subTasks;
+                                $scope.instructors = updatedProject.instructors;
+                                $scope.comments = updatedProject.comments;
+                            });
                     });
-            } else if(($scope.project.commits.length > 0) && ($scope.project.status === "STARTED")) {
+            } else if (project.commits.length > 0) {
                 var flag = false;
-                var commits  = $scope.project.commits;
+                var commits  = project.commits;
                 for(var i=0; i<commits.length; i++) {
                     if(commits[i].message.indexOf("finish") > -1
                         || commits[i].message.indexOf("Finish") > -1
@@ -40,25 +61,35 @@
                     }
                 }
 
+                var newProject3 = {
+                    "status": ""
+                };
                 if (flag) {
-                    var newProject = {
-                        "status": "COMPLETED"
-                    };
-                    ProjectService.updateProjectById(projectId, newProject)
-                        .then(function(updatedProject) {
-                            //console.log(updatedProject);
-                            $scope.project = updatedProject;
-                        });
+                    newProject3.status = "COMPLETED";
+                } else {
+                    newProject3.status = "STARTED";
                 }
+
+                console.log(newProject3);
+                ProjectService.updateProjectById(projectId, newProject3)
+                    .then(function(updatedProject) {
+                        ProjectService.findProjectById(projectId)
+                            .then(function(updatedProject) {
+                                $scope.project = updatedProject;
+                                $scope.subTasks = updatedProject.subTasks;
+                                $scope.instructors = updatedProject.instructors;
+                                $scope.comments = updatedProject.comments;
+                            });
+                    });
             }
         }
 
-        function syncGitCommits() {
-            if (!angular.isUndefined($scope.project.githubUsername) && $scope.project.githubUsername != ""
-                && !angular.isUndefined($scope.project.githubReponame) && $scope.project.githubReponame != "") {
+        function syncGitCommits(project) {
+            if (!angular.isUndefined(project.githubUsername) && project.githubUsername != ""
+                && !angular.isUndefined(project.githubReponame) && project.githubReponame != "") {
 
                 // Syncing git commits for project
-                GithubService.syncCommits($scope.project.githubUsername, $scope.project.githubReponame)
+                GithubService.syncCommits(project.githubUsername, project.githubReponame)
                     .then(function(commits) {
                         //console.log(commits);
                         var projectCommits = [];
@@ -78,26 +109,35 @@
                         // Load project git commits
                         ProjectService.updateProjectById(projectId, newProject)
                             .then(function (updatedProject) {
-                                //console.log(updatedProject);
-                                $scope.project = updatedProject;
-
                                 // Updating project status based on git commit messages
-                                updateProjectStatus();
+                                updateProjectStatus(updatedProject);
+                            });
+                    });
+            } else {
+                var newProject = {
+                    "status": "NOT STARTED"
+                };
+
+                ProjectService.updateProjectById(projectId, newProject)
+                    .then(function(updatedProject) {
+                        ProjectService.findProjectById(projectId)
+                            .then(function(updatedProject) {
+                                $scope.project = updatedProject;
+                                $scope.subTasks = updatedProject.subTasks;
+                                $scope.instructors = updatedProject.instructors;
+                                $scope.comments = updatedProject.comments;
                             });
                     });
             }
         }
 
-        ProjectService.findProjectById(projectId)
-            .then(function(project){
-                $scope.project = project;
-                $scope.subTasks = project.subTasks;
-                $scope.instructors = project.instructors;
-                $scope.comments = project.comments;
-                //console.log("Before syncing git commits");
-                syncGitCommits();
-                //console.log("After syncing git commits");
-            });
+        function loadProjectFields() {
+            ProjectService.findProjectById(projectId)
+                .then(function(project){
+                    syncGitCommits(project);
+                });
+        }
+        loadProjectFields();
 
         // Project
         $scope.updateProject = updateProject;
@@ -120,21 +160,17 @@
 
         function updateProject() {
             if (!angular.isUndefined($scope.project.description) && $scope.project.description != ""
-            && !angular.isUndefined($scope.project.status) && $scope.project.status != ""
             && !angular.isUndefined($scope.project.githubUsername) && $scope.project.githubUsername != ""
             && !angular.isUndefined($scope.project.githubReponame) && $scope.project.githubReponame != "") {
                 var project = {
                     "description": $scope.project.description,
-                    "status": $scope.project.status,
                     "githubUsername": $scope.project.githubUsername,
                     "githubReponame": $scope.project.githubReponame
                 };
 
                 ProjectService.updateProjectById(projectId, project)
                     .then(function(updatedProject) {
-                        //console.log(updatedProject);
-                        $scope.project = updatedProject;
-                        syncGitCommits();
+                        loadProjectFields();
                     });
                 $scope.error="";
             } else {

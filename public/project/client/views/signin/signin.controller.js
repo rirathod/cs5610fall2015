@@ -15,32 +15,32 @@
         function signin(user) {
             var username = user.username;
             var password = user.password;
-            var userType = user.usertype;
-
-            //console.log(username);
-            //console.log(password);
-            //console.log(userType);
+            var userType = user.userType;
 
             UserService.findUserByUsernamePasswordAndUserType(username, password, userType)
                 .then(function(currentUser) {
-                    //console.log(currentUser);
-
                     if (currentUser) {
                         $rootScope.loggedInUser = currentUser;
-
-                        //Navigate to user home pages
-                        //if(currentUser.userType === "admin"
-                        //|| currentUser.userType === "Admin"
-                        //|| currentUser.userType === "ADMIN") {
-                        //    $location.path("/profile");
-                        //} else {
-                        //    $location.path("/profile");
-                        //}
                         $location.path("/profile");
                     } else {
                         $scope.error = "Username/Password combination does not exist";
                     }
                 });
         }
+
+        /* Passportjs
+        function signin(user) {
+            console.log("In signin.controller.js: signin");
+            UserService.signin(user)
+                .then(function(response) {
+                if(response != null) {
+                    $rootScope.loggedInUser = response;
+                    $location.url("/profile");
+                } else {
+                    $scope.error = "Username/Password combination does not exist";
+                }
+            });
+        }
+        */
     }
 })();

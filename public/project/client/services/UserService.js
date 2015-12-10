@@ -6,6 +6,10 @@
 
     function UserService($http,$q) {
         var service = {
+            // Passportjs
+            //signin: signin,
+            //signout: signout,
+
             findAllUsers: findAllUsers,
             findUserById: findUserById,
             findUserByUsername : findUserByUsername,
@@ -15,6 +19,27 @@
             updateUser: updateUser
         };
         return service;
+
+        /* Passportjs
+        function signin(user) {
+            console.log("In UserService.js: signin");
+            var defer = $q.defer();
+            $http.post("/api/project/signin", user)
+                .success(function(response) {
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
+
+        function signout() {
+            var defer = $q.defer();
+            $http.post("/api/project/signout")
+                .success(function(response){
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
+        */
 
         function findUserByUsername(userName) {
             var defer = $q.defer();

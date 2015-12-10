@@ -12,17 +12,33 @@ module.exports = function(mongoose, db){
         Update : Update,
         Delete : Delete,
         FindUserByUsername : FindUserByUsername,
+        FindUserByCredentials: FindUserByCredentials,
         FindUserByCredentialsAndType : FindUserByCredentialsAndType
     };
     return api;
 
     function Create(user){
         var deferred = q.defer();
-        UserModel.create(user, function(err, document) {
-            UserModel.findById(document._id, function(err, createdUser) {
-                deferred.resolve(createdUser);
-            });
+
+        // Checks if a user exists, if yes then return null, else create new one
+        UserModel.FindUserByCredentialsAndType(user, function(err, foundUser) {
+            if(foundUser!= null) {
+                deferred.resolve(null);
+            } else {
+                UserModel.create(user, function(err, document) {
+                    UserModel.findById(document._id, function(err, createdUser) {
+                        deferred.resolve(createdUser);
+                    });
+                });
+            }
         });
+
+        // Old implementation
+        //UserModel.create(user, function(err, document) {
+        //    UserModel.findById(document._id, function(err, createdUser) {
+        //        deferred.resolve(createdUser);
+        //    });
+        //});
         return deferred.promise;
     }
 
@@ -56,9 +72,6 @@ module.exports = function(mongoose, db){
             if(err) {
                 deferred.reject(err);
             } else {
-                //console.log("In user.model.js: Update1");
-                //console.log(userToUpdate);
-
                 userToUpdate.firstName = user.firstName;
                 userToUpdate.lastName = user.lastName;
                 userToUpdate.username = user.username;
@@ -66,8 +79,6 @@ module.exports = function(mongoose, db){
                 userToUpdate.email = user.email;
                 userToUpdate.universityName = user.universityName;
                 userToUpdate.save(function(err, document) {
-                    //console.log("In user.model.js: Update2");
-                    //console.log(document);
                     deferred.resolve(document);
                 });
             }
@@ -99,15 +110,25 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
+    function FindUserByCredentials(userInfo) {
+        var deferred = q.defer();
+        UserModel.findOne({username: userInfo.username, password: userInfo.password}, function(err, user) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(user);
+            }
+        });
+        return deferred.promise;
+    }
+
     function FindUserByCredentialsAndType(userInfo) {
-        //console.log("In user.model.js: FindUserByCredentialsAndType");
+        //console.log(userInfo);
         var deferred = q.defer();
         UserModel.findOne({username: userInfo.username, password: userInfo.password, userType: userInfo.userType}, function(err, user) {
             if(err) {
                 deferred.reject(err);
             } else {
-                //console.log("In user.model.js:");
-                //console.log(user);
                 deferred.resolve(user);
             }
         });
