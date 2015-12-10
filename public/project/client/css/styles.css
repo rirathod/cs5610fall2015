@@ -66,7 +66,7 @@
 
 #signin {
     display: block;
-    width: 50vw;
+    width: 60vw;
     margin: 0 auto;
     background: whitesmoke;
     padding: 15px 25px;
@@ -82,7 +82,7 @@
 
 #signup {
     display: block;
-    width: 65vw;
+    width: 75vw;
     margin: 0 auto;
     background: whitesmoke;
     padding: 15px 25px;
@@ -98,7 +98,7 @@
 
 #contactus {
     display: block;
-    width: 45vw;
+    width: 55vw;
     margin: 0 auto;
     background: whitesmoke;
     padding: 15px 25px;

@@ -11,27 +11,31 @@ module.exports = function(mongoose, db){
         FindById : FindById,
         Update : Update,
         Delete : Delete,
-        FindUserByUsername : FindUserByUsername,
+        FindUserByCredentialsAndType : FindUserByCredentialsAndType,
         FindUserByCredentials: FindUserByCredentials,
-        FindUserByCredentialsAndType : FindUserByCredentialsAndType
+        FindUserByUsername : FindUserByUsername
     };
     return api;
 
     function Create(user){
         var deferred = q.defer();
+        console.log(user);
 
         // Checks if a user exists, if yes then return null, else create new one
-        UserModel.FindUserByCredentialsAndType(user, function(err, foundUser) {
-            if(foundUser!= null) {
-                deferred.resolve(null);
-            } else {
-                UserModel.create(user, function(err, document) {
-                    UserModel.findById(document._id, function(err, createdUser) {
-                        deferred.resolve(createdUser);
+        FindUserByCredentialsAndType(user)
+            .then(function(foundUser) {
+                if(foundUser!= null) {
+                    deferred.resolve(null);
+                } else {
+                    UserModel.create(user, function(err, document) {
+                        UserModel.findById(document._id, function(err, createdUser) {
+                            deferred.resolve(createdUser);
+                        });
                     });
-                });
-            }
-        });
+                }
+            }, function(err) {
+                deferred.reject(err);
+            });
 
         // Old implementation
         //UserModel.create(user, function(err, document) {

@@ -72,7 +72,6 @@ module.exports = function(app, model, passport, LocalStrategy){
     */
 
     app.post("/api/project/user", AddUser);
-    app.post("/api/project/user", AddUser);
     app.put("/api/project/user/:id", UpdateUser);
     app.get("/api/project/user/:id", FindById);
     app.delete("/api/project/user/:id", DeleteUser);
