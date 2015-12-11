@@ -24,7 +24,7 @@ app.use(session({ secret: 'this is the secret' }));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/project/client'));
 
 
 //require('./public/assignment/server/app.js')(app, mongoose, db);c

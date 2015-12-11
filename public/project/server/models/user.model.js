@@ -19,7 +19,7 @@ module.exports = function(mongoose, db){
 
     function Create(user){
         var deferred = q.defer();
-        console.log(user);
+        //console.log(user);
 
         // Checks if a user exists, if yes then return null, else create new one
         FindUserByCredentialsAndType(user)
