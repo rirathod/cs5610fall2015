@@ -11,6 +11,20 @@
         ProjectService.findAllProjectsForUser($rootScope.loggedInUser._id)
             .then(function(projects) {
                 $scope.projects = projects;
+
+                $(function() {
+                    var fixHelper = function(e, ui) {
+                        ui.children().each(function() {
+                            $(this).width($(this).width());
+                        });
+                        return ui;
+                    };
+
+                    $("#sortable tbody").sortable({
+                        helper: fixHelper
+                    }).disableSelection();
+                });
+
             });
 
         $scope.addProject = addProject;
@@ -24,7 +38,6 @@
                 title: $scope.projectName
             };
 
-            //console.log(angular.isUndefined($scope.projectName));
             if(!angular.isUndefined($scope.projectName) && $scope.projectName != ""){
                 ProjectService.createProjectForUser($rootScope.loggedInUser._id, project)
                     .then(function(createdProject) {

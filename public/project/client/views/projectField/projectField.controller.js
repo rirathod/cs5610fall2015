@@ -70,7 +70,7 @@
                     newProject3.status = "STARTED";
                 }
 
-                console.log(newProject3);
+                //console.log(newProject3);
                 ProjectService.updateProjectById(projectId, newProject3)
                     .then(function(updatedProject) {
                         ProjectService.findProjectById(projectId)

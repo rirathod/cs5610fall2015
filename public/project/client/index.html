@@ -25,20 +25,22 @@
 
     <script src="app.js"></script>
     <script src="config.js"></script>
-    <!--<script>-->
-        <!--$(function() {-->
-            <!--var fixHelper = function(e, ui) {-->
-                <!--ui.children().each(function() {-->
-                    <!--$(this).width($(this).width());-->
-                <!--});-->
-                <!--return ui;-->
-            <!--};-->
+    <script>
+        $(function() {
+//            var fixHelper = function(e, ui) {
+//                ui.children().each(function() {
+//                    $(this).width($(this).width());
+//                });
+//                return ui;
+//            };
 
-            <!--$("#sortable tbody").sortable({-->
-                <!--helper: fixHelper-->
-            <!--}).disableSelection();-->
-        <!--});-->
-    <!--</script>-->
+            setTimeout(function() {
+                $("#sortable tbody").sortable({
+//                helper: fixHelper
+                }).disableSelection();
+            }, 2000);
+        });
+    </script>
 
     <script src="views/contactus/contactus.controller.js"></script>
     <script src="views/contactus/contactusmessages.controller.js"></script>

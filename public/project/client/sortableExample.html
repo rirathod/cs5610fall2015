@@ -11,11 +11,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script>
             $(function() {
-                $( "#sortable2" ).sortable();
-                $( "#sortable2" ).disableSelection();
-            });
-
-            $(function() {
                 var fixHelper = function(e, ui) {
                     ui.children().each(function() {
                         $(this).width($(this).width());
@@ -42,15 +37,5 @@
                 <tr><td>1965</td><td>God Bless You, Mr. Rosewater</td><td>A</td></tr>
             </tbody>
         </table>
-
-        <ul id="sortable2">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-            <li>Item 5</li>
-            <li>Item 6</li>
-            <li>Item 7</li>
-        </ul>
     </body>
 </html>

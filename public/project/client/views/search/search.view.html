@@ -76,14 +76,14 @@
                             <button class="btn">
                                 <scan class="glyphicon glyphicon-triangle-bottom"></scan>
                             </button>
-                            Project Owner
+                            Project Owner UserId
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="entry in projects | orderBy:predicate:reverse">
-                        <td><a ng-click="navigate($index)">{{entry.project.title}}</a></td>
-                        <td>{{entry.owner.username}}</td>
+                    <tr ng-repeat="project in projects | orderBy:predicate:reverse">
+                        <td><a ng-click="navigate($index)">{{project.title}}</a></td>
+                        <td>{{project.userId}}</td>
                     </tr>
                     </tbody>
                 </table>

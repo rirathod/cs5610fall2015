@@ -37,6 +37,9 @@ module.exports = function(mongoose, db){
     function Create(project, userId){
         var deferred = q.defer();
         project.userId = userId;
+        project.description = "";
+        project.status = "NOT STARTED";
+
         ProjectModel.create(project, function(err, createdProject) {
             if(err) {
                 deferred.reject(err);
