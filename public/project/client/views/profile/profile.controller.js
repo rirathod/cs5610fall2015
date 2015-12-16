@@ -22,6 +22,9 @@
 
         $scope.update = update;
         function update() {
+            if($scope.user.email) {
+
+            }
             var user = {
                 username: $scope.user.username,
                 password: $scope.user.password,
